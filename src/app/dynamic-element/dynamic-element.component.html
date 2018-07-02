@@ -1,15 +1,17 @@
 <div [formGroup]="form">
+  <div class="form-group" [ngSwitch]="elements.controlType">
 
-  <ng-template [ngSwitch]="elements.controlType">
 
     <label [attr.for]="elements.Key"> {{ elements.Label }} </label>
+    <input class="form-control" type="text" *ngSwitchCase="'textbox'" [id]="elements.Key" [formControlName]="elements.Key">
 
-    <input type="text" *ngSwitchCase="'textbox'" [id]="elements.Key" [formControlName]="elements.Key">
-
-
-    <select *ngSwitchCase="dropdown" [id]="elements.Key" [formControlName]="elements.Key">
-      <option *ngFor="let option of elements.options" [value]="option.Key">{{ option.value }}</option>
+    <select class="form-control" *ngSwitchCase="'dropdown'" [id]="elements.Key" [formControlName]="elements.Key">
+      <option *ngFor="let option of elements.options" [value]="option.key">{{ option.value }}</option>
     </select>
-  </ng-template>
+
+    <input type="checkbox" class="form-control" [formControlName]="elements.id" [(ngModel)]="elements.visible" />
+
+  </div>
 
 </div>
+

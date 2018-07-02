@@ -1,10 +1,13 @@
+import { IEvent } from './IEvents';
 
-export interface IElement {
+export interface IElement<T> {
     Key?: string;
-    value?: string;
+    value?: T;
     Label?: string;
     required?: boolean;
     controlType?: string;
     visible?: boolean;
-    options?: any[];
+    events?: IEvent [];
+    id?: number;
+    [key: string]: any;
 }

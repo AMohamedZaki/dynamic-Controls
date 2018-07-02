@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,5 @@ export class AppComponent {
   title = 'app';
   dateTime: Date;
 
+  form: FormGroup;
 }

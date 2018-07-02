@@ -4,8 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DynamicElementComponent } from './dynamic-element/dynamic-element.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { GetElementsService } from './Services/get-elements.service';
+import { ElementConvertService } from './Services/element-convert.service';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,12 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    GetElementsService,
+    ElementConvertService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

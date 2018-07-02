@@ -11,12 +11,18 @@ export class ElementConvertService {
   toFormControl(contorls: BaseElement<any>[]) {
     const group: any = {};
 
-    contorls.forEach(controlElement => {
-      group[controlElement.Key] = controlElement.required ? new FormControl(controlElement.value || '', Validators.required)
-                                              : new FormControl(controlElement.value || '');
+    contorls.forEach(controlElement  => {
+        group[controlElement.Key] = controlElement.required ?
+          new FormControl(controlElement.value || '', Validators.required) : new FormControl(controlElement.value || '');
+        group[controlElement.id] = new FormControl(controlElement.id || '');
     });
     return new FormGroup(group);
 
-}
+  }
+
+
+  test() {
+    console.log('from Service ');
+  }
 
 }

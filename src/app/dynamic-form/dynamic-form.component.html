@@ -1,4 +1,13 @@
-<form (ngSubmit)="submit()" [formGroup]="form">
 
+<div class="row">
+<div class="container">
+  <form (ngSubmit)="submit()" [formGroup]="form">
+    <div *ngFor="let element of elementList; let i = index">
+      <dynamicElement [form]="form" [elements]="element"></dynamicElement>
+    </div>
+    <button type="button" (click)="onClick()"> Test Button </button>
+  </form>
 
-</form>
+  {{ form.value | json }}
+</div>
+</div>
