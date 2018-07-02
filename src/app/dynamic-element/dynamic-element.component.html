@@ -1,7 +1,6 @@
+
 <div [formGroup]="form">
   <div class="form-group" [ngSwitch]="elements.controlType">
-
-
     <label [attr.for]="elements.Key"> {{ elements.Label }} </label>
     <input class="form-control" type="text" *ngSwitchCase="'textbox'" [id]="elements.Key" [formControlName]="elements.Key">
 

@@ -19,23 +19,51 @@ export class GetElementsService {
         required: true,
         visible: true,
         id: 0,
-        events: [{ Name: 'click', callBack: () => this.elementConvertService.test() } ]
+        events:
+          [
+            { Name: 'click', callBack: () => { this.elementConvertService.test(); } },
+            { Name: 'change', callBack: el => { console.log(el.target.value); } }
+          ]
       }),
 
       new DropDown({
-        Key: 'brave',
-        Label: 'Choose One Answer ?',
+        Key: 'country',
+        Label: 'Choose Your Country ?',
         required: true,
         visible: false,
         id: 1,
         options: [
-          { key: 'solid', value: 'Solid' },
-          { key: 'great', value: 'Great' },
-          { key: 'good', value: 'Good' },
-          { key: 'unproven', value: 'Unproven' }
-        ],
-        events: [{ Name: 'change', callBack: el => {console.log( el.target.value ); } }]
-      })
+          { key: 'egypt', value: 'Egypt' },
+          { key: 'qeter', value: 'Qeter' },
+          { key: 'aswan', value: 'Aswan' },
+          { key: 'enpi', value: 'Enpi' }
+        ]
+      }),
+
+      new TextBoxElement({
+        Key: 'lastName',
+        Label: 'Last name',
+        value: 'Zaki',
+        required: true,
+        visible: false,
+        id: 3
+      }),
+
+      new DropDown({
+        Key: 'City',
+        Label: 'Choose your City ?',
+        required: true,
+        visible: false,
+        id: 4,
+        options: [
+          { key: 'cairo', value: 'Cairo' },
+          { key: 'nasr', value: 'Nasr' },
+          { key: 'helwan', value: 'Helwan' },
+          { key: 'zagazeg', value: 'Zagazeg' }
+        ]
+      }),
+
+
     ];
 
     return elemnents;

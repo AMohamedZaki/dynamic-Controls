@@ -11,6 +11,7 @@ export class BaseElement<T> {
     visible?: boolean;
     events?: IEvent [];
     id?: number; // for checkBox visibal checkbox
+
     constructor(options: IElement<T>) {
         this.Key = options.Key || '';
         this.value = options.value;

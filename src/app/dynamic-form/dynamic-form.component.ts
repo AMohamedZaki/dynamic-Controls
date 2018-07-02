@@ -7,8 +7,7 @@ import { BaseElement } from '../model/baseElement';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dynamic-form',
-  templateUrl: './dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.css']
+  templateUrl: './dynamic-form.component.html'
 })
 export class DynamicFormComponent implements OnInit {
 
@@ -23,7 +22,6 @@ export class DynamicFormComponent implements OnInit {
 
     this.elementList = this.elemntMockService.getElements();
     this.form = this.elementConvertService.toFormControl(this.elementList);
-
   }
 
   onClick() {

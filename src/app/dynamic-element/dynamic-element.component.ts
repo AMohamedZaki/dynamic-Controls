@@ -5,8 +5,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dynamicElement',
-  templateUrl: './dynamic-element.component.html',
-  styleUrls: ['./dynamic-element.component.css']
+  templateUrl: './dynamic-element.component.html'
 })
 export class DynamicElementComponent implements OnInit {
 
@@ -18,7 +17,7 @@ export class DynamicElementComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.elements.events.length) {
+    if (this.elements.events && this.elements.events.length) {
       this.elements.events.forEach(element => {
         this.renderer.listen(this.elementRef.nativeElement, element.Name,
           element.callBack);
