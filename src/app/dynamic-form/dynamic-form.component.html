@@ -1,17 +1,17 @@
 <form class="container" (ngSubmit)="submit()" [formGroup]="form">
-  <div *ngFor="let element of elementList; let i = index">
-    <div class="row" *ngIf="i%3 === 0">
+  <div *ngFor="let index of createRange(3); let i=index">
+    <div class="row">
       <div class="col-4">
-        <dynamicElement [form]="form" [elements]="element"></dynamicElement>
+        <dynamicElement [form]="form" [elements]="elementList[i*3]"></dynamicElement>
+      </div>
+      <div class="col-4">
+        <dynamicElement [form]="form" [elements]="elementList[(i*3)+1]"></dynamicElement>
+      </div>
+      <div class="col-4">
+        <dynamicElement [form]="form" [elements]="elementList[(i*3)+2]"></dynamicElement>
       </div>
     </div>
-      <div class="col-4" *ngIf=" i%3 !== 0">
-        <dynamicElement [form]="form" [elements]="element"></dynamicElement>
-      </div>
-
   </div>
 </form>
+
 <button type="button" (click)="onClick()"> Test Button </button>
-
-
-{{ form.value | json }}

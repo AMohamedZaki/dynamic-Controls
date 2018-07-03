@@ -12,6 +12,7 @@ import { BaseElement } from '../model/baseElement';
 export class DynamicFormComponent implements OnInit {
 
   form: FormGroup;
+  length = 0;
   elementList: any[] = [];
   constructor(private elementConvertService: ElementConvertService,
     private elemntMockService: GetElementsService) {
@@ -19,13 +20,25 @@ export class DynamicFormComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.elementList = this.elemntMockService.getElements();
+    if (this.elementList.length || this.elementList.length > 0) {
+      this.length = this.elementList.length;
+    }
     this.form = this.elementConvertService.toFormControl(this.elementList);
   }
 
   onClick() {
     console.log(this.form.value);
   }
+
+
+  createRange(increment: number) {
+    const remeder = (this.length  % increment === 0 ) ? 0 : 1 ;
+    const listLength = Math.floor (this.length  / increment);
+    const arrayLength = listLength + (remeder);
+    console.log(arrayLength);
+    return new Array(arrayLength);
+  }
+
 
 }

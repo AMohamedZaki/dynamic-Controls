@@ -1,13 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { DynamicElementComponent } from './dynamic-element/dynamic-element.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppComponent } from './app.component';
+import { DynamicElementComponent } from './dynamic-element/dynamic-element.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { GetElementsService } from './Services/get-elements.service';
 import { ElementConvertService } from './Services/element-convert.service';
+import { GetElementsService } from './Services/get-elements.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +25,13 @@ import { ElementConvertService } from './Services/element-convert.service';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatInputModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatNativeDateModule
   ],
   providers: [
     GetElementsService,
