@@ -16,6 +16,7 @@ export class DynamicFormComponent implements OnInit {
   elementList: any[] = [];
   message = '';
   index = 0;
+  item = 4 ;
   showcheckbox: boolean;
   constructor(private elementConvertService: ElementConvertService,
               public elemntMockService: GetElementsService) {
