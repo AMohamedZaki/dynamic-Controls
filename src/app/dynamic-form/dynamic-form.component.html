@@ -1,28 +1,33 @@
 <div class="form-group">
-  <button class="btn btn-info" [class.active]="this.index % 2 !== 0" (click)="applyChange()" > Update Favrite Search</button>
-  <button class="btn btn-info" (click)="getSelectedDate()" > Use Favrite Search Field</button>
+  <button class="btn btn-info" [class.active]="this.index % 2 !== 0" (click)="applyChange()"> Update Favrite Search</button>
+  <button class="btn btn-info" (click)="getSelectedDate()"> Use Favrite Search Field</button>
 </div>
 <form [formGroup]="form">
-  <div *ngFor="let index of createRange(3); let i=index">
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="panel panel-primary">
-          <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i*3]"></dynamicElement>
+  <div *ngFor="let eItem of createRange(1); let i=index">
+    <div *ngIf="elementList[i]">
+      {{ elementList[i].titel }}
+      <div *ngFor="let eItem2 of createRange(3)">
+
+        <div class="row">
+        <div class="col-sm-4">
+          <div class="panel panel-primary">
+            <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].elementList[i*3]"></dynamicElement>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].elementList[(i*3)+1]"></dynamicElement>
+        </div>
+        <div class="col-sm-4">
+          <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].elementList[(i*3)+2]"></dynamicElement>
         </div>
       </div>
-      <div class="col-sm-4">
-        <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[(i*3)+1]"></dynamicElement>
-      </div>
-      <div class="col-sm-4">
-        <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[(i*3)+2]"></dynamicElement>
       </div>
     </div>
+
   </div>
 </form>
 <br/>
-
-<button type="button" class="btn btn-primary" (click)="onClick()"> submit </button>
-<br /> 
------------------------------
-<br /> 
-{{ form.value | json }}
+<!-- test -->
+<button type="button" class="btn btn-primary" ng-class="" (click)="onClick()"> submit </button>
+<br /> -----------------------------
+<br /> {{ form.value | json }}
