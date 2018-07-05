@@ -14,8 +14,8 @@ export class DynamicFormComponent implements OnInit {
   form: FormGroup;
   length = 0;
   elementList: any[] = [];
-  constructor(private elementConvertService: ElementConvertService,
-    private elemntMockService: GetElementsService) {
+  message = '';
+  constructor(private elementConvertService: ElementConvertService, public elemntMockService: GetElementsService) {
 
   }
 
@@ -28,15 +28,15 @@ export class DynamicFormComponent implements OnInit {
   }
 
   onClick() {
-    console.log(this.form.value);
+    this.elemntMockService.changeCurrentItem(this.elementList);
+    this.message = 'Done';
   }
 
 
   createRange(increment: number) {
-    const remeder = (this.length  % increment === 0 ) ? 0 : 1 ;
-    const listLength = Math.floor (this.length  / increment);
+    const remeder = (this.length % increment === 0) ? 0 : 1;
+    const listLength = Math.floor(this.length / increment);
     const arrayLength = listLength + (remeder);
-    console.log(arrayLength);
     return new Array(arrayLength);
   }
 

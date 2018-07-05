@@ -13,13 +13,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { RouterModule } from '@angular/router';
+import { SearchComponent } from './component/search/search.component';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     DynamicElementComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    RouterModule.forRoot([
+      { path: '' , component: DynamicFormComponent } ,
+      { path: 'search' , component: SearchComponent }
+    ])
   ],
   providers: [
     GetElementsService,

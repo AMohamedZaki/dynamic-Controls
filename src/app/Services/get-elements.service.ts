@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
 import { TextBoxElement } from '../model/TextBoxElement';
 import { DropDown } from '../model/dropDown';
-import { EventEmitter } from 'events';
 import { ElementConvertService } from './element-convert.service';
 import { DatePickerElement } from '../model/datepicker';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class GetElementsService {
 
   constructor(private elementConvertService: ElementConvertService) { }
+
+  private currentItemsSource = new BehaviorSubject<any[]>([]);
+  currentItems = this.currentItemsSource.asObservable();
+
+  changeCurrentItem(item: any) {
+    this.currentItemsSource.next(item);
+  }
+
 
   getElements() {
     const elemnents: any[] = [
@@ -35,6 +43,7 @@ export class GetElementsService {
         visible: false,
         id: 3
       }),
+
       new DropDown({
         Key: 'City',
         Label: 'Choose your City ?',
@@ -50,7 +59,7 @@ export class GetElementsService {
       }),
       new TextBoxElement({
         Key: 'lastName',
-        Label: 'Last name1',
+        Label: 'Last name',
         value: 'Zaki',
         required: true,
         visible: false,
