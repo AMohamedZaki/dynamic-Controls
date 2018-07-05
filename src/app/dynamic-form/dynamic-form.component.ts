@@ -18,17 +18,23 @@ export class DynamicFormComponent implements OnInit {
   index = 0;
   showcheckbox: boolean;
   constructor(private elementConvertService: ElementConvertService,
-              public elemntMockService: GetElementsService) {
+    public elemntMockService: GetElementsService) {
   }
 
   ngOnInit() {
+    this.elemntMockService.getElements().forEach(item => {
+      this.form = this.elementConvertService.toFormControl(item.elementList);
+      // if (Object.keys(item.panel ).length > 0) {
+      //   this.form.addControl(this.elementConvertService.toFormControl(item.panel.elementList));
+      // }
+    });
+
     this.sourceList = this.elemntMockService.getElements();
     this.elementList = JSON.parse(JSON.stringify(this.sourceList));
 
     if (this.elementList.length || this.elementList.length > 0) {
       this.length = this.elementList.length;
     }
-    this.form = this.elementConvertService.toFormControl(this.elementList);
   }
 
   onClick() {
@@ -36,9 +42,9 @@ export class DynamicFormComponent implements OnInit {
   }
 
 
-  createRange(increment: number) {
-    const remeder = (this.length % increment === 0) ? 0 : 1;
-    const listLength = Math.floor(this.length / increment);
+  createRange(increment: number, length: number) {
+    const remeder = (length % increment === 0) ? 0 : 1;
+    const listLength = Math.floor(length / increment);
     const arrayLength = listLength + (remeder);
     return new Array(arrayLength);
   }

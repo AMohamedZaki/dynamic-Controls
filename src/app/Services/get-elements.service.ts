@@ -65,6 +65,19 @@ export class GetElementsService {
           id: 3
         })
       ]
+    , panel: {
+        titel: 'pathology contnent',
+        elementList: [
+            new TextBoxElement({
+              Key: 'paragraph',
+              Label: 'paragraph',
+              value: '',
+              required: true,
+              visible: true,
+              id: 0
+            })
+        ]
+      }
     }];
 
     return elemnents;

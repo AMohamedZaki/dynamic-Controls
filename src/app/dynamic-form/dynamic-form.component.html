@@ -2,25 +2,49 @@
   <button class="btn btn-info" [class.active]="this.index % 2 !== 0" (click)="applyChange()"> Update Favrite Search</button>
   <button class="btn btn-info" (click)="getSelectedDate()"> Use Favrite Search Field</button>
 </div>
-<form [formGroup]="form">
-  <div *ngFor="let eItem of createRange(1); let i=index">
-    <div *ngIf="elementList[i]">
-      {{ elementList[i].titel }}
-      <div *ngFor="let eItem2 of createRange(3)">
+<!-- createRange => method work to create empty array contain the length
+               devided by the number of increment it' like for loop -->
 
-        <div class="row">
-        <div class="col-sm-4">
-          <div class="panel panel-primary">
-            <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].elementList[i*3]"></dynamicElement>
+<form [formGroup]="form">
+  <div *ngFor="let eItem of createRange(1, length); let i=index">
+    <div *ngIf="elementList[i]">
+      <div class="card">
+        <div class="card-header">{{elementList[i].titel}}</div>
+        <div class="card-body">
+          <div *ngFor="let eItem2 of createRange(3, elementList[i].elementList.length); let j=index">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="panel panel-primary">
+                  <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].elementList[j*3]"></dynamicElement>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].elementList[(j*3)+1]"></dynamicElement>
+              </div>
+              <div class="col-sm-4">
+                <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].elementList[(j*3)+2]"></dynamicElement>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-sm-4">
-          <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].elementList[(i*3)+1]"></dynamicElement>
+        <div *ngIf="elementList[i].panel" class="card">
+          <div class="card-header bg-dark text-white">{{elementList[i].panel.titel}} </div>
+          <div *ngFor="let eItem2 of createRange(3, elementList[i].panel.elementList.length); let j=index">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="panel panel-primary">
+                    <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].panel.elementList[j*3]"></dynamicElement>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].panel.elementList[(j*3)+1]"></dynamicElement>
+                </div>
+                <div class="col-sm-4">
+                  <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].panel.elementList[(j*3)+2]"></dynamicElement>
+                </div>
+              </div>
+            </div>
         </div>
-        <div class="col-sm-4">
-          <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].elementList[(i*3)+2]"></dynamicElement>
-        </div>
-      </div>
       </div>
     </div>
 
