@@ -64,7 +64,7 @@ export class GetElementsService {
         required: true,
         visible: false,
         id: 3
-      }),
+      })
 
     ];
 

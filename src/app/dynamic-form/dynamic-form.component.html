@@ -1,21 +1,28 @@
-
-<form (ngSubmit)="submit()" [formGroup]="form">
+<div class="form-group">
+  <button class="btn btn-info" [class.active]="this.index % 2 !== 0" (click)="applyChange()" > Update Favrite Search</button>
+  <button class="btn btn-info" (click)="getSelectedDate()" > Use Favrite Search Field</button>
+</div>
+<form [formGroup]="form">
   <div *ngFor="let index of createRange(3); let i=index">
     <div class="row">
       <div class="col-sm-4">
         <div class="panel panel-primary">
-          <dynamicElement [form]="form" [ShowCheck]="true" [elements]="elementList[i*3]"></dynamicElement>
+          <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i*3]"></dynamicElement>
         </div>
       </div>
       <div class="col-sm-4">
-        <dynamicElement [form]="form" [ShowCheck]="true" [elements]="elementList[(i*3)+1]"></dynamicElement>
+        <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[(i*3)+1]"></dynamicElement>
       </div>
       <div class="col-sm-4">
-        <dynamicElement [form]="form" [ShowCheck]="true" [elements]="elementList[(i*3)+2]"></dynamicElement>
+        <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[(i*3)+2]"></dynamicElement>
       </div>
     </div>
   </div>
 </form>
 <br/>
 
-<button type="button" class="btn btn-primary" (click)="onClick()"> submit </button> {{ message }}
+<button type="button" class="btn btn-primary" (click)="onClick()"> submit </button>
+<br /> 
+-----------------------------
+<br /> 
+{{ form.value | json }}
