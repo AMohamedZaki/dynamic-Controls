@@ -9,18 +9,9 @@ import { Panel } from '../model/panel';
 @Injectable()
 export class GetElementsService {
 
-  constructor(private elementConvertService: ElementConvertService) { }
-
-  private currentItemsSource = new BehaviorSubject<any[]>([]);
-  currentItems = this.currentItemsSource.asObservable();
-
-  changeCurrentItem(item: any) {
-    this.currentItemsSource.next(item);
-  }
-
-
-  getElements() {
-    const elemnents: Panel[] = [{
+  elemnents: Panel[];
+  constructor(private elementConvertService: ElementConvertService) {
+    this.elemnents = [{
       titel: 'Patient',
       elementList: [
         new TextBoxElement({
@@ -65,22 +56,45 @@ export class GetElementsService {
           id: 3
         })
       ]
-    , panel: {
+      , panel: {
         titel: 'pathology contnent',
         elementList: [
-            new TextBoxElement({
-              Key: 'paragraph',
-              Label: 'paragraph',
-              value: '',
-              required: true,
-              visible: true,
-              id: 0
-            })
+          new TextBoxElement({
+            Key: 'paragraph',
+            Label: 'paragraph',
+            value: '',
+            required: true,
+            visible: true,
+            id: 0
+          })
         ]
       }
     }];
+  }
 
-    return elemnents;
+  private currentItemsSource = new BehaviorSubject<any[]>([]);
+  currentItems = this.currentItemsSource.asObservable();
+
+  changeCurrentItem(item: any) {
+    this.currentItemsSource.next(item);
+  }
+
+
+  getElements() {
+    return this.elemnents;
 
   }
+
+  addElement(elemnents: Panel[]) {
+    this.elemnents = this.assign(this.elemnents, elemnents);
+  }
+
+  assign(target, source): Panel[] {
+    const num = Math.min(target.length, source.length);
+    for (let i = 0; i < num; ++i) {
+      target[i] = source[i];
+    }
+    return target;
+  }
+
 }
