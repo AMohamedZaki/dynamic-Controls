@@ -27,6 +27,7 @@
             </div>
           </div>
         </div>
+        <!-- For the SubPanel -->
         <div *ngIf="elementList[i].panel" class="card">
           <div class="card-header bg-dark text-white">{{elementList[i].panel.titel}} </div>
           <div *ngFor="let eItem2 of createRange(3, elementList[i].panel.elementList.length); let j=index">
@@ -45,6 +46,7 @@
               </div>
             </div>
         </div>
+        <!-- End of SubPanel-->
       </div>
     </div>
 
@@ -55,3 +57,5 @@
 <button type="button" class="btn btn-primary" ng-class="" (click)="onClick()"> submit </button>
 <br /> -----------------------------
 <br /> {{ form.value | json }}
+
+
