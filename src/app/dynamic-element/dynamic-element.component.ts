@@ -19,11 +19,14 @@ export class DynamicElementComponent implements OnInit {
   }
 
   ngOnInit() {
-     if (this.elements && this.elements.events && this.elements.events.length > 0) {
-       this.elements.events.forEach(element => {
-         this.renderer.listen(this.elementRef.nativeElement, element.Name,
-           element.callBack);
-       });
-     }
-   }
+    if (this.elements && this.elements.events && this.elements.events.length > 0) {
+      this.elements.events.forEach(element => {
+        if (element.Name) {
+          this.renderer.listen(this.elementRef.nativeElement, element.Name,
+            element.callBack);
+        }
+      });
+
+    }
+  }
 }

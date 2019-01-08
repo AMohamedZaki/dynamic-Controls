@@ -15,15 +15,14 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './component/search/search.component';
-import { SvgTestComponent } from './sg-test/svg-test/svg-test.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DynamicElementComponent,
     DynamicFormComponent,
-    SearchComponent,
-    SvgTestComponent
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +37,7 @@ import { SvgTestComponent } from './sg-test/svg-test/svg-test.component';
     MatNativeDateModule,
     RouterModule.forRoot([
       { path: '' , component: DynamicFormComponent } ,
-      { path: 'search' , component: SearchComponent },
-      { path: 'SVG' , component: SvgTestComponent },
+      { path: 'search' , component: SearchComponent }
     ])
   ],
   providers: [

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseElement } from '../model/baseElement';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Panel } from '../model/panel';
 
 @Injectable()
 export class ElementConvertService {
@@ -8,16 +9,17 @@ export class ElementConvertService {
   // Covert Elemnt To Form Control
   constructor() { }
 
-  toFormControl(contorls: BaseElement<any>[]) {
+  toFormControl(contorls: Panel[]) {
     const group: any = {};
-
-    contorls.forEach(controlElement  => {
-        group[controlElement.Key] = controlElement.required ?
-          new FormControl(controlElement.value || '', Validators.required) : new FormControl(controlElement.value || '');
-        group[controlElement.id] = new FormControl(controlElement.id || '');
+    console.log(contorls);
+    contorls.forEach(controlElement => {
+      controlElement.elementList.forEach(item => {
+        group[item.Key] = item.required ?
+          new FormControl(item.value || '', Validators.required) : new FormControl(item.value || '');
+        group[item.id] = new FormControl(item.id || '');
+      });
     });
     return new FormGroup(group);
-
   }
 
 

@@ -16,16 +16,16 @@ export class DynamicFormComponent implements OnInit {
   elementList: any[] = [];
   message = '';
   index = 0;
-  item = 4 ;
-  showcheckbox: boolean;
+  item = 4;
+  showcheckbox = true;
   constructor(private elementConvertService: ElementConvertService,
-              public elemntMockService: GetElementsService) {
+    public elemntMockService: GetElementsService) {
   }
 
   ngOnInit() {
     this.sourceList = this.elemntMockService.getElements();
-    this.elementList = JSON.parse(JSON.stringify(this.sourceList));
-
+    // this.elementList = JSON.parse(JSON.stringify(this.sourceList));
+     this.elementList = Object.create(this.sourceList);
     if (this.elementList.length || this.elementList.length > 0) {
       this.length = this.elementList.length;
     }
