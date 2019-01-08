@@ -16,8 +16,12 @@ export class DynamicFormComponent implements OnInit {
   elementList: any[] = [];
   message = '';
   index = 0;
+<<<<<<< HEAD
   item = 4;
   showcheckbox = true;
+=======
+  showcheckbox: boolean;
+>>>>>>> parent of 438f32d... test
   constructor(private elementConvertService: ElementConvertService,
     public elemntMockService: GetElementsService) {
   }
