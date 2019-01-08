@@ -13,16 +13,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatNativeDateModule } from '@angular/material/core';
+<<<<<<< HEAD
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './component/search/search.component';
+=======
+>>>>>>> parent of bac2306... apply an example for dynamic controls
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DynamicElementComponent,
-    DynamicFormComponent,
-    SearchComponent
+    DynamicFormComponent
   ],
   imports: [
     BrowserModule,
@@ -34,11 +36,7 @@ import { SearchComponent } from './component/search/search.component';
     MatInputModule,
     MatButtonModule,
     MatButtonToggleModule,
-    MatNativeDateModule,
-    RouterModule.forRoot([
-      { path: '' , component: DynamicFormComponent } ,
-      { path: 'search' , component: SearchComponent }
-    ])
+    MatNativeDateModule
   ],
   providers: [
     GetElementsService,

@@ -12,13 +12,12 @@ export class DynamicElementComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
   @Input('elements') elements: BaseElement<any>;
   @Input() form: FormGroup;
-  // tslint:disable-next-line:no-input-rename
-  @Input('ShowCheck') ShowCheck: boolean;
 
   constructor(private elementRef: ElementRef, private renderer: Renderer) {
   }
 
   ngOnInit() {
+<<<<<<< HEAD
     if (this.elements && this.elements.events && this.elements.events.length > 0) {
       this.elements.events.forEach(element => {
         if (element.Name) {
@@ -29,4 +28,14 @@ export class DynamicElementComponent implements OnInit {
 
     }
   }
+=======
+  //   if (this.elements.events && this.elements.events.length) {
+  //     this.elements.events.forEach(element => {
+  //       this.renderer.listen(this.elementRef.nativeElement, element.Name,
+  //         element.callBack);
+  //     });
+  //   }
+  // }
+
+>>>>>>> parent of bac2306... apply an example for dynamic controls
 }

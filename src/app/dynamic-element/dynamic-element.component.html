@@ -1,24 +1,29 @@
 <ng-template [ngIf]="elements">
   <div class="form-inline" [formGroup]="form">
 
-    <div [ngSwitch]="true">
-      <div class="panel-title">
-        <label [attr.for]="elements.Key" *ngSwitchCase="elements.controlType !== 'datepicker'"> {{ elements.Label }} </label>
-      </div>
-      <input class="form-control" type="text" *ngSwitchCase="elements.controlType === 'textbox'" [id]="elements.Key" [formControlName]="elements.Key">
+    <div [ngSwitch]="elements.controlType">
 
-      <select class="form-control" *ngSwitchCase="elements.controlType === 'dropdown'" [id]="elements.Key" [formControlName]="elements.Key">
+      <label [attr.for]="elements.Key" *ngSwitchCase="!'datepicker'"> {{ elements.Label }} </label>
+
+      <input class="form-control" type="text" *ngSwitchCase="'textbox'" [id]="elements.Key" [formControlName]="elements.Key">
+
+      <select class="form-control" *ngSwitchCase="'dropdown'" [id]="elements.Key" [formControlName]="elements.Key">
         <option *ngFor="let option of elements.options" [value]="option.key">{{ option.value }}</option>
       </select>
 
-      <mat-form-field *ngSwitchCase="elements.controlType === 'datepicker'">
+      <mat-form-field *ngSwitchCase="'datepicker'">
         <input matInput [matDatepicker]="picker" [placeholder]="elements.Label" [id]="elements.Key" [formControlName]="elements.Key">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+<<<<<<< HEAD
 
       <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" />
       
+=======
+      
+        <input type="checkbox" class="form-control" [formControlName]="elements.id" [(ngModel)]="elements.visible" />
+>>>>>>> parent of bac2306... apply an example for dynamic controls
     </div>
   </div>
 </ng-template>

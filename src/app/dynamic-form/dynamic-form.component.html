@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="form-group">
   <button class="btn btn-info" [class.active]="this.index % 2 !== 0" (click)="applyChange()"> Update Favrite Search</button>
   <button class="btn btn-info" (click)="getSelectedDate()"> Use Favrite Search Field</button>
@@ -21,11 +22,25 @@
           <dynamicElement [form]="form" [ShowCheck]="showcheckbox" [elements]="elementList[i].elementList[(i*3)+2]"></dynamicElement>
         </div>
       </div>
+=======
+<form class="container" (ngSubmit)="submit()" [formGroup]="form">
+  <div *ngFor="let index of createRange(3); let i=index">
+    <div class="row">
+      <div class="col-4">
+        <dynamicElement [form]="form" [elements]="elementList[i*3]"></dynamicElement>
+      </div>
+      <div class="col-4">
+        <dynamicElement [form]="form" [elements]="elementList[(i*3)+1]"></dynamicElement>
+      </div>
+      <div class="col-4">
+        <dynamicElement [form]="form" [elements]="elementList[(i*3)+2]"></dynamicElement>
+>>>>>>> parent of bac2306... apply an example for dynamic controls
       </div>
     </div>
 
   </div>
 </form>
+<<<<<<< HEAD
 <br/>
 <!-- test -->
 <<<<<<< HEAD
@@ -40,3 +55,7 @@
 <br /> 
 {{ form.value | json }}
 >>>>>>> parent of 438f32d... test
+=======
+
+<button type="button" (click)="onClick()"> Test Button </button>
+>>>>>>> parent of bac2306... apply an example for dynamic controls

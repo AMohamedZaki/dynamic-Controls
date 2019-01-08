@@ -14,6 +14,7 @@ export class DynamicFormComponent implements OnInit {
   length = 0;
   sourceList: any[] = [];
   elementList: any[] = [];
+<<<<<<< HEAD
   message = '';
   index = 0;
 <<<<<<< HEAD
@@ -24,6 +25,11 @@ export class DynamicFormComponent implements OnInit {
 >>>>>>> parent of 438f32d... test
   constructor(private elementConvertService: ElementConvertService,
     public elemntMockService: GetElementsService) {
+=======
+  constructor(private elementConvertService: ElementConvertService,
+    private elemntMockService: GetElementsService) {
+
+>>>>>>> parent of bac2306... apply an example for dynamic controls
   }
 
   ngOnInit() {
@@ -37,14 +43,19 @@ export class DynamicFormComponent implements OnInit {
   }
 
   onClick() {
+<<<<<<< HEAD
     this.message = 'Done';
+=======
+    console.log(this.form.value);
+>>>>>>> parent of bac2306... apply an example for dynamic controls
   }
 
 
   createRange(increment: number) {
-    const remeder = (this.length % increment === 0) ? 0 : 1;
-    const listLength = Math.floor(this.length / increment);
+    const remeder = (this.length  % increment === 0 ) ? 0 : 1 ;
+    const listLength = Math.floor (this.length  / increment);
     const arrayLength = listLength + (remeder);
+    console.log(arrayLength);
     return new Array(arrayLength);
   }
 
