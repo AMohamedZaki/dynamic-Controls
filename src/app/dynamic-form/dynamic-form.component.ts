@@ -14,28 +14,18 @@ export class DynamicFormComponent implements OnInit {
   length = 0;
   sourceList: any[] = [];
   elementList: any[] = [];
-<<<<<<< HEAD
   message = '';
   index = 0;
-<<<<<<< HEAD
   item = 4;
-  showcheckbox = true;
-=======
   showcheckbox: boolean;
->>>>>>> parent of 438f32d... test
   constructor(private elementConvertService: ElementConvertService,
     public elemntMockService: GetElementsService) {
-=======
-  constructor(private elementConvertService: ElementConvertService,
-    private elemntMockService: GetElementsService) {
-
->>>>>>> parent of bac2306... apply an example for dynamic controls
   }
 
   ngOnInit() {
     this.sourceList = this.elemntMockService.getElements();
     // this.elementList = JSON.parse(JSON.stringify(this.sourceList));
-     this.elementList = Object.create(this.sourceList);
+    this.elementList = Object.create(this.sourceList);
     if (this.elementList.length || this.elementList.length > 0) {
       this.length = this.elementList.length;
     }
@@ -43,19 +33,14 @@ export class DynamicFormComponent implements OnInit {
   }
 
   onClick() {
-<<<<<<< HEAD
     this.message = 'Done';
-=======
-    console.log(this.form.value);
->>>>>>> parent of bac2306... apply an example for dynamic controls
   }
 
 
   createRange(increment: number) {
-    const remeder = (this.length  % increment === 0 ) ? 0 : 1 ;
-    const listLength = Math.floor (this.length  / increment);
+    const remeder = (this.length % increment === 0) ? 0 : 1;
+    const listLength = Math.floor(this.length / increment);
     const arrayLength = listLength + (remeder);
-    console.log(arrayLength);
     return new Array(arrayLength);
   }
 
