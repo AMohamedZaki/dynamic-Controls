@@ -23,8 +23,8 @@ export class GetElementsService {
           id: 0,
           events:
             [
-              { Name: 'click', callBack: () => { this.elementConvertService.test(); } },
-              { Name: 'change', callBack: el => { console.log(el.target.value); } }
+              { Name: 'click', callBack: 'testClick()' },
+              { Name: 'change', callBack: 'testChange(event)' }
             ]
         }),
         new DatePickerElement({

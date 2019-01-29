@@ -16,6 +16,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './component/search/search.component';
 import { APP_BASE_HREF } from '@angular/common';
+import { MehtodesService } from './Services/mehtodes.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { APP_BASE_HREF } from '@angular/common';
   ],
   providers: [
     GetElementsService,
-    ElementConvertService
+    ElementConvertService,
+    MehtodesService
   ],
   bootstrap: [AppComponent]
 })

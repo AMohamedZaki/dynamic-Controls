@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ElementRef, Renderer } from '@angular/core';
 import { BaseElement } from '../model/baseElement';
 import { FormGroup } from '@angular/forms';
+import { MehtodesService } from '../Services/mehtodes.service';
+import { HelperService } from '../Services/helper.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -15,15 +17,21 @@ export class DynamicElementComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
   @Input('ShowCheck') ShowCheck: boolean;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer) {
+  constructor(private elementRef: ElementRef,
+    private renderer: Renderer,
+    private mehtodeService: MehtodesService
+  ) {
   }
 
   ngOnInit() {
-     if (this.elements && this.elements.events && this.elements.events.length > 0) {
-       this.elements.events.forEach(element => {
-         this.renderer.listen(this.elementRef.nativeElement, element.Name,
-           element.callBack);
-       });
-     }
-   }
+    if (this.elements && this.elements.events && this.elements.events.length > 0) {
+      this.elements.events.forEach(element => {
+        const MethodDetails = HelperService.getMethodName(element.callBack);
+        this.renderer.listen(this.elementRef.nativeElement, element.Name,
+          () => this.mehtodeService[MethodDetails.Name](...MethodDetails.Parameters)
+        );
+      });
+    }
+  }
+
 }

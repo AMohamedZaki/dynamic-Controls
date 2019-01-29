@@ -23,14 +23,13 @@ export class DynamicFormComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.sourceList = this.elemntMockService.getElements();
-    this.elementList = JSON.parse(JSON.stringify(this.sourceList));
+    this.elementList = this.sourceList;
 
     if (this.elementList.length || this.elementList.length > 0) {
       this.length = this.elementList.length;
     }
-// asdasdm;asfm;a
+
     this.form = this.elementConvertService.toFormControl(this.elemntMockService.elemnents);
 
   }
