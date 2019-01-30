@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ElementConvertService } from '../Services/element-convert.service';
-import { GetElementsService } from '../Services/get-elements.service';
 import { Panel } from '../model/panel';
+import { ServiceDetails } from '../model/ServiceDetails';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -11,33 +10,29 @@ import { Panel } from '../model/panel';
 })
 export class DynamicFormComponent implements OnInit {
 
-  form: FormGroup;
+  @Input() form: FormGroup;
+  @Input() dataSource: any[] = [];
+  @Input() ServiceSource: ServiceDetails[];
+
   length = 0;
-  sourceList: any[] = [];
   elementList: any[] = [];
   message = '';
   index = 0;
   showcheckbox: boolean;
-  constructor(private elementConvertService: ElementConvertService,
-    public elemntMockService: GetElementsService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.sourceList = this.elemntMockService.getElements();
-    this.elementList = this.sourceList;
-
+    this.elementList = this.dataSource;
     if (this.elementList.length || this.elementList.length > 0) {
       this.length = this.elementList.length;
     }
-
-    this.form = this.elementConvertService.toFormControl(this.elemntMockService.elemnents);
 
   }
 
   onClick() {
     this.message = 'Done';
   }
-
 
   createRange(increment: number, length: number) {
     const remeder = (length % increment === 0) ? 0 : 1;
@@ -47,16 +42,16 @@ export class DynamicFormComponent implements OnInit {
   }
 
   applyChange() {
-    // show checkbox
-    if (this.index % 2 === 0) {
-      this.showcheckbox = true;
-      this.elementList = this.elemntMockService.getElements();
-    } else {
-      // apply change
-      this.elemntMockService.addElement(this.elementList);
-      this.showcheckbox = false;
-    }
-    this.index += 1;
+    // // show checkbox
+    // if (this.index % 2 === 0) {
+    //   this.showcheckbox = true;
+    //   this.elementList = this.elemntMockService.getElements();
+    // } else {
+    //   // apply change
+    //   this.elemntMockService.addElement(this.elementList);
+    //   this.showcheckbox = false;
+    // }
+    // this.index += 1;
   }
 
   getSelectedDate() {
@@ -76,4 +71,17 @@ export class DynamicFormComponent implements OnInit {
   getvisbl(items: any[]) {
     return items.filter(it => it.visible === true);
   }
+
+  getService(serviceName: any): any {
+    // console.log(item);
+    if (serviceName) {
+      const nitem = this.ServiceSource
+        .find(serv => serv['Name'].toLowerCase() === serviceName.toLowerCase())
+        .Service;
+      return Object.create(nitem);
+    }
+    return null;
+  }
+
+
 }

@@ -17,13 +17,17 @@ import { RouterModule } from '@angular/router';
 import { SearchComponent } from './component/search/search.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { MehtodesService } from './Services/mehtodes.service';
+import { PatientService } from './contrlosServices/patient.service';
+import { ElememtContainerComponent } from './component/elememt-container/elememt-container.component';
+import { DoctorService } from './contrlosServices/doctor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     DynamicElementComponent,
     DynamicFormComponent,
-    SearchComponent
+    SearchComponent,
+    ElememtContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -37,14 +41,16 @@ import { MehtodesService } from './Services/mehtodes.service';
     MatButtonToggleModule,
     MatNativeDateModule,
     RouterModule.forRoot([
-      { path: '' , component: DynamicFormComponent } ,
+      { path: '' , component: ElememtContainerComponent } ,
       { path: 'search' , component: SearchComponent }
     ])
   ],
   providers: [
     GetElementsService,
     ElementConvertService,
-    MehtodesService
+    MehtodesService,
+    PatientService,
+    DoctorService
   ],
   bootstrap: [AppComponent]
 })

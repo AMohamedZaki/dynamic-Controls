@@ -2,7 +2,8 @@ import { BaseElement } from './baseElement';
 
 
 export interface Panel {
-    titel: string;
+    title: string;
     elementList: BaseElement<any>[];
+    Service?: string;
     panel?: Panel;
 }

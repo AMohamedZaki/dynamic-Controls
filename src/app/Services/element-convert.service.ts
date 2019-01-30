@@ -14,8 +14,8 @@ export class ElementConvertService {
 
     elements.forEach(controlElement => {
       const parentList = controlElement.elementList;
-      const subParent = controlElement.panel;
-      const subParentList = controlElement.panel.elementList;
+      const subParent = controlElement.panel || null;
+      const subParentList = (subParent) ? controlElement.panel.elementList : [];
 
       if (parentList && parentList.length > 0 ) {
         parentList.forEach(item => {

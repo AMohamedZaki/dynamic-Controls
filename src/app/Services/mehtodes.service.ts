@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HelperService } from './helper.service';
+import { HelperService } from './helper/helper.service';
 
 export class MehtodesService {
 

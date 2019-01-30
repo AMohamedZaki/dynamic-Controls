@@ -12,7 +12,8 @@ export class GetElementsService {
   elemnents: Panel[];
   constructor(private elementConvertService: ElementConvertService) {
     this.elemnents = [{
-      titel: 'Patient',
+      title: 'Patient',
+      Service: 'docService',
       elementList: [
         new TextBoxElement({
           Key: 'firstName',
@@ -57,7 +58,7 @@ export class GetElementsService {
         })
       ]
       , panel: {
-        titel: 'pathology contnent',
+        title: 'pathology contnent',
         elementList: [
           new TextBoxElement({
             Key: 'paragraph',
@@ -69,7 +70,36 @@ export class GetElementsService {
           })
         ]
       }
-    }];
+    }
+      // ,
+      // {
+      //   title: 'Doctor',
+      //   Service: 'patService',
+      //   elementList: [
+      //     new TextBoxElement({
+      //       Key: 'firstName',
+      //       Label: 'First name',
+      //       value: 'Abdel moneim Mohamed',
+      //       required: true,
+      //       visible: true,
+      //       id: 1,
+      //       events:
+      //         [
+      //           { Name: 'click', callBack: 'testClick()' },
+      //           { Name: 'change', callBack: 'testChange(event)' }
+      //         ]
+      //     }),
+      //     new TextBoxElement({
+      //       Key: 'lastName',
+      //       Label: 'Last name',
+      //       value: '',
+      //       required: true,
+      //       visible: false,
+      //       id: 5
+      //     })
+      //   ]
+      // }
+    ];
   }
 
   private currentItemsSource = new BehaviorSubject<any[]>([]);
