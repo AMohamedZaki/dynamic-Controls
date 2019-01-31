@@ -7,10 +7,13 @@ export class DoctorService extends DataService {
   }
 
   testClick() {
-    console.log('from DoctorService ');
+    // debugger;
+    // this.Parent.CurrentObject['firstName'] = 'Cairo';
+    console.log(this.Parent.CurrentObject);
   }
 
   testChange(event: any) {
+    // this.Parent.changeCurrentObject(this.Parent.CurrentObject);
     console.log('testChange From DocService');
   }
 

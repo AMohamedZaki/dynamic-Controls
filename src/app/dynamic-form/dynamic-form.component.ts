@@ -2,6 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Panel } from '../model/panel';
 import { ServiceDetails } from '../model/ServiceDetails';
+import { DataService } from '../contrlosServices/data-service.service';
+import { ObjectContianerService } from '../contrlosServices/ObjectContianer.service';
+import { ControlMainObject } from '../model/ControlMainObject';
+import { ObjectDetails } from '../model/ObjectDetails';
+import { Patient } from '../contrlosServices/Patient';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -12,21 +17,49 @@ export class DynamicFormComponent implements OnInit {
 
   @Input() form: FormGroup;
   @Input() dataSource: any[] = [];
-  @Input() ServiceSource: ServiceDetails[];
+  @Input() ObjectsMapper: ObjectDetails[] = [];
+  @Input() ServiceSource: ServiceDetails[] = [];
 
-  length = 0;
-  elementList: any[] = [];
-  message = '';
   index = 0;
+  length = 0;
+  message = '';
   showcheckbox: boolean;
-  constructor() {
+  elementList: any[] = [];
+  MainObject: ControlMainObject = {};
+
+  constructor(private objContainerService: ObjectContianerService) {
   }
 
   ngOnInit() {
-    this.elementList = this.dataSource;
-    if (this.elementList.length || this.elementList.length > 0) {
-      this.length = this.elementList.length;
+
+    if (this.dataSource.length || this.dataSource.length > 0) {
+      this.length = this.dataSource.length;
     }
+    console.log('List', this.ObjectsMapper);
+    this.dataSource.forEach((panel: Panel) => {
+      const pObject = this.ObjectsMapper.find((item: ObjectDetails) => item.Name === panel.ObjectMap);
+
+      // tslint:disable-next-line:no-debugger
+      debugger;
+      if (pObject) {
+        this.MainObject[panel.ObjectMap] = pObject.Object;
+      }
+    });
+
+    console.log(this.MainObject);
+     this.objContainerService.CurrentObject = this.form.value;
+     this.ServiceSource.forEach((item: ServiceDetails) => {
+       item.Service.Parent = this.objContainerService;
+     });
+     this.objContainerService.currentItem.subscribe((CurrentItem) => {
+       if (CurrentItem) {
+         Object.keys(CurrentItem).forEach((Key) => {
+           // tslint:disable-next-line:no-debugger
+           this.form.controls[Key].setValue(CurrentItem[Key]);
+         });
+       }
+     });
+
 
   }
 

@@ -7,7 +7,8 @@ export interface IElement<T> {
     required?: boolean;
     controlType?: string;
     visible?: boolean;
-    events?: IEvent [];
+    dataBind: string;
+    events?: IEvent[];
     id?: number;
     [key: string]: any;
 }

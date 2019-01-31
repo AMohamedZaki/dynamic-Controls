@@ -14,6 +14,7 @@ export class GetElementsService {
     this.elemnents = [{
       title: 'Patient',
       Service: 'docService',
+      ObjectMap: 'Patient',
       elementList: [
         new TextBoxElement({
           Key: 'firstName',
@@ -21,25 +22,32 @@ export class GetElementsService {
           value: 'National Technology',
           required: true,
           visible: true,
+          dataBind: 'firstName',
           id: 0,
           events:
             [
               { Name: 'click', callBack: 'testClick()' },
-              { Name: 'change', callBack: 'testChange(event)' }
+              { Name: 'change', callBack: 'testChange(firstName)' }
             ]
         }),
-        new DatePickerElement({
-          Key: 'dateTimePicker',
-          Label: 'Select Date',
+        new DropDown({
+          Key: 'Country',
+          Label: 'Choose The Country',
+          dataBind: 'Country',
           required: true,
-          visible: false,
-          id: 3
+          visible: true,
+          id: 3,
+          options: [
+            { key: '1', value: 'Egypt' },
+            { key: '2', value: 'Qeter' },
+          ]
         }),
         new DropDown({
           Key: 'City',
           Label: 'Choose your City ?',
           required: true,
-          visible: false,
+          dataBind: 'City',
+          visible: true,
           id: 4,
           options: [
             { key: 'cairo', value: 'Cairo' },
@@ -53,17 +61,20 @@ export class GetElementsService {
           Label: 'Last name',
           value: 'Zaki',
           required: true,
-          visible: false,
-          id: 3
+          visible: true,
+          id: 3,
+          dataBind: 'firstName'
         })
       ]
       , panel: {
         title: 'pathology contnent',
+        ObjectMap: 'PatientSub',
         elementList: [
           new TextBoxElement({
             Key: 'paragraph',
             Label: 'paragraph',
             value: '',
+            dataBind: 'paragraph',
             required: true,
             visible: true,
             id: 0
@@ -126,5 +137,4 @@ export class GetElementsService {
     }
     return target;
   }
-
 }

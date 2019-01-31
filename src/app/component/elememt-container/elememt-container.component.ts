@@ -5,6 +5,8 @@ import { FormGroup } from '@angular/forms';
 import { PatientService } from '../../contrlosServices/patient.service';
 import { ServiceDetails } from '../../model/ServiceDetails';
 import { DoctorService } from '../../contrlosServices/doctor.service';
+import { Patient } from '../../contrlosServices/Patient';
+import { ObjectDetails } from '../../model/ObjectDetails';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -17,6 +19,8 @@ export class ElememtContainerComponent implements OnInit {
   ElementDataList: any[];
   form: FormGroup;
   ServiceList: ServiceDetails[] = [];
+  ObjectList: ObjectDetails[] = [];
+  patient: Patient = <Patient>{};
 
   constructor(
     private elementConvertService: ElementConvertService,
@@ -26,11 +30,23 @@ export class ElememtContainerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.patient = {
+      FirstName: 'ahmed',
+      LastName: 'Mohamed',
+      City: [],
+      Country: this.patService.GetCountry(),
+      Id: 1
+    };
+
+
     this.ElementDataList = this.elemntMockService.getElements();
     this.form = this.elementConvertService.toFormControl(this.elemntMockService.elemnents);
+    // Assain Objects
+    this.ObjectList.push({ Name: 'Patient', Object: this.patient });
 
-    this.ServiceList.push(Object.assign({}, { Name: 'patService', Service: this.patService }));
-    this.ServiceList.push(Object.assign({}, { Name: 'docService', Service: this.docService }));
+    // Assain Services
+    this.ServiceList.push({ Name: 'patService', Service: this.patService });
+    this.ServiceList.push({ Name: 'docService', Service: this.docService });
   }
 
 }

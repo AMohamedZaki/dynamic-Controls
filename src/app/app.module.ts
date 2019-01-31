@@ -20,6 +20,8 @@ import { MehtodesService } from './Services/mehtodes.service';
 import { PatientService } from './contrlosServices/patient.service';
 import { ElememtContainerComponent } from './component/elememt-container/elememt-container.component';
 import { DoctorService } from './contrlosServices/doctor.service';
+import { DataService } from './contrlosServices/data-service.service';
+import { ObjectContianerService } from './contrlosServices/ObjectContianer.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { DoctorService } from './contrlosServices/doctor.service';
     ElementConvertService,
     MehtodesService,
     PatientService,
-    DoctorService
+    DoctorService,
+    ObjectContianerService
   ],
   bootstrap: [AppComponent]
 })

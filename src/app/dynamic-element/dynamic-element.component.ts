@@ -10,12 +10,14 @@ import { HelperService } from '../Services/helper/helper.service';
 })
 export class DynamicElementComponent implements OnInit {
 
+  @Input() form: FormGroup;
   // tslint:disable-next-line:no-input-rename
   @Input('elements') elements: BaseElement<any>;
-  @Input() form: FormGroup;
   // tslint:disable-next-line:no-input-rename
   @Input('ShowCheck') ShowCheck: boolean;
   @Input() Service: any;
+  @Input() ObjectMapper: any;
+  @Input() DataBind: string;
 
   constructor(private elementRef: ElementRef,
     private renderer: Renderer) {
@@ -28,6 +30,14 @@ export class DynamicElementComponent implements OnInit {
       this.elements.events.forEach(element => {
         const MethodDetails = HelperService.getMethodName(element.callBack);
         if (service) {
+          // debugger;
+
+          if (MethodDetails.Parameters) {
+            MethodDetails.Parameters.forEach((it) => {
+              console.log(it);
+            });
+          }
+
           this.renderer.listen(this.elementRef.nativeElement, element.Name,
             () => service[MethodDetails.Name](...MethodDetails.Parameters)
           );
