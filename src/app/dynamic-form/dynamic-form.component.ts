@@ -5,7 +5,7 @@ import { ServiceDetails } from '../model/ServiceDetails';
 import { DataService } from '../contrlosServices/data-service.service';
 import { ObjectContianerService } from '../contrlosServices/ObjectContianer.service';
 import { ControlMainObject } from '../model/ControlMainObject';
-import { ObjectDetails } from '../model/ObjectDetails';
+import { ObjDetails } from '../model/ObjectDetails';
 import { Patient } from '../contrlosServices/Patient';
 
 @Component({
@@ -17,7 +17,7 @@ export class DynamicFormComponent implements OnInit {
 
   @Input() form: FormGroup;
   @Input() dataSource: any[] = [];
-  @Input() ObjectsMapper: ObjectDetails[] = [];
+  @Input() ObjectsMapper: ObjDetails[] = [];
   @Input() ServiceSource: ServiceDetails[] = [];
 
   index = 0;
@@ -37,28 +37,30 @@ export class DynamicFormComponent implements OnInit {
     }
     console.log('List', this.ObjectsMapper);
     this.dataSource.forEach((panel: Panel) => {
-      const pObject = this.ObjectsMapper.find((item: ObjectDetails) => item.Name === panel.ObjectMap);
-
+      const pObject = this.ObjectsMapper.forEach((item: ObjDetails) => {
+        // item.Name === panel.ObjectMap
+        const objectString = item.Object;
+        console.log('objectString', objectString);
+      });
       // tslint:disable-next-line:no-debugger
-      debugger;
-      if (pObject) {
-        this.MainObject[panel.ObjectMap] = pObject.Object;
-      }
+      // if (pObject) {
+      //   this.MainObject[panel.ObjectMap] = pObject.Object;
+      // }
     });
 
     console.log(this.MainObject);
-     this.objContainerService.CurrentObject = this.form.value;
-     this.ServiceSource.forEach((item: ServiceDetails) => {
-       item.Service.Parent = this.objContainerService;
-     });
-     this.objContainerService.currentItem.subscribe((CurrentItem) => {
-       if (CurrentItem) {
-         Object.keys(CurrentItem).forEach((Key) => {
-           // tslint:disable-next-line:no-debugger
-           this.form.controls[Key].setValue(CurrentItem[Key]);
-         });
-       }
-     });
+    this.objContainerService.CurrentObject = this.form.value;
+    this.ServiceSource.forEach((item: ServiceDetails) => {
+      item.Service.Parent = this.objContainerService;
+    });
+    this.objContainerService.currentItem.subscribe((CurrentItem) => {
+      if (CurrentItem) {
+        Object.keys(CurrentItem).forEach((Key) => {
+          // tslint:disable-next-line:no-debugger
+          this.form.controls[Key].setValue(CurrentItem[Key]);
+        });
+      }
+    });
 
 
   }
@@ -115,6 +117,5 @@ export class DynamicFormComponent implements OnInit {
     }
     return null;
   }
-
 
 }

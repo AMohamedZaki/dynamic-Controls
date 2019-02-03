@@ -17,7 +17,7 @@ export class DynamicElementComponent implements OnInit {
   @Input('ShowCheck') ShowCheck: boolean;
   @Input() Service: any;
   @Input() ObjectMapper: any;
-  @Input() DataBind: string;
+ // @Input() DataBind: string;
 
   constructor(private elementRef: ElementRef,
     private renderer: Renderer) {
