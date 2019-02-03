@@ -1,9 +1,9 @@
 
 
 export class Patient {
-    FirstName: string;
-    LastName: string;
+    firstName: string;
+    lastName: string;
     Id?: number;
-    Country: { Name: string, Id: number }[];
-    City: { Name: string, Id: number, CountryId: number }[];
+    Country: { key: string, value: string };
+    City: { key: string, value: string };
 }

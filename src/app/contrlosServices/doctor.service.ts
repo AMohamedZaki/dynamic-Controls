@@ -12,9 +12,10 @@ export class DoctorService extends DataService {
     console.log(this.Parent.CurrentObject);
   }
 
-  testChange(event: any) {
+  testChange(value: any) {
     // this.Parent.changeCurrentObject(this.Parent.CurrentObject);
-    console.log('testChange From DocService');
+    console.log('testChange From DocService', value);
+
   }
 
 }

@@ -1,3 +1,5 @@
+{{ DataBind }}
+
 <ng-template [ngIf]="elements">
   <div class="form-inline" [formGroup]="form">
 
@@ -5,10 +7,12 @@
       <div class="panel-title">
         <label [attr.for]="elements.Key" *ngSwitchCase="elements.controlType !== 'datepicker'"> {{ elements.Label }} </label>
       </div>
-      <input class="form-control" type="text" *ngSwitchCase="elements.controlType === 'textbox'" [id]="elements.Key" [formControlName]="elements.Key">
-
-      <select class="form-control" *ngSwitchCase="elements.controlType === 'dropdown'" [id]="elements.Key" [formControlName]="elements.Key">
-        <option *ngFor="let option of elements.options" [value]="option.key">{{ option.value }}</option>
+      <input class="form-control" 
+      [(ngModel)]="DataBind" type="text"
+      (input)="changeValue()" 
+      *ngSwitchCase="elements.controlType === 'textbox'" [id]="elements.Key" [formControlName]="elements.Key">
+      <select class="form-control" (change)="changeValue()" [(ngModel)]="DataBind" *ngSwitchCase="elements.controlType === 'dropdown'" [id]="elements.Key" [formControlName]="elements.Key">
+        <option *ngFor="let option of elements.options" [value]="option.key" [selected]="option.selected" >{{ option.value }} {{ option.selected}}  </option>
       </select>
 
       <mat-form-field *ngSwitchCase="elements.controlType === 'datepicker'">

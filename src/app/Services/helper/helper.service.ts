@@ -2,7 +2,7 @@
 export class HelperService {
 
   // return function details from string ex: method()
-  static getMethodName(functionInfo: string) {
+  static getMethodDetails(functionInfo: string) {
     if (functionInfo) {
       // check parameter contain (
       const rightBracketsIndex = functionInfo.indexOf('(');
@@ -17,7 +17,7 @@ export class HelperService {
         const parametersString = functionInfo.substring(rightBracketsIndex + 1, leftBracketsIndex);
         if (parametersString) {
           funcDetails.hasParamaters = true;
-          funcDetails.Parameters = parametersString.split(',');
+          // funcDetails.Parameters = parametersString.split(',');
         }
         return funcDetails;
       } else { // the parameters has no brackets (notValid)
@@ -33,5 +33,4 @@ export class HelperService {
 export class FunctionDetails {
   Name: string;
   hasParamaters: boolean;
-  Parameters?: string[];
 }

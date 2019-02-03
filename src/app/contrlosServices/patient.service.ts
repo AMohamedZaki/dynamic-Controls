@@ -12,7 +12,7 @@ export class PatientService extends DataService {
   }
 
   testChange(event: any) {
-    console.log('testChange From PatientService');
+    console.log('testChange From PatientService', event.target.value);
   }
 
 

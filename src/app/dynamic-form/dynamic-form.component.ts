@@ -5,7 +5,7 @@ import { ServiceDetails } from '../model/ServiceDetails';
 import { DataService } from '../contrlosServices/data-service.service';
 import { ObjectContianerService } from '../contrlosServices/ObjectContianer.service';
 import { ControlMainObject } from '../model/ControlMainObject';
-import { ObjectDetails } from '../model/ObjectDetails';
+import { ObjDetails } from '../model/ObjectDetails';
 import { Patient } from '../contrlosServices/Patient';
 
 @Component({
@@ -17,7 +17,7 @@ export class DynamicFormComponent implements OnInit {
 
   @Input() form: FormGroup;
   @Input() dataSource: any[] = [];
-  @Input() ObjectsMapper: ObjectDetails[] = [];
+  @Input() ObjectsMapper: ObjDetails[] = [];
   @Input() ServiceSource: ServiceDetails[] = [];
 
   index = 0;
@@ -25,6 +25,7 @@ export class DynamicFormComponent implements OnInit {
   message = '';
   showcheckbox: boolean;
   elementList: any[] = [];
+  // Create Dynamic Object That Contain all Sub Objects
   MainObject: ControlMainObject = {};
 
   constructor(private objContainerService: ObjectContianerService) {
@@ -35,30 +36,28 @@ export class DynamicFormComponent implements OnInit {
     if (this.dataSource.length || this.dataSource.length > 0) {
       this.length = this.dataSource.length;
     }
-    console.log('List', this.ObjectsMapper);
+    this.elementList = this.dataSource;
     this.dataSource.forEach((panel: Panel) => {
-      const pObject = this.ObjectsMapper.find((item: ObjectDetails) => item.Name === panel.ObjectMap);
-
-      // tslint:disable-next-line:no-debugger
-      debugger;
+      const pObject = this.ObjectsMapper.find((item: ObjDetails) => item.Name.toLowerCase() === panel.ObjectMap.toLowerCase());
       if (pObject) {
-        this.MainObject[panel.ObjectMap] = pObject.Object;
+        this.MainObject[panel.ObjectMap] = JSON.parse(pObject.Object);
       }
     });
 
-    console.log(this.MainObject);
-     this.objContainerService.CurrentObject = this.form.value;
-     this.ServiceSource.forEach((item: ServiceDetails) => {
-       item.Service.Parent = this.objContainerService;
-     });
-     this.objContainerService.currentItem.subscribe((CurrentItem) => {
-       if (CurrentItem) {
-         Object.keys(CurrentItem).forEach((Key) => {
-           // tslint:disable-next-line:no-debugger
-           this.form.controls[Key].setValue(CurrentItem[Key]);
-         });
-       }
-     });
+    this.objContainerService.CurrentObject = this.MainObject;
+
+    this.ServiceSource.forEach((item: ServiceDetails) => {
+      item.Service.Parent = this.objContainerService;
+    });
+
+    // this.objContainerService.currentItem.subscribe((CurrentItem) => {
+    //   if (CurrentItem) {
+    //     Object.keys(CurrentItem).forEach((Key) => {
+    //       // tslint:disable-next-line:no-debugger
+    //       this.form.controls[Key].setValue(CurrentItem[Key]);
+    //     });
+    //   }
+    // });
 
 
   }

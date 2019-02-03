@@ -1,4 +1,12 @@
-export interface ObjectDetails {
+export class ObjDetails {
     Name: string;
-    Object: any;
+    Object: string;
+
+  static ConvertObject(obj: any): string {
+    if (obj) {
+        return JSON.stringify(obj);
+    }
+    return '';
 }
+}
+

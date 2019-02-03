@@ -14,7 +14,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
-import { SearchComponent } from './component/search/search.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { MehtodesService } from './Services/mehtodes.service';
 import { PatientService } from './contrlosServices/patient.service';
@@ -28,7 +27,6 @@ import { ObjectContianerService } from './contrlosServices/ObjectContianer.servi
     AppComponent,
     DynamicElementComponent,
     DynamicFormComponent,
-    SearchComponent,
     ElememtContainerComponent
   ],
   imports: [
@@ -44,7 +42,6 @@ import { ObjectContianerService } from './contrlosServices/ObjectContianer.servi
     MatNativeDateModule,
     RouterModule.forRoot([
       { path: '' , component: ElememtContainerComponent } ,
-      { path: 'search' , component: SearchComponent }
     ])
   ],
   providers: [

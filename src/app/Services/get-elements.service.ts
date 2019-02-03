@@ -22,31 +22,32 @@ export class GetElementsService {
           value: 'National Technology',
           required: true,
           visible: true,
-          dataBind: 'firstName',
           id: 0,
           events:
             [
-              { Name: 'click', callBack: 'testClick()' },
-              { Name: 'change', callBack: 'testChange(firstName)' }
+              { Name: 'keyup.enter', callBack: 'testClick' },
+              { Name: 'change', callBack: 'testChange', mainObject: true }
             ]
         }),
         new DropDown({
           Key: 'Country',
           Label: 'Choose The Country',
-          dataBind: 'Country',
           required: true,
           visible: true,
           id: 3,
+          events:
+          [
+            { Name: 'change', callBack: 'testChange', mainObject: true },
+          ],
           options: [
-            { key: '1', value: 'Egypt' },
-            { key: '2', value: 'Qeter' },
+            { key: '1', value: 'Egypt', selected: true },
+            { key: '2', value: 'Qeter', selected: false },
           ]
         }),
         new DropDown({
           Key: 'City',
           Label: 'Choose your City ?',
           required: true,
-          dataBind: 'City',
           visible: true,
           id: 4,
           options: [
@@ -63,7 +64,6 @@ export class GetElementsService {
           required: true,
           visible: true,
           id: 3,
-          dataBind: 'firstName'
         })
       ]
       , panel: {
