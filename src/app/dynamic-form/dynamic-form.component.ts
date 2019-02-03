@@ -110,7 +110,7 @@ export class DynamicFormComponent implements OnInit {
       const nitem = this.ServiceSource
         .find(serv => serv['Name'].toLowerCase() === serviceName.toLowerCase())
         .Service;
-      return Object.create(nitem);
+      return nitem;
     }
     return null;
   }

@@ -12,43 +12,41 @@ import { IEvent } from '../model/IEvents';
 export class DynamicElementComponent implements OnInit {
 
   @Input() form: FormGroup;
+  @Input() Service: any;
   // tslint:disable-next-line:no-input-rename
   @Input('elements') elements: BaseElement<any>;
   // tslint:disable-next-line:no-input-rename
   @Input('ShowCheck') ShowCheck: boolean;
-  @Input() Service: any;
-  @Input() ObjectMapper: any;
+
+  // custom two way binding
   @Input() DataBind: any;
   @Output() DataBindChanged = new EventEmitter<any>();
+
   constructor(private elementRef: ElementRef,
     private renderer: Renderer) {
   }
 
   ngOnInit() {
-    // beasuce the referance value
-    const service = Object.create(this.Service);
     if (this.elements && this.elements.events && this.elements.events.length > 0) {
       this.elements.events.forEach((element: IEvent) => {
-        const MethodDetails = HelperService.getMethodDetails(element.callBack);
-        if (service) {
+        if (this.Service) {
           if (element.mainObject) {
             this.renderer.listen(this.elementRef.nativeElement, element.Name,
-              (el: any) => service[element.callBack](el.target.value)
-            );
+              (el: any) => this.Service[element.callBack](el.target.value));
           } else {
             this.renderer.listen(this.elementRef.nativeElement, element.Name,
-              () => service[element.callBack]());
+              () => this.Service[element.callBack]());
           }
-
         }
-
       });
     }
   }
 
 
   changeValue() {
+
     this.DataBindChanged.emit(this.DataBind);
   }
 
 }
+

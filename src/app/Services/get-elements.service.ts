@@ -35,27 +35,19 @@ export class GetElementsService {
           required: true,
           visible: true,
           id: 3,
+          dataSource: 'CountryList',
           events:
-          [
-            { Name: 'change', callBack: 'testChange', mainObject: true },
-          ],
-          options: [
-            { key: '1', value: 'Egypt', selected: true },
-            { key: '2', value: 'Qeter', selected: false },
-          ]
+            [
+              { Name: 'change', callBack: 'ChangeCity', mainObject: true },
+            ]
         }),
         new DropDown({
           Key: 'City',
           Label: 'Choose your City ?',
           required: true,
           visible: true,
-          id: 4,
-          options: [
-            { key: 'cairo', value: 'Cairo' },
-            { key: 'nasr', value: 'Nasr' },
-            { key: 'helwan', value: 'Helwan' },
-            { key: 'zagazeg', value: 'Zagazeg' }
-          ]
+          dataSource: 'CityList',
+          id: 4
         }),
         new TextBoxElement({
           Key: 'lastName',
