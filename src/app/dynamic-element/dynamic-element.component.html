@@ -1,5 +1,5 @@
 <!-- {{ DataBind }} -->
-<ng-template [ngIf]="elements">
+<ng-template [ngIf]="elements && elements.visible">
   <div class="form-inline" [formGroup]="form">
 
     <div [ngSwitch]="true">
@@ -10,10 +10,13 @@
       </div>
       <input class="form-control" [(ngModel)]="DataBind" type="text" (input)="changeValue()" *ngSwitchCase="elements.controlType === 'textbox'"
         [id]="elements.Key" [formControlName]="elements.Key">
+
+      
+      <!-- To Make Databind contains the select object-->
+      <!-- set att [ngValue]='option' -->
       <select class="form-control" (change)="changeValue()" [(ngModel)]="DataBind" *ngSwitchCase="elements.controlType === 'dropdown'"
         [id]="elements.Key" [formControlName]="elements.Key">
-        <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key" [selected]="option.selected">{{
-          option.value }}</option>
+        <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key">{{ option.value }}  </option>
       </select>
       <mat-form-field *ngSwitchCase="elements.controlType === 'datepicker'">
         <input matInput [matDatepicker]="picker" [placeholder]="elements.Label" [id]="elements.Key" [formControlName]="elements.Key">
@@ -25,7 +28,7 @@
 
       <div class="alert alert-danger" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
         <div *ngIf="getElement(elements.Key)['errors'].required">
-            {{elements.Label}} is required
+          {{elements.Label}} is required
         </div>
       </div>
 

@@ -29,7 +29,6 @@ export class DynamicElementComponent implements OnInit {
   ngOnInit() {
     if (this.elements && this.elements.events && this.elements.events.length > 0) {
       this.elements.events.forEach((element: IEvent) => {
-        // debugger;
         if (this.Service) {
           if (element.mainObject) {
             if (typeof this.Service[element.callBack] === 'function') {
@@ -61,8 +60,6 @@ export class DynamicElementComponent implements OnInit {
   changeValue() {
     this.DataBindChanged.emit(this.DataBind);
   }
-
-
 
   getElement(name: string): AbstractControl {
     return this.form.get(name);

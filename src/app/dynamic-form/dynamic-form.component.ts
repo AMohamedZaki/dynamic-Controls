@@ -61,77 +61,25 @@ export class DynamicFormComponent implements OnInit {
       });
     }
 
-
     this.objContainerService.CurrentObject = this.MainObject;
     this.ServiceSource.forEach((item: ServiceDetails) => {
       item.Service.Parent = this.objContainerService;
+      item.Service.Parent.CurrentObject = this.MainObject;
     });
 
-    // this.objContainerService.currentItem.subscribe((CurrentItem) => {
-    //   if (CurrentItem) {
-    //     Object.keys(CurrentItem).forEach((Key) => {
-    //       // tslint:disable-next-line:no-debugger
-    //       this.form.controls[Key].setValue(CurrentItem[Key]);
-    //     });
-    //   }
-    // });
-
-
   }
 
-  onClick() {
-    this.message = 'Done';
-  }
-
-  createRange(increment: number, length: number) {
-    const remeder = (length % increment === 0) ? 0 : 1;
-    const listLength = Math.floor(length / increment);
-    const arrayLength = listLength + (remeder);
-    return new Array(arrayLength);
-  }
-
-  applyChange() {
-    // // show checkbox
-    // if (this.index % 2 === 0) {
-    //   this.showcheckbox = true;
-    //   this.elementList = this.elemntMockService.getElements();
-    // } else {
-    //   // apply change
-    //   this.elemntMockService.addElement(this.elementList);
-    //   this.showcheckbox = false;
-    // }
-    // this.index += 1;
-  }
-
-  getSelectedDate() {
-    this.elementList.filter((item: Panel) => {
-      const panelList = item.elementList;
-      const subPanel = item.panel;
-      const subPanelList = item.panel.elementList;
-      if (panelList && panelList.length > 0) {
-        item.elementList = this.getvisbl(panelList);
-      }
-      if (subPanel && subPanelList && subPanelList.length > 0) {
-        item.panel.elementList = this.getvisbl(subPanelList);
-      }
-    });
-  }
-
-  getvisbl(items: any[]) {
-    return items.filter(it => it.visible === true);
-  }
 
   getService(serviceName: any): any {
-    // console.log(item);
     if (serviceName) {
       // tslint:disable-next-line:prefer-const
       let nitem = this.ServiceSource
         .find(serv => serv['Name'].toLowerCase() === serviceName.toLowerCase())
         .Service;
       if (nitem) {
+        console.log(nitem.CurrentObject);
         return nitem;
       } else {
-        debugger ;
       }
     }
     return null;

@@ -1,69 +1,35 @@
-<!-- <div class="form-group"> -->
-<!-- <button class="btn btn-info" [class.active]="this.index % 2 !== 0" (click)="applyChange()"> Update Favrite Search (Not Work)</button> -->
-<!-- <button class="btn btn-info" (click)="getSelectedDate()"> Use Favrite Search Field (Not Work)</button> -->
-<!-- </div> -->
-
-<!-- createRange => method work to create empty array contain the length
-               devided by the number of increment it' like for loop -->
 <form [formGroup]="form">
-  <div *ngFor="let eItem of createRange(1, length); let i=index">
-    <div *ngIf="elementList[i]">
+  <div *ngFor="let MainPanel of dataSource; let i=index">
+    <div *ngIf="MainPanel">
       <div class="card">
-        <div class="card-header">{{elementList[i].title}}</div>
+        <div class="card-header">{{MainPanel.title}}</div>
         <div class="card-body">
-          <div *ngFor="let eItem2 of createRange(3, elementList[i].elementList.length); let j=index">
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="panel panel-primary">
-                  <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
-                    [DataBind]="MainObject[elementList[i].ObjectMap][elementList[i].elementList[j*3]?.Key]"
-                    (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].elementList[j*3]?.Key] = $event"
-                    [elements]="elementList[i].elementList[j*3]"></dynamicElement>
-                </div>
+          <div class="row">
+            <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.elementList">
+              <div class="col-sm-4" [hidden]="!dyncamicElement.visible">
+                <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)"
+                  [ShowCheck]="showcheckbox" [elements]="dyncamicElement" [DataBind]="MainObject[MainPanel.ObjectMap][dyncamicElement.Key]"
+                  (DataBindChanged)="MainObject[MainPanel.ObjectMap][dyncamicElement.Key] = $event"></dynamicElement>
               </div>
-              <div class="col-sm-4">
-                <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
-                  [DataBind]="MainObject[elementList[i].ObjectMap][elementList[i].elementList[(j*3)+1]?.Key]"
-                  (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].elementList[(j*3) + 1]?.Key] = $event"
-                  [elements]="elementList[i].elementList[(j*3)+1]"></dynamicElement>
-              </div>
-              <div class="col-sm-4">
-                <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
-                  [(DataBind)]="MainObject[elementList[i].ObjectMap][elementList[i].elementList[(j*3)+2]?.Key]"
-                  (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].elementList[(j*3)+2]?.Key] = $event"
-                  [elements]="elementList[i].elementList[(j*3)+2]"></dynamicElement>
-              </div>
-            </div>
+            </ng-template>
           </div>
         </div>
 
         <!-- For the SubPanel -->
-        <div *ngIf="elementList[i].panel" class="card">
-          <div class="card-header bg-dark text-white">{{elementList[i].panel.title}} </div>
+        <div *ngIf="MainPanel.panel" class="card">
+          <div class="card-header bg-dark text-white">{{MainPanel.panel.title}} </div>
           <div class="card-body">
-            <div *ngFor="let eItem2 of createRange(3, elementList[i].panel.elementList.length); let j=index">
-              <div class="row">
+            <div class="row">
+            <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.panel.elementList">
                 <div class="col-sm-4">
                   <div class="panel panel-primary">
-                    <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
-                      [(DataBind)]="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)]?.Key]"
-                      (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)]?.Key] = $event"
-                      [elements]="elementList[i].panel.elementList[j*3]"></dynamicElement>
+                    <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [ShowCheck]="showcheckbox"
+                      [(DataBind)]="MainObject[MainPanel.ObjectMap][MainPanel.panel.ObjectMap][dyncamicElement.Key]"
+                      (DataBindChanged)="MainObject[MainPanel.ObjectMap][MainPanel.panel.ObjectMap][dyncamicElement.Key] = $event"
+                      [elements]="dyncamicElement"></dynamicElement>
                   </div>
                 </div>
-                <div class="col-sm-4">
-                  <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
-                    [(DataBind)]="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)+1]?.Key]"
-                    (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)+1]?.Key] = $event"
-                    [elements]="elementList[i].panel.elementList[(j*3)+1]"></dynamicElement>
-                </div>
-                <div class="col-sm-4">
-                  <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
-                    [(DataBind)]="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)+2]?.Key]"
-                    (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)+2]?.Key] = $event"
-                    [elements]="elementList[i].panel.elementList[(j*3)+2]"></dynamicElement>
-                </div>
-              </div>
+              </ng-template>
             </div>
           </div>
         </div>
@@ -73,7 +39,4 @@
 
   </div>
 </form>
-<!-- test -->
-<!-- <button type="button" class="btn btn-primary" ng-class="" (click)="onClick()"> submit </button> -->
-<br /> 
-<!-- <br /> {{ form.value | json }} -->
+<br />

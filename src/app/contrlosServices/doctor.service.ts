@@ -8,17 +8,19 @@ export class DoctorService extends DataService {
 
 
   CountryList = [
-    { key: '1', value: 'Egypt', selected: true },
-    { key: '2', value: 'Sadui', selected: false },
+    { key: 1, value: 'Egypt' },
+    { key: 2, value: 'Sadui' },
   ];
   CityList = [];
 
   testClick() {
-    console.log('asdasdas');
+    console.log(this.CurrentObject);
+    this.CurrentObject['Patient']['lastName'] = 'ali';
+    console.log('ali', this.CurrentObject['Patient']['lastName']);
   }
 
   testChange(value: any) {
-   console.log('value', value);
+    console.log('value', value);
   }
 
 
