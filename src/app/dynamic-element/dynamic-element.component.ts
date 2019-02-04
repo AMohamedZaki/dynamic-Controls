@@ -1,7 +1,6 @@
 import { EventEmitter, Component, OnInit, Input, ElementRef, Renderer, Output } from '@angular/core';
 import { BaseElement } from '../model/baseElement';
-import { FormGroup } from '@angular/forms';
-import { HelperService } from '../Services/helper/helper.service';
+import { FormGroup, AbstractControl } from '@angular/forms';
 import { IEvent } from '../model/IEvents';
 
 @Component({
@@ -21,6 +20,7 @@ export class DynamicElementComponent implements OnInit {
   // custom two way binding
   @Input() DataBind: any;
   @Output() DataBindChanged = new EventEmitter<any>();
+  get isValid() { return this.form.controls[this.elements.Key].valid; }
 
   constructor(private elementRef: ElementRef,
     private renderer: Renderer) {
@@ -29,13 +29,28 @@ export class DynamicElementComponent implements OnInit {
   ngOnInit() {
     if (this.elements && this.elements.events && this.elements.events.length > 0) {
       this.elements.events.forEach((element: IEvent) => {
+        // debugger;
         if (this.Service) {
           if (element.mainObject) {
-            this.renderer.listen(this.elementRef.nativeElement, element.Name,
-              (el: any) => this.Service[element.callBack](el.target.value));
+            if (typeof this.Service[element.callBack] === 'function') {
+              this.renderer.listen(this.elementRef.nativeElement, element.Name,
+                (el: any) => this.Service[element.callBack](el.target.value));
+            } else {
+              if (element.callBack.indexOf('(') > -1 || element.callBack.indexOf(')') > -1) {
+                throw new TypeError(`The Method Name Contain brackets !!`);
+              }
+              throw new TypeError(`Method ${element.callBack} Not Exist !!`);
+            }
           } else {
-            this.renderer.listen(this.elementRef.nativeElement, element.Name,
-              () => this.Service[element.callBack]());
+            if (typeof this.Service[element.callBack] === 'function') {
+              this.renderer.listen(this.elementRef.nativeElement, element.Name,
+                () => this.Service[element.callBack]());
+            } else {
+              if (element.callBack.indexOf('(') > -1 || element.callBack.indexOf(')') > -1) {
+                throw new TypeError(`The Method Name Contain brackets !!`);
+              }
+              throw new TypeError(`Method ${element.callBack} Not Exist !!`);
+            }
           }
         }
       });
@@ -44,8 +59,13 @@ export class DynamicElementComponent implements OnInit {
 
 
   changeValue() {
-
     this.DataBindChanged.emit(this.DataBind);
+  }
+
+
+
+  getElement(name: string): AbstractControl {
+    return this.form.get(name);
   }
 
 }

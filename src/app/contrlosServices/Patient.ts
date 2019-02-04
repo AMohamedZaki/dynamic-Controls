@@ -6,4 +6,5 @@ export class Patient {
     Id?: number;
     Country: { key: string, value: string };
     City: { key: string, value: string };
+    PatientSub: { paragraph: string };
 }

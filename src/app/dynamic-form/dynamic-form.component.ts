@@ -2,11 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Panel } from '../model/panel';
 import { ServiceDetails } from '../model/ServiceDetails';
-import { DataService } from '../contrlosServices/data-service.service';
 import { ObjectContianerService } from '../contrlosServices/ObjectContianer.service';
 import { ControlMainObject } from '../model/ControlMainObject';
-import { ObjDetails } from '../model/ObjectDetails';
-import { Patient } from '../contrlosServices/Patient';
+import { BaseElement } from '../model/baseElement';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -17,16 +15,15 @@ export class DynamicFormComponent implements OnInit {
 
   @Input() form: FormGroup;
   @Input() dataSource: any[] = [];
-  @Input() ObjectsMapper: ObjDetails[] = [];
   @Input() ServiceSource: ServiceDetails[] = [];
+  // Create Input Main Object That Contain all Sub Objects
+  @Input() MainObject: ControlMainObject = {};
 
   index = 0;
   length = 0;
   message = '';
   showcheckbox: boolean;
   elementList: any[] = [];
-  // Create Dynamic Object That Contain all Sub Objects
-  MainObject: ControlMainObject = {};
 
   constructor(private objContainerService: ObjectContianerService) {
   }
@@ -36,16 +33,36 @@ export class DynamicFormComponent implements OnInit {
     if (this.dataSource.length || this.dataSource.length > 0) {
       this.length = this.dataSource.length;
     }
-    this.elementList = this.dataSource;
-    this.dataSource.forEach((panel: Panel) => {
-      const pObject = this.ObjectsMapper.find((item: ObjDetails) => item.Name.toLowerCase() === panel.ObjectMap.toLowerCase());
-      if (pObject) {
-        this.MainObject[panel.ObjectMap] = JSON.parse(pObject.Object);
-      }
-    });
+    if (this.dataSource) {
+      this.elementList = this.dataSource;
+      this.dataSource.forEach((controlElement: Panel) => {
+
+        if (controlElement.elementList) {
+          // get all Elements in Panel
+          const MainPanelObject = {};
+          controlElement.elementList.forEach((element: BaseElement<any>) => {
+            MainPanelObject[element.Key] = element.value;
+          });
+          this.MainObject[controlElement.ObjectMap] = MainPanelObject;
+        }
+
+        const subPanel = controlElement.panel;
+        if (subPanel) {
+          const SubPanelObject = {};
+          subPanel.elementList.forEach((element: BaseElement<any>) => {
+            SubPanelObject[element.Key] = element.value;
+          });
+          this.MainObject[controlElement.ObjectMap][subPanel.ObjectMap] = SubPanelObject;
+          if (subPanel.panel) {
+            throw new TypeError('Maximum one sub Panel');
+          }
+        }
+
+      });
+    }
+
 
     this.objContainerService.CurrentObject = this.MainObject;
-
     this.ServiceSource.forEach((item: ServiceDetails) => {
       item.Service.Parent = this.objContainerService;
     });
@@ -107,10 +124,15 @@ export class DynamicFormComponent implements OnInit {
   getService(serviceName: any): any {
     // console.log(item);
     if (serviceName) {
-      const nitem = this.ServiceSource
+      // tslint:disable-next-line:prefer-const
+      let nitem = this.ServiceSource
         .find(serv => serv['Name'].toLowerCase() === serviceName.toLowerCase())
         .Service;
-      return nitem;
+      if (nitem) {
+        return nitem;
+      } else {
+        debugger ;
+      }
     }
     return null;
   }

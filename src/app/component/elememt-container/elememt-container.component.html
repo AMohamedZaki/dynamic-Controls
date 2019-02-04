@@ -4,11 +4,20 @@
   <button class="btn btn-info" > Use Favrite Search Field (Not Work)</button>
 </div> 
 
-patient:- {{ patient | json}}
+registrationObject :- {{ registrationObject | json}}
 <br/>
 
-<dynamic-form 
-[form]="form" 
-[ServiceSource]="ServiceList" 
-[dataSource]="ElementDataList"
-[ObjectsMapper]="ObjectList"></dynamic-form>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  
+  <dynamic-form 
+  [form]="form" 
+  [dataSource]="ElementDataList"
+  [MainObject]= "registrationObject"
+  [ServiceSource]="ServiceList"></dynamic-form>
+  
+  <button type="submit" class="btn btn-primary" ng-class="" [disabled]="!form.valid"> submit </button>
+</form>
+
+
+
+

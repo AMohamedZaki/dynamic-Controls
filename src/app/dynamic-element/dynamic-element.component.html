@@ -5,6 +5,7 @@
     <div [ngSwitch]="true">
       <div class="panel-title">
         <label [attr.for]="elements.Key" *ngSwitchCase="elements.controlType !== 'datepicker'"> {{ elements.Label }}
+          <span *ngIf="elements.required" style="color: red"> &nbsp; *</span>
         </label>
       </div>
       <input class="form-control" [(ngModel)]="DataBind" type="text" (input)="changeValue()" *ngSwitchCase="elements.controlType === 'textbox'"
@@ -14,7 +15,6 @@
         <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key" [selected]="option.selected">{{
           option.value }}</option>
       </select>
-{{ elements.dataSource }}
       <mat-form-field *ngSwitchCase="elements.controlType === 'datepicker'">
         <input matInput [matDatepicker]="picker" [placeholder]="elements.Label" [id]="elements.Key" [formControlName]="elements.Key">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -22,6 +22,12 @@
       </mat-form-field>
 
       <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" />
+
+      <div class="alert alert-danger" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
+        <div *ngIf="getElement(elements.Key)['errors'].required">
+            {{elements.Label}} is required
+        </div>
+      </div>
 
     </div>
   </div>

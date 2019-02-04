@@ -3,10 +3,8 @@
 <!-- <button class="btn btn-info" (click)="getSelectedDate()"> Use Favrite Search Field (Not Work)</button> -->
 <!-- </div> -->
 
-
 <!-- createRange => method work to create empty array contain the length
                devided by the number of increment it' like for loop -->
-               MainObject:-   {{ MainObject | json}}
 <form [formGroup]="form">
   <div *ngFor="let eItem of createRange(1, length); let i=index">
     <div *ngIf="elementList[i]">
@@ -17,23 +15,21 @@
             <div class="row">
               <div class="col-sm-4">
                 <div class="panel panel-primary">
-                  <dynamicElement [form]="form" 
-                    [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
+                  <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
                     [DataBind]="MainObject[elementList[i].ObjectMap][elementList[i].elementList[j*3]?.Key]"
                     (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].elementList[j*3]?.Key] = $event"
                     [elements]="elementList[i].elementList[j*3]"></dynamicElement>
                 </div>
               </div>
               <div class="col-sm-4">
-                <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" 
-                  [ShowCheck]="showcheckbox"  
+                <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
                   [DataBind]="MainObject[elementList[i].ObjectMap][elementList[i].elementList[(j*3)+1]?.Key]"
                   (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].elementList[(j*3) + 1]?.Key] = $event"
                   [elements]="elementList[i].elementList[(j*3)+1]"></dynamicElement>
               </div>
               <div class="col-sm-4">
-                <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" 
-                  [ShowCheck]="showcheckbox"  [(DataBind)]="MainObject[elementList[i].ObjectMap][elementList[i].elementList[(j*3)+2]?.Key]"
+                <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
+                  [(DataBind)]="MainObject[elementList[i].ObjectMap][elementList[i].elementList[(j*3)+2]?.Key]"
                   (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].elementList[(j*3)+2]?.Key] = $event"
                   [elements]="elementList[i].elementList[(j*3)+2]"></dynamicElement>
               </div>
@@ -50,15 +46,21 @@
                 <div class="col-sm-4">
                   <div class="panel panel-primary">
                     <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
+                      [(DataBind)]="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)]?.Key]"
+                      (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)]?.Key] = $event"
                       [elements]="elementList[i].panel.elementList[j*3]"></dynamicElement>
                   </div>
                 </div>
                 <div class="col-sm-4">
                   <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
+                    [(DataBind)]="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)+1]?.Key]"
+                    (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)+1]?.Key] = $event"
                     [elements]="elementList[i].panel.elementList[(j*3)+1]"></dynamicElement>
                 </div>
                 <div class="col-sm-4">
                   <dynamicElement [form]="form" [Service]="getService(elementList[i].Service)" [ShowCheck]="showcheckbox"
+                    [(DataBind)]="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)+2]?.Key]"
+                    (DataBindChanged)="MainObject[elementList[i].ObjectMap][elementList[i].panel.ObjectMap][elementList[i].panel.elementList[(j*3)+2]?.Key] = $event"
                     [elements]="elementList[i].panel.elementList[(j*3)+2]"></dynamicElement>
                 </div>
               </div>
@@ -71,12 +73,7 @@
 
   </div>
 </form>
-<br />
 <!-- test -->
-<button type="button" class="btn btn-primary" ng-class="" (click)="onClick()"> submit </button>
-<br /> -----------------------------
+<!-- <button type="button" class="btn btn-primary" ng-class="" (click)="onClick()"> submit </button> -->
+<br /> 
 <!-- <br /> {{ form.value | json }} -->
-<br />
-<br />
-<br />
-<br />

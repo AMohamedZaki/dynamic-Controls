@@ -10,10 +10,10 @@ import { Panel } from '../model/panel';
 export class GetElementsService {
 
   elemnents: Panel[];
-  constructor(private elementConvertService: ElementConvertService) {
+  constructor() {
     this.elemnents = [{
       title: 'Patient',
-      Service: 'docService',
+      Service: 'patService',
       ObjectMap: 'Patient',
       elementList: [
         new TextBoxElement({
@@ -32,7 +32,7 @@ export class GetElementsService {
         new DropDown({
           Key: 'Country',
           Label: 'Choose The Country',
-          required: true,
+          required: false,
           visible: true,
           id: 3,
           dataSource: 'CountryList',
@@ -44,7 +44,7 @@ export class GetElementsService {
         new DropDown({
           Key: 'City',
           Label: 'Choose your City ?',
-          required: true,
+          required: false,
           visible: true,
           dataSource: 'CityList',
           id: 4
@@ -52,7 +52,7 @@ export class GetElementsService {
         new TextBoxElement({
           Key: 'lastName',
           Label: 'Last name',
-          value: 'Zaki',
+          value: '',
           required: true,
           visible: true,
           id: 3,
@@ -66,42 +66,55 @@ export class GetElementsService {
             Key: 'paragraph',
             Label: 'paragraph',
             value: '',
-            dataBind: 'paragraph',
-            required: true,
+            required: false,
             visible: true,
             id: 0
           })
         ]
       }
     }
-      // ,
-      // {
-      //   title: 'Doctor',
-      //   Service: 'patService',
-      //   elementList: [
-      //     new TextBoxElement({
-      //       Key: 'firstName',
-      //       Label: 'First name',
-      //       value: 'Abdel moneim Mohamed',
-      //       required: true,
-      //       visible: true,
-      //       id: 1,
-      //       events:
-      //         [
-      //           { Name: 'click', callBack: 'testClick()' },
-      //           { Name: 'change', callBack: 'testChange(event)' }
-      //         ]
-      //     }),
-      //     new TextBoxElement({
-      //       Key: 'lastName',
-      //       Label: 'Last name',
-      //       value: '',
-      //       required: true,
-      //       visible: false,
-      //       id: 5
-      //     })
-      //   ]
-      // }
+      ,
+    {
+      title: 'Doctor',
+      ObjectMap: 'Doctor',
+      Service: 'docService',
+      elementList: [
+        new TextBoxElement({
+          Key: 'doctorName',
+          Label: 'First name',
+          value: 'Abdel moneim Mohamed',
+          required: true,
+          visible: true,
+          id: 1,
+          events:
+            [
+              { Name: 'click', callBack: 'testClick' },
+              { Name: 'change', callBack: 'testChange', mainObject: true }
+            ]
+        }),
+        new TextBoxElement({
+          Key: 'doctorlastName',
+          Label: 'Last name',
+          value: '',
+          required: false,
+          visible: false,
+          id: 5
+        })
+      ], panel: {
+        title: 'Family Details',
+        ObjectMap: 'SubDoctor',
+        elementList: [
+          new TextBoxElement({
+            Key: 'FatherName',
+            Label: 'Father Name',
+            value: '',
+            required: false,
+            visible: true,
+            id: 0
+          })
+        ]
+      }
+    }
     ];
   }
 

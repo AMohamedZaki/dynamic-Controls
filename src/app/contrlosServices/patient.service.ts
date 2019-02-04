@@ -4,35 +4,29 @@ export class PatientService extends DataService {
 
   constructor() {
     super();
-   }
+  }
+
+  CountryList = [
+    { key: '1', value: 'Egypt', selected: true },
+    { key: '2', value: 'Qeter', selected: false },
+  ];
+  CityList = [];
 
   testClick() {
-    this.Parent.CurrentObject['firstName'] = 'ahmed';
-    console.log('from PatientService ');
   }
 
-  testChange(event: any) {
-    console.log('testChange From PatientService', event.target.value);
+  testChange(value: any) {
   }
 
 
-
-  GetCountry() {
-    return [
-      { Name: 'Egypt', Id: 1 },
-      { Name: 'Saudi', Id: 2 },
-      { Name: 'Qeter', Id: 3 }
+  ChangeCity(value: any) {
+    const items = [
+      { key: '1', value: 'Cairo', CountryId: '1' },
+      { key: '2', value: 'Nasr', CountryId: '1' },
+      { key: '3', value: 'Makka', CountryId: '2' },
+      { key: '4', value: 'Madena', CountryId: '2' }
     ];
+    this.CityList = items.filter((city: any) => city.CountryId === value);
   }
 
-  GetCities() {
-    return [
-      { Name: 'Cairo', Id: 1, CountryId: 1},
-      { Name: 'Nasr', Id: 2,  CountryId: 1  },
-      { Name: 'Qeter', Id: 3,  CountryId: 3 },
-      { Name: 'El Do7a', Id: 3,  CountryId: 3 },
-      { Name: 'Makka', Id: 3,  CountryId: 2 },
-      { Name: 'El Madina', Id: 3,  CountryId: 2 },
-    ];
-  }
 }
