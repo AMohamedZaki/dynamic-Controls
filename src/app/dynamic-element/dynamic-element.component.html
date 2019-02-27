@@ -18,11 +18,23 @@
         [id]="elements.Key" [formControlName]="elements.Key">
         <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key">{{ option.value }}  </option>
       </select>
-      <mat-form-field *ngSwitchCase="elements.controlType === 'datepicker'">
+
+      <ng-template [ngSwitch]="elements.controlType === 'Radiobuttons'" 
+                   let-j="index" let-option ngFor [ngForOf]="Service[elements.dataSource]">
+
+      <input type="radio" [id]="elements.Key + j" 
+        [formControlName]="elements.Key" name="{{groupName}}"
+        [value]="option.key"
+        [(ngModel)]="DataBind" /> {{ option.value }}
+
+      </ng-template>
+      
+
+      <!-- <mat-form-field *ngSwitchCase="elements.controlType === 'datepicker'">
         <input matInput [matDatepicker]="picker" [placeholder]="elements.Label" [id]="elements.Key" [formControlName]="elements.Key">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" />
 

@@ -9,5 +9,6 @@ export interface IElement<T> {
     visible?: boolean;
     events?: IEvent[];
     id?: number;
+    index?: number;
     [key: string]: any;
 }

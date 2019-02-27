@@ -5,7 +5,7 @@
         <div class="card-header">{{MainPanel.title}}</div>
         <div class="card-body">
           <div class="row">
-            <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.elementList">
+            <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.elementList | orderBy: 'index': MainPanel.isSorted">
               <div class="col-sm-4" [hidden]="!dyncamicElement.visible">
                 <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)"
                   [ShowCheck]="showcheckbox" [elements]="dyncamicElement" [DataBind]="MainObject[MainPanel.ObjectMap][dyncamicElement.Key]"
@@ -20,7 +20,7 @@
           <div class="card-header bg-dark text-white">{{MainPanel.panel.title}} </div>
           <div class="card-body">
             <div class="row">
-            <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.panel.elementList">
+            <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.panel.elementList | orderBy: 'index': MainPanel.panel.isSorted">
                 <div class="col-sm-4">
                   <div class="panel panel-primary">
                     <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [ShowCheck]="showcheckbox"

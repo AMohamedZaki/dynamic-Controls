@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { TextBoxElement } from '../model/TextBoxElement';
 import { DropDown } from '../model/dropDown';
-import { ElementConvertService } from './element-convert.service';
-import { DatePickerElement } from '../model/datepicker';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Panel } from '../model/panel';
+import { CheckBox } from '../model/CheckBox';
+import { Radiobuttons } from '../model/RadioButton';
 
 @Injectable()
 export class GetElementsService {
@@ -15,6 +15,7 @@ export class GetElementsService {
       title: 'Patient',
       Service: 'patService',
       ObjectMap: 'Patient',
+      isSorted: true,
       elementList: [
         new TextBoxElement({
           Key: 'firstName',
@@ -22,6 +23,7 @@ export class GetElementsService {
           value: 'National Technology',
           required: true,
           visible: true,
+          index: 4,
           id: 0,
           events:
             [
@@ -35,6 +37,7 @@ export class GetElementsService {
           required: false,
           visible: true,
           id: 3,
+          index: 3,
           dataSource: 'CountryList',
           events:
             [
@@ -46,6 +49,7 @@ export class GetElementsService {
           Label: 'Choose your City ?',
           required: false,
           visible: true,
+          index: 2,
           dataSource: 'CityList',
           id: 4
         }),
@@ -56,7 +60,17 @@ export class GetElementsService {
           required: true,
           visible: true,
           id: 3,
-        })
+          index: 1
+        }),
+        new Radiobuttons({
+          Key: 'CountryRadio',
+          Label: 'Choose Country',
+          required: false,
+          visible: true,
+          id: 3,
+          index: 3,
+          dataSource: 'CountryRaddio'
+        }),
       ]
       , panel: {
         title: 'pathology contnent',
@@ -73,48 +87,48 @@ export class GetElementsService {
         ]
       }
     }
-      ,
-    {
-      title: 'Doctor',
-      ObjectMap: 'Doctor',
-      Service: 'docService',
-      elementList: [
-        new TextBoxElement({
-          Key: 'doctorName',
-          Label: 'First name',
-          value: 'Abdel moneim Mohamed',
-          required: true,
-          visible: true,
-          id: 1,
-          events:
-            [
-              { Name: 'click', callBack: 'testClick' },
-              { Name: 'change', callBack: 'testChange', mainObject: true }
-            ]
-        }),
-        new TextBoxElement({
-          Key: 'doctorlastName',
-          Label: 'Last name',
-          value: '',
-          required: false,
-          visible: false,
-          id: 5
-        })
-      ], panel: {
-        title: 'Family Details',
-        ObjectMap: 'SubDoctor',
-        elementList: [
-          new TextBoxElement({
-            Key: 'FatherName',
-            Label: 'Father Name',
-            value: '',
-            required: false,
-            visible: true,
-            id: 0
-          })
-        ]
-      }
-    }
+    //   ,{
+    //   title: 'Doctor',
+    //   ObjectMap: 'Doctor',
+    //   Service: 'docService',
+    //   elementList: [
+    //     new TextBoxElement({
+    //       Key: 'doctorName',
+    //       Label: 'First name',
+    //       value: 'Abdel moneim Mohamed',
+    //       required: true,
+    //       visible: true,
+    //       id: 1,
+    //       events:
+    //         [
+    //           { Name: 'click', callBack: 'testClick' },
+    //           { Name: 'change', callBack: 'testChange', mainObject: true }
+    //         ]
+    //     }),
+    //     new TextBoxElement({
+    //       Key: 'doctorlastName',
+    //       Label: 'Last name',
+    //       value: '',
+    //       required: false,
+    //       visible: true,
+    //       id: 5,
+    //     })
+    //   ], panel: {
+    //     title: 'Family Details',
+    //     ObjectMap: 'SubDoctor',
+    //     elementList: [
+    //       new TextBoxElement({
+    //         Key: 'FatherName',
+    //         Label: 'Father Name',
+    //         value: '',
+    //         required: false,
+    //         visible: true,
+    //         id: 0
+    //       })
+    //     ]
+    //   }
+    // }
+
     ];
   }
 

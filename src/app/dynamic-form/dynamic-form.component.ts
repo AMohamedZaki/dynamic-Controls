@@ -62,6 +62,7 @@ export class DynamicFormComponent implements OnInit {
     }
 
     this.objContainerService.CurrentObject = this.MainObject;
+    console.log('objContainerService', this.objContainerService);
     this.ServiceSource.forEach((item: ServiceDetails) => {
       item.Service.Parent = this.objContainerService;
       item.Service.Parent.CurrentObject = this.MainObject;

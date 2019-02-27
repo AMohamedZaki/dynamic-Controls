@@ -7,4 +7,5 @@ export interface Panel {
     elementList: BaseElement<any>[];
     Service?: string;
     panel?: Panel;
+    isSorted?: boolean;
 }

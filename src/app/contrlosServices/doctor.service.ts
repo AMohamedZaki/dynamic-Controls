@@ -6,11 +6,16 @@ export class DoctorService extends DataService {
     super();
   }
 
-
   CountryList = [
     { key: 1, value: 'Egypt' },
     { key: 2, value: 'Sadui' },
   ];
+
+  CountryRaddio = [
+    { key: 1, value: 'Egypt' },
+    { key: 2, value: 'Sadui' },
+  ];
+
   CityList = [];
 
   testClick() {
