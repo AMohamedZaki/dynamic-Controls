@@ -10,6 +10,12 @@ export class PatientService extends DataService {
     { key: '1', value: 'Egypt', selected: true },
     { key: '2', value: 'Qeter', selected: false },
   ];
+
+  CountryRaddio = [
+    { key: 1, value: 'USA' },
+    { key: 2, value: 'UK' },
+  ];
+
   CityList = [];
 
   testClick() {

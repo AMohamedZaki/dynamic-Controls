@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { TextBoxElement } from '../model/TextBoxElement';
-import { DropDown } from '../model/dropDown';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Panel } from '../model/panel';
-import { CheckBox } from '../model/CheckBox';
-import { Radiobuttons } from '../model/RadioButton';
+import { TextBoxElement, DropDown, CheckBox, Radiobuttons, MultipleSelected } from '../model/Controls';
+
 
 @Injectable()
 export class GetElementsService {
@@ -44,6 +42,34 @@ export class GetElementsService {
               { Name: 'change', callBack: 'ChangeCity', mainObject: true },
             ]
         }),
+        new CheckBox({
+          Key: 'IsAgree',
+          Label: 'Agree With Terms',
+          required: true,
+          visible: true,
+          id: 9,
+          index: 3,
+          // dataSource: 'CountryRaddio'
+        }),
+        new Radiobuttons({
+          Key: 'CounRadio',
+          Label: 'Choose Country',
+          required: false,
+          visible: true,
+          value: 'National Technology',
+          id: 9,
+          index: 3,
+          dataSource: 'CountryRaddio'
+        }),
+        new MultipleSelected({
+          Key: 'CountryMulti',
+          Label: 'Choose Country',
+          required: true,
+          visible: true,
+          id: 9,
+          index: 3,
+          dataSource: 'CountryRaddio'
+        }),
         new DropDown({
           Key: 'City',
           Label: 'Choose your City ?',
@@ -61,16 +87,7 @@ export class GetElementsService {
           visible: true,
           id: 3,
           index: 1
-        }),
-        new Radiobuttons({
-          Key: 'CountryRadio',
-          Label: 'Choose Country',
-          required: false,
-          visible: true,
-          id: 3,
-          index: 3,
-          dataSource: 'CountryRaddio'
-        }),
+        })
       ]
       , panel: {
         title: 'pathology contnent',

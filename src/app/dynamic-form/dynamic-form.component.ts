@@ -78,7 +78,6 @@ export class DynamicFormComponent implements OnInit {
         .find(serv => serv['Name'].toLowerCase() === serviceName.toLowerCase())
         .Service;
       if (nitem) {
-        console.log(nitem.CurrentObject);
         return nitem;
       } else {
       }

@@ -11,23 +11,33 @@
       <input class="form-control" [(ngModel)]="DataBind" type="text" (input)="changeValue()" *ngSwitchCase="elements.controlType === 'textbox'"
         [id]="elements.Key" [formControlName]="elements.Key">
 
-      
+
       <!-- To Make Databind contains the select object-->
       <!-- set att [ngValue]='option' -->
+      <!-- Normal Dropdown List (Single Select) -->
       <select class="form-control" (change)="changeValue()" [(ngModel)]="DataBind" *ngSwitchCase="elements.controlType === 'dropdown'"
         [id]="elements.Key" [formControlName]="elements.Key">
-        <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key">{{ option.value }}  </option>
+        <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key">{{ option.value }} </option>
       </select>
 
-      <ng-template [ngSwitch]="elements.controlType === 'Radiobuttons'" 
-                   let-j="index" let-option ngFor [ngForOf]="Service[elements.dataSource]">
+      <!-- Normal Dropdown List (MultiSelect) -->
+      <select class="form-control" multiple (change)="changeValue()" [(ngModel)]="DataBind" *ngSwitchCase="elements.controlType === 'multipleSelected'"
+      [id]="elements.Key" [formControlName]="elements.Key">
+      <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key">{{ option.value }} </option>
+    </select>
 
-      <input type="radio" [id]="elements.Key + j" 
-        [formControlName]="elements.Key" name="{{groupName}}"
-        [value]="option.key"
-        [(ngModel)]="DataBind" /> {{ option.value }}
+      <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'Radiobuttons'">
+        <ng-template let-j="index" let-option ngFor [ngForOf]="Service[elements.dataSource]">
+          <input type="radio" [id]="elements.Key + j" [formControlName]="elements.Key" [value]="option.key" (change)="changeValue()"
+            [(ngModel)]="DataBind" /> {{ option.value }}
+        </ng-template>
+      </div>
 
-      </ng-template>
+
+      <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'CheckBox'">
+            <input type="checkbox" [id]="elements.Key" [formControlName]="elements.Key" (change)="changeValue()"
+            [(ngModel)]="DataBind" />
+      </div>
       
 
       <!-- <mat-form-field *ngSwitchCase="elements.controlType === 'datepicker'">
@@ -36,7 +46,7 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field> -->
 
-      <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" />
+      <!-- <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" /> -->
 
       <div class="alert alert-danger" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
         <div *ngIf="getElement(elements.Key)['errors'].required">

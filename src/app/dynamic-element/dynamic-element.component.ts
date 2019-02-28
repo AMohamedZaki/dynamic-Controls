@@ -20,7 +20,6 @@ export class DynamicElementComponent implements OnInit {
   // custom two way binding
   @Input() DataBind: any;
   @Output() DataBindChanged = new EventEmitter<any>();
-  get isValid() { return this.form.controls[this.elements.Key].valid; }
 
   constructor(private elementRef: ElementRef,
     private renderer: Renderer) {
@@ -64,6 +63,5 @@ export class DynamicElementComponent implements OnInit {
   getElement(name: string): AbstractControl {
     return this.form.get(name);
   }
-
 }
 

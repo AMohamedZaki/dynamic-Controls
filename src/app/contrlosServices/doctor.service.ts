@@ -11,10 +11,6 @@ export class DoctorService extends DataService {
     { key: 2, value: 'Sadui' },
   ];
 
-  CountryRaddio = [
-    { key: 1, value: 'Egypt' },
-    { key: 2, value: 'Sadui' },
-  ];
 
   CityList = [];
 
