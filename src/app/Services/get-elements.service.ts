@@ -13,7 +13,7 @@ export class GetElementsService {
       title: 'Patient',
       Service: 'patService',
       ObjectMap: 'Patient',
-      isSorted: true,
+      isSorted: false,
       elementList: [
         new TextBoxElement({
           Key: 'firstName',
@@ -21,7 +21,7 @@ export class GetElementsService {
           value: 'National Technology',
           required: true,
           visible: true,
-          index: 4,
+          index: 1,
           id: 0,
           events:
             [
@@ -48,7 +48,7 @@ export class GetElementsService {
           required: true,
           visible: true,
           id: 9,
-          index: 3,
+          index: 5,
           // dataSource: 'CountryRaddio'
         }),
         new Radiobuttons({
@@ -58,16 +58,7 @@ export class GetElementsService {
           visible: true,
           value: 'National Technology',
           id: 9,
-          index: 3,
-          dataSource: 'CountryRaddio'
-        }),
-        new MultipleSelected({
-          Key: 'CountryMulti',
-          Label: 'Choose Country',
-          required: true,
-          visible: true,
-          id: 9,
-          index: 3,
+          index: 6,
           dataSource: 'CountryRaddio'
         }),
         new DropDown({
@@ -75,7 +66,7 @@ export class GetElementsService {
           Label: 'Choose your City ?',
           required: false,
           visible: true,
-          index: 2,
+          index: 4,
           dataSource: 'CityList',
           id: 4
         }),
@@ -85,8 +76,8 @@ export class GetElementsService {
           value: '',
           required: true,
           visible: true,
-          id: 3,
-          index: 1
+          id: 2,
+          index: 2
         })
       ]
       , panel: {
@@ -104,47 +95,47 @@ export class GetElementsService {
         ]
       }
     }
-    //   ,{
-    //   title: 'Doctor',
-    //   ObjectMap: 'Doctor',
-    //   Service: 'docService',
-    //   elementList: [
-    //     new TextBoxElement({
-    //       Key: 'doctorName',
-    //       Label: 'First name',
-    //       value: 'Abdel moneim Mohamed',
-    //       required: true,
-    //       visible: true,
-    //       id: 1,
-    //       events:
-    //         [
-    //           { Name: 'click', callBack: 'testClick' },
-    //           { Name: 'change', callBack: 'testChange', mainObject: true }
-    //         ]
-    //     }),
-    //     new TextBoxElement({
-    //       Key: 'doctorlastName',
-    //       Label: 'Last name',
-    //       value: '',
-    //       required: false,
-    //       visible: true,
-    //       id: 5,
-    //     })
-    //   ], panel: {
-    //     title: 'Family Details',
-    //     ObjectMap: 'SubDoctor',
-    //     elementList: [
-    //       new TextBoxElement({
-    //         Key: 'FatherName',
-    //         Label: 'Father Name',
-    //         value: '',
-    //         required: false,
-    //         visible: true,
-    //         id: 0
-    //       })
-    //     ]
-    //   }
-    // }
+      ,{
+      title: 'Doctor',
+      ObjectMap: 'Doctor',
+      Service: 'docService',
+      elementList: [
+        new TextBoxElement({
+          Key: 'doctorName',
+          Label: 'First name',
+          value: 'Abdel moneim Mohamed',
+          required: true,
+          visible: true,
+          id: 1,
+          events:
+            [
+              { Name: 'click', callBack: 'testClick' },
+              { Name: 'change', callBack: 'testChange', mainObject: true }
+            ]
+        }),
+        new TextBoxElement({
+          Key: 'doctorlastName',
+          Label: 'Last name',
+          value: '',
+          required: false,
+          visible: true,
+          id: 5,
+        })
+      ], panel: {
+        title: 'Family Details',
+        ObjectMap: 'SubDoctor',
+        elementList: [
+          new TextBoxElement({
+            Key: 'FatherName',
+            Label: 'Father Name',
+            value: '',
+            required: false,
+            visible: true,
+            id: 0
+          })
+        ]
+      }
+    }
 
     ];
   }

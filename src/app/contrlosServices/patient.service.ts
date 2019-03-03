@@ -19,11 +19,14 @@ export class PatientService extends DataService {
   CityList = [];
 
   testClick() {
+    console.log('The Object ', this.CurrentObject);
+    this.CurrentObject['Patient']['lastName'] = 'ali';
+    console.log('ali', this.CurrentObject['Patient']['firstName']);
   }
 
   testChange(value: any) {
+    // console.log('value', value);
   }
-
 
   ChangeCity(value: any) {
     const items = [

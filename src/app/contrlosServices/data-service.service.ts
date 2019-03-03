@@ -2,16 +2,18 @@ import { Injectable } from '@angular/core';
 import { ObjectContianerService } from './ObjectContianer.service';
 
 @Injectable()
-export class DataService extends ObjectContianerService {
+export class DataService {
 
-  Parent: ObjectContianerService = <ObjectContianerService>{};
-  constructor() {
-    super();
-  }
+  CurrentObject: any;
 
-  setParentReferance(obj: ObjectContianerService) {
-    this.Parent = obj;
-  }
+  // Parent: ObjectContianerService = <ObjectContianerService>{};
+  // constructor() {
+  //   // super();
+  // }
+
+  // setParentReferance(obj: ObjectContianerService) {
+  //   this.Parent = obj;
+  // }
 
 
 }

@@ -16,8 +16,8 @@ export class DoctorService extends DataService {
 
   testClick() {
     console.log(this.CurrentObject);
-    this.CurrentObject['Patient']['lastName'] = 'ali';
-    console.log('ali', this.CurrentObject['Patient']['lastName']);
+    this.CurrentObject['Doctor']['doctorlastName'] += ' ali';
+    console.log('ali', this.CurrentObject['Doctor']['doctorlastName']);
   }
 
   testChange(value: any) {
