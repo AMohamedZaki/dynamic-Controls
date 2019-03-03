@@ -14,11 +14,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
-import { MehtodesService } from './Services/mehtodes.service';
 import { PatientService } from './contrlosServices/patient.service';
 import { ElememtContainerComponent } from './component/elememt-container/elememt-container.component';
 import { DoctorService } from './contrlosServices/doctor.service';
-import { ObjectContianerService } from './contrlosServices/ObjectContianer.service';
 import { OrderByPipe } from './Pipes/orderBy.pipe';
 
 @NgModule({
@@ -47,11 +45,9 @@ import { OrderByPipe } from './Pipes/orderBy.pipe';
   providers: [
     GetElementsService,
     ElementConvertService,
-    MehtodesService,
     PatientService,
-    DoctorService,
-    ObjectContianerService
-  ],
+    DoctorService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

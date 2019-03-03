@@ -95,7 +95,7 @@ export class GetElementsService {
         ]
       }
     }
-      ,{
+      , {
       title: 'Doctor',
       ObjectMap: 'Doctor',
       Service: 'docService',

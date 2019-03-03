@@ -19,7 +19,7 @@ export class ElementConvertService {
 
       if (parentList && parentList.length > 0 ) {
         parentList.forEach(item => {
-          group[item.Key] = item.required ?
+          group[item.Key] = item.required && item.visible ?
             new FormControl(item.value || '', Validators.required) : new FormControl(item.value || '');
           group[item.id] = new FormControl(item.id || '');
         });
@@ -27,21 +27,14 @@ export class ElementConvertService {
 
       if (subParent && subParentList && subParentList.length > 0 ) {
         subParentList.forEach(item => {
-          group[item.Key] = item.required ?
+          group[item.Key] = item.required && item.visible ?
             new FormControl(item.value || '', Validators.required) : new FormControl(item.value || '');
           group[item.id] = new FormControl(item.id || '');
         });
       }
 
-
     });
     return new FormGroup(group);
 
   }
-
-
-  test() {
-    console.log('from Service ');
-  }
-
 }
