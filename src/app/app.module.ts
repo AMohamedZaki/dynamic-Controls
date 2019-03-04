@@ -15,9 +15,12 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 import { PatientService } from './contrlosServices/patient.service';
-import { ElememtContainerComponent } from './component/elememt-container/elememt-container.component';
+import { ElememtContainerComponent } from './elememt-container/elememt-container.component';
 import { DoctorService } from './contrlosServices/doctor.service';
 import { OrderByPipe } from './Pipes/orderBy.pipe';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { OrderByPipe } from './Pipes/orderBy.pipe';
     MatButtonModule,
     MatButtonToggleModule,
     MatNativeDateModule,
+    ButtonsModule,
+    DropDownsModule,
     RouterModule.forRoot([
       { path: '' , component: ElememtContainerComponent } ,
     ])

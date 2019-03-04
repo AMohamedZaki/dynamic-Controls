@@ -35,25 +35,24 @@ export class DynamicFormComponent implements OnInit {
     }
     if (this.dataSource) {
       this.elementList = this.dataSource;
-      this.dataSource.forEach((controlElement: Panel) => {
+      this.dataSource.forEach((panel: Panel) => {
 
-        if (controlElement.elementList) {
+        if (panel.elementList) {
           // get all Elements in Panel
-          // tslint:disable-next-line:prefer-const
-          let MainPanelObject = {};
-          controlElement.elementList.forEach((element: BaseElement<any>) => {
+          const MainPanelObject = {};
+          panel.elementList.forEach((element: BaseElement<any>) => {
             MainPanelObject[element.Key] = element.value;
           });
-          this.MainObject[controlElement.ObjectMap] = MainPanelObject;
+          this.MainObject[panel.ObjectMap] = MainPanelObject;
         }
 
-        const subPanel = controlElement.panel;
+        const subPanel = panel.panel;
         if (subPanel) {
           const SubPanelObject = {};
           subPanel.elementList.forEach((element: BaseElement<any>) => {
             SubPanelObject[element.Key] = element.value;
           });
-          this.MainObject[controlElement.ObjectMap][subPanel.ObjectMap] = SubPanelObject;
+          this.MainObject[panel.ObjectMap][subPanel.ObjectMap] = SubPanelObject;
           if (subPanel.panel) {
             throw new TypeError('Maximum one sub Panel');
           }
@@ -62,13 +61,7 @@ export class DynamicFormComponent implements OnInit {
       });
     }
 
-    // this.objContainerService.CurrentObject = this.MainObject;
-    // for (let index = 0; index++; index < this.ServiceSource.length) {
-    //   const service = this.ServiceSource[index].Service;
-    //   this.ServiceSource[index].Service.CurrentObject = this.MainObject;
-    // }
-
-    // ser object value in Each Service
+    // set object value in Each Service
     this.ServiceSource.forEach((item: ServiceDetails) => {
       item.Service.CurrentObject = this.MainObject;
     });
@@ -89,6 +82,5 @@ export class DynamicFormComponent implements OnInit {
     }
     return null;
   }
-
 
 }

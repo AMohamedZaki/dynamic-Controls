@@ -1,0 +1,39 @@
+
+{{filteredItemTitle | json}}
+<kendo-combobox #itemComboBox [data]="listItemTitles" [placeholder]="'item title'" (keyup.enter)="itemFilteration()"
+[textField]="'name'" [valueField]="'key'" (click)="openToggle()"
+[(ngModel)]="filteredItemTitle" [ngModelOptions]="{standalone: true}" (valueChange)="setSelectedItem()"
+[allowCustom]="allowCustom"  #itemCombobox="ngModel" class="kendo-cutom-control">
+
+<ng-template kendoDropDownListNoDataTemplate>
+  <h4><span class="k-icon k-i-warning"></span><br /> No data here</h4>
+</ng-template>
+
+
+</kendo-combobox>
+
+
+<div class="form-group">
+  <button class="btn btn-info"> Update Favrite Search (Not Work)</button>
+  <button class="btn btn-info"> Use Favrite Search Field (Not Work)</button>
+</div>
+
+registrationObject :- {{ registrationObject | json}}
+<br />
+
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+  <dynamic-form [form]="form" [dataSource]="ElementDataList" [MainObject]="registrationObject" [ServiceSource]="ServiceList"></dynamic-form>
+
+  <button type="submit" class="btn btn-primary" ng-class="" [disabled]="!form.valid"> submit </button>
+</form>
+
+
+<!-- <div *ngIf="(itemCombobox.invalid || selectedItemId == 0 )&& (itemCombobox.dirty || itemCombobox.touched)">
+  <div *ngIf="itemCombobox.errors && itemCombobox.errors.required" class="error">
+      Please select item
+  </div>
+</div> -->
+
+
+

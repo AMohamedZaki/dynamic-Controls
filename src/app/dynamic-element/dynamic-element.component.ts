@@ -1,4 +1,4 @@
-import { EventEmitter, Component, OnInit, Input, ElementRef, Renderer, Output } from '@angular/core';
+import { EventEmitter, Component, Input, Output, OnInit, ElementRef, Renderer, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { BaseElement } from '../model/baseElement';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { IEvent } from '../model/IEvents';
@@ -8,7 +8,7 @@ import { IEvent } from '../model/IEvents';
   selector: 'dynamicElement',
   templateUrl: './dynamic-element.component.html'
 })
-export class DynamicElementComponent implements OnInit {
+export class DynamicElementComponent implements OnInit, AfterViewChecked {
 
   @Input() form: FormGroup;
   @Input() Service: any;
@@ -22,7 +22,9 @@ export class DynamicElementComponent implements OnInit {
   @Output() DataBindChanged = new EventEmitter<any>();
 
   constructor(private elementRef: ElementRef,
-    private renderer: Renderer) {
+    private renderer: Renderer,
+    private cdRef: ChangeDetectorRef
+  ) {
   }
 
   ngOnInit() {
@@ -63,5 +65,12 @@ export class DynamicElementComponent implements OnInit {
   getElement(name: string): AbstractControl {
     return this.form.get(name);
   }
+
+  // For The Validtion in Case the Validtion is Fire
+  // and the Control Value Changed under the hode
+  ngAfterViewChecked(): void {
+    this.cdRef.detectChanges();
+  }
+
 }
 

@@ -1,6 +1,6 @@
 
 
-export interface IPatient {
+export class Patient {
     firstName: string;
     lastName: string;
     Id?: number;

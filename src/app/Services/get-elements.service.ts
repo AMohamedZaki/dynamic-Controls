@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Panel } from '../model/panel';
-import { TextBoxElement, DropDown, CheckBox, Radiobuttons, MultipleSelected } from '../model/Controls';
+import { TextBoxElement, DropDown, CheckBox, Radiobuttons } from '../model/Controls';
+import { MultiSelect } from '../model/KendoControls';
+import { stringify } from 'querystring';
 
 
 @Injectable()
@@ -78,7 +80,22 @@ export class GetElementsService {
           visible: true,
           id: 2,
           index: 2
-        })
+        }),
+        new MultiSelect({
+          Key: 'NamesMultiSelect',
+          Label: 'Choose Names',
+          required: false,
+          visible: true,
+          id: 3,
+          index: 10,
+          textField: 'name',
+          valueField: 'value',
+          dataSource: 'NamesList',
+          events:
+            [
+              { Name: 'change', callBack: 'ChangeCity', mainObject: true },
+            ]
+        }),
       ]
       , panel: {
         title: 'pathology contnent',

@@ -16,6 +16,15 @@ export class PatientService extends DataService {
     { key: 2, value: 'UK' },
   ];
 
+  NamesList = [
+    { value: 'Ahmed', key: 1 },
+    { value: 'Ali', key: 2 },
+    { value: 'Zaki', key: 3 },
+    { value: 'Mohamed', key: 4 },
+    { value: 'Adraid', key: 5 },
+    { value: '3wad', key: 6 }
+  ];
+
   CityList = [];
 
   testClick() {

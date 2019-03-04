@@ -42,17 +42,6 @@ export class DropDown extends BaseElement<any> {
         super(Options);
         this.dataSource = Options.dataSource || '';
     }
-
-}
-
-// MultipleSelected
-export class MultipleSelected extends BaseElement<any> {
-    controlType = 'multipleSelected';
-    dataSource: string;
-    constructor(Options: IElement<any> = {}) {
-        super(Options);
-        this.dataSource = Options.dataSource || '';
-    }
 }
 
 // datepicker
