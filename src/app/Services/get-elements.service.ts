@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Panel } from '../model/panel';
 import { TextBoxElement, DropDown, CheckBox, Radiobuttons } from '../model/Controls';
 import { MultiSelect } from '../model/KendoControls';
-import { stringify } from 'querystring';
 
 
 @Injectable()
@@ -15,7 +14,7 @@ export class GetElementsService {
       title: 'Patient',
       Service: 'patService',
       ObjectMap: 'Patient',
-      isSorted: false,
+      applySort: true,
       elementList: [
         new TextBoxElement({
           Key: 'firstName',

@@ -7,7 +7,6 @@ import { ServiceDetails } from '../model/ServiceDetails';
 import { DoctorService } from '../contrlosServices/doctor.service';
 import { Patient } from '../contrlosServices/Patient';
 import { ComboBoxComponent } from '@progress/kendo-angular-dropdowns';
-import { attachEmbeddedView } from '@angular/core/src/view';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -26,7 +25,6 @@ export class ElememtContainerComponent implements OnInit {
   registrationObject: any = {};
 
   filteredItemTitle: string;
-  listItemTitles: TestingDemo[] = [];
   allowCustom = true;
 
   constructor(
@@ -53,50 +51,5 @@ export class ElememtContainerComponent implements OnInit {
   }
 
 
-
-  public itemFilteration() {
-    debugger;
-
-    const newItems = [
-      { name: 'Mohameden', key: 1 },
-      { name: 'Androw', key: 2 },
-      { name: '3awaden', key: 3 },
-      { name: 'Adres', key: 4 },
-      { name: 'pepo', key: 5 },
-    ];
-
-
-    if (this.filteredItemTitle) {
-      this.listItemTitles = newItems;
-
-      this.itemComboBox.toggle(true);
-      return;
-    }
-  }
-
-
-  private getItemsByTitleOnSuccess(response: any) {
-    // this.listItems = response.entityList;
-    // this.listItemTitles = this.listItems.map(x => x.title);
-    this.itemComboBox.toggle(true);
-  }
-
-
-  setSelectedItem() {
-
-    //return true;
-  }
-
-
-  openToggle() {
-    this.itemComboBox.toggle(true);
-  }
-
 }
 
-
-
-export class TestingDemo {
-  name: string;
-  key: number;
-}
