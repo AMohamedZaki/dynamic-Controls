@@ -7,12 +7,6 @@ import { DynamicElementComponent } from './dynamic-element/dynamic-element.compo
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ElementConvertService } from './Services/element-convert.service';
 import { GetElementsService } from './Services/get-elements.service';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatNativeDateModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 import { PatientService } from './contrlosServices/patient.service';
 import { ElememtContainerComponent } from './elememt-container/elememt-container.component';
@@ -35,12 +29,6 @@ import 'hammerjs';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
-    MatSelectModule,
-    MatInputModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatNativeDateModule,
     ButtonsModule,
     DropDownsModule,
     RouterModule.forRoot([
