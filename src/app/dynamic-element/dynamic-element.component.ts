@@ -1,4 +1,8 @@
-import { EventEmitter, Component, Input, Output, OnInit, ElementRef, Renderer, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import {
+  EventEmitter, Component, Input, Output, OnInit,
+  ElementRef, Renderer, AfterViewChecked,
+  ChangeDetectorRef, OnChanges, SimpleChanges
+} from '@angular/core';
 import { BaseElement } from '../model/baseElement';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { IEvent } from '../model/IEvents';
@@ -8,7 +12,7 @@ import { IEvent } from '../model/IEvents';
   selector: 'dynamicElement',
   templateUrl: './dynamic-element.component.html'
 })
-export class DynamicElementComponent implements OnInit, AfterViewChecked {
+export class DynamicElementComponent implements OnInit, AfterViewChecked, OnChanges {
 
   @Input() form: FormGroup;
   @Input() Service: any;
@@ -70,6 +74,12 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
   // and the Control Value Changed under the hode
   ngAfterViewChecked(): void {
     this.cdRef.detectChanges();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.DataBind && !changes.DataBind.isFirstChange()) {
+      this.DataBindChanged.emit(this.DataBind);
+    }
   }
 
 }

@@ -5,7 +5,7 @@ import { IElement } from './IElement';
 // Supported events valueChange($event), filterChange($event), open(), close() ,focus(), blur()
 export class MultiSelect extends BaseElement<any> {
     controlType = 'multiSelect';
-    // options: { key: string, value: string, selected?: boolean };
+    // options: { key: string, value: string };
     dataSource: string;
     textField: string;
     valueField: string;
@@ -14,5 +14,15 @@ export class MultiSelect extends BaseElement<any> {
         this.dataSource = Options.dataSource || '';
         this.textField = Options.textField || '';
         this.valueField = Options.valueField || '';
+        this.position = Options.position;
+    }
+}
+
+
+export class Calendar extends BaseElement<any> {
+    controlType = 'calendar';
+    constructor(Options: IElement<any> = {}) {
+        super(Options);
+        this.position = Options.position;
     }
 }

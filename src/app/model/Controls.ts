@@ -1,20 +1,19 @@
 import { BaseElement } from './baseElement';
 import { IElement } from './IElement';
+import { ControlStyle } from './DynamicStyle';
 
 // TextBox
 export class TextBoxElement extends BaseElement<any> {
     controlType = 'textbox';
     type: string;
-
     constructor(Options: IElement<string> = {}) {
         super(Options);
-        this.type = Options.type || '';
     }
 }
 
 // CheckBox
 export class CheckBox extends BaseElement<any> {
-    controlType = 'CheckBox';
+    controlType = 'checkBox';
     dataSource: string;
     constructor(Options: IElement<any> = {}) {
         super(Options);
@@ -24,7 +23,7 @@ export class CheckBox extends BaseElement<any> {
 
 // Radio button
 export class Radiobuttons extends BaseElement<any> {
-    controlType = 'Radiobuttons';
+    controlType = 'radiobuttons';
     dataSource: string;
     constructor(Options: IElement<any> = {}) {
         super(Options);
@@ -44,14 +43,19 @@ export class DropDown extends BaseElement<any> {
     }
 }
 
-// datepicker
-
-export class DatePickerElement extends BaseElement<any> {
-    controlType = 'datepicker';
-    type: string;
-
-    constructor(Options: IElement<string> = {}) {
+// Drop down List
+export class Button extends BaseElement<any> {
+    controlType = 'button';
+    constructor(Options: IElement<any> = {}) {
         super(Options);
-        this.type = Options.type || '';
     }
 }
+
+// TextArea
+export class TextArea extends BaseElement<any> {
+    controlType = 'textArea';
+    constructor(Options: IElement<any> = {}) {
+        super(Options);
+    }
+}
+

@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Panel } from '../model/panel';
-import { TextBoxElement, DropDown, CheckBox, Radiobuttons } from '../model/Controls';
-import { MultiSelect } from '../model/KendoControls';
+import {
+  TextBoxElement, DropDown, CheckBox,
+  Radiobuttons, TextArea
+  , Button as button
+} from '../model/Controls';
+import { MultiSelect, Calendar } from '../model/KendoControls';
+import { Position } from '../model/PositionEnum';
 
 
 @Injectable()
@@ -14,7 +19,7 @@ export class GetElementsService {
       title: 'Patient',
       Service: 'patService',
       ObjectMap: 'Patient',
-      applySort: true,
+      applySort: false,
       elementList: [
         new TextBoxElement({
           Key: 'firstName',
@@ -22,8 +27,10 @@ export class GetElementsService {
           value: 'National Technology',
           required: true,
           visible: true,
+          readonly: true,
           index: 1,
           id: 0,
+          position: Position.OneOfThree,
           events:
             [
               { Name: 'keyup.enter', callBack: 'testClick' },
@@ -35,6 +42,7 @@ export class GetElementsService {
           Label: 'Choose The Country',
           required: false,
           visible: true,
+          position: Position.OneOfThree,
           id: 3,
           index: 3,
           dataSource: 'CountryList',
@@ -48,6 +56,7 @@ export class GetElementsService {
           Label: 'Agree With Terms',
           required: true,
           visible: true,
+          position: Position.OneOfThree,
           id: 9,
           index: 5,
           // dataSource: 'CountryRaddio'
@@ -57,6 +66,7 @@ export class GetElementsService {
           Label: 'Choose Country',
           required: false,
           visible: true,
+          position: Position.TwoOfThree,
           value: 'National Technology',
           id: 9,
           index: 6,
@@ -68,6 +78,7 @@ export class GetElementsService {
           required: false,
           visible: true,
           index: 4,
+          position: Position.OneOfThree,
           dataSource: 'CityList',
           id: 4
         }),
@@ -75,10 +86,12 @@ export class GetElementsService {
           Key: 'lastName',
           Label: 'Last name',
           value: '',
+          position: Position.HalfOfThree,
           required: true,
           visible: true,
           id: 2,
-          index: 2
+          index: 2,
+          style: { 'width': '100px' }
         }),
         new MultiSelect({
           Key: 'NamesMultiSelect',
@@ -87,6 +100,7 @@ export class GetElementsService {
           visible: true,
           id: 3,
           index: 10,
+          position: Position.HalfOfThree,
           textField: 'name',
           valueField: 'value',
           dataSource: 'NamesList',
@@ -95,15 +109,36 @@ export class GetElementsService {
               { Name: 'change', callBack: 'ChangeCity', mainObject: true },
             ]
         }),
+        new button({
+          Label: '',
+          required: false,
+          visible: true,
+          id: 18,
+          value: 'Agree!',
+          index: 13,
+          position: Position.OneOfThree,
+          style: {
+            'background-color': 'red',
+            'font-size': 'large',
+             border: '2px solid red',
+             width: '100%'
+          },
+          events:
+            [
+              { Name: 'click', callBack: 'btnClick', mainObject: true },
+            ]
+        })
       ]
       , panel: {
         title: 'pathology contnent',
         ObjectMap: 'PatientSub',
         elementList: [
-          new TextBoxElement({
+          new TextArea({
             Key: 'paragraph',
             Label: 'paragraph',
             value: '',
+            position: Position.ThreeOfThree,
+            style: { width: '50%' },
             required: false,
             visible: true,
             id: 0
@@ -111,48 +146,59 @@ export class GetElementsService {
         ]
       }
     }
-      , {
-      title: 'Doctor',
-      ObjectMap: 'Doctor',
-      Service: 'docService',
-      elementList: [
-        new TextBoxElement({
-          Key: 'doctorName',
-          Label: 'First name',
-          value: 'Abdel moneim Mohamed',
-          required: true,
-          visible: true,
-          id: 1,
-          events:
-            [
-              { Name: 'click', callBack: 'testClick' },
-              { Name: 'change', callBack: 'testChange', mainObject: true }
-            ]
-        }),
-        new TextBoxElement({
-          Key: 'doctorlastName',
-          Label: 'Last name',
-          value: '',
-          required: false,
-          visible: true,
-          id: 5,
-        })
-      ], panel: {
-        title: 'Family Details',
-        ObjectMap: 'SubDoctor',
-        elementList: [
-          new TextBoxElement({
-            Key: 'FatherName',
-            Label: 'Father Name',
-            value: '',
-            required: false,
-            visible: true,
-            id: 0
-          })
-        ]
-      }
-    }
-
+      // , {
+      //   title: 'Doctor',
+      //   ObjectMap: 'Doctor',
+      //   Service: 'docService',
+      //   elementList: [
+      //     new TextBoxElement({
+      //       Key: 'doctorName',
+      //       Label: 'First name',
+      //       value: 'Abdel moneim Mohamed',
+      //       required: true,
+      //       visible: true,
+      //       position: Grid.TwoOfThree,
+      //       id: 1,
+      //       events:
+      //         [
+      //           { Name: 'click', callBack: 'testClick' },
+      //           { Name: 'change', callBack: 'testChange', mainObject: true }
+      //         ]
+      //     }),
+      //     new TextBoxElement({
+      //       Key: 'doctorlastName',
+      //       Label: 'Last name',
+      //       value: '',
+      //       position: Grid.OneOfThree,
+      //       required: false,
+      //       visible: true,
+      //       id: 5,
+      //     }),
+      //     new Calendar({
+      //       Key: 'meeting',
+      //       Label: 'Meeting',
+      //       value: '',
+      //       required: true,
+      //       visible: true,
+      //       position: Grid.TwoOfThree,
+      //       id: 10,
+      //     })
+      //   ], panel: {
+      //     title: 'Family Details',
+      //     ObjectMap: 'SubDoctor',
+      //     elementList: [
+      //       new TextBoxElement({
+      //         Key: 'FatherName',
+      //         Label: 'Father Name',
+      //         value: '',
+      //         required: false,
+      //         position: Grid.TwoOfThree,
+      //         visible: true,
+      //         id: 0
+      //       })
+      //     ]
+      //   }
+      // }
     ];
   }
 

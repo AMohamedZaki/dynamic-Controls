@@ -27,6 +27,8 @@ export class ElememtContainerComponent implements OnInit {
   filteredItemTitle: string;
   allowCustom = true;
 
+  value: any;
+
   constructor(
     private elementConvertService: ElementConvertService,
     private elemntMockService: GetElementsService,

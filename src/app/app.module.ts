@@ -15,6 +15,9 @@ import { OrderByPipe } from './Pipes/orderBy.pipe';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import 'hammerjs';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { IntlModule } from '@progress/kendo-angular-intl';
+
 
 @NgModule({
   declarations: [
@@ -30,10 +33,12 @@ import 'hammerjs';
     FormsModule,
     ReactiveFormsModule,
     ButtonsModule,
+    IntlModule,
     DropDownsModule,
     RouterModule.forRoot([
       { path: '' , component: ElememtContainerComponent } ,
-    ])
+    ]),
+    DateInputsModule
   ],
   providers: [
     GetElementsService,

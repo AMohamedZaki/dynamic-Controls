@@ -44,6 +44,13 @@ export class DynamicFormComponent implements OnInit {
             MainPanelObject[element.Key] = element.value;
           });
           this.MainObject[panel.ObjectMap] = MainPanelObject;
+          // tslint:disable-next-line:no-debugger
+          // set Object Value in the service that injected in service list
+          const service = this.ServiceSource.find(x => x.Name === panel.Service);
+          if (service) {
+            const index = this.ServiceSource.findIndex(item => item === service);
+            this.ServiceSource[index].Service.CurrentObject = this.MainObject[panel.ObjectMap];
+          }
         }
 
         const subPanel = panel.panel;
@@ -61,10 +68,10 @@ export class DynamicFormComponent implements OnInit {
       });
     }
 
-    // set object value in Each Service
-    this.ServiceSource.forEach((item: ServiceDetails) => {
-      item.Service.CurrentObject = this.MainObject;
-    });
+    // // set object value in Each Service
+    // this.ServiceSource.forEach((item: ServiceDetails) => {
+    //   item.Service.CurrentObject = this.MainObject;
+    // });
 
   }
 

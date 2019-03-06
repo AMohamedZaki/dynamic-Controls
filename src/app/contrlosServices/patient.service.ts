@@ -29,13 +29,17 @@ export class PatientService extends DataService {
 
   testClick() {
     console.log('The Object ', this.CurrentObject);
-    this.CurrentObject['Patient']['lastName'] = 'ali';
-    console.log('ali', this.CurrentObject['Patient']['firstName']);
+    this.CurrentObject['lastName'] = 'ali';
+    console.log('ali', this.CurrentObject['firstName']);
   }
 
   testChange(value: any) {
     // console.log('value', value);
   }
+
+  btnClick() {
+    this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'] ;
+   }
 
   ChangeCity(value: any) {
     const items = [

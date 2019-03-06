@@ -6,9 +6,9 @@
         <div class="card-body">
           <div class="row">
             <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.elementList | orderBy: 'index': MainPanel.applySort">
-              <div class="col-sm-4" [hidden]="!dyncamicElement.visible">
-                <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)"
-                  [ShowCheck]="showcheckbox" [elements]="dyncamicElement" [DataBind]="MainObject[MainPanel.ObjectMap][dyncamicElement.Key]"
+              <div class="col-sm-{{ dyncamicElement.position }}" [hidden]="!dyncamicElement.visible">
+                <dynamicElement style="width: 100%" [form]="form" [Service]="getService(MainPanel.Service)" [ShowCheck]="showcheckbox"
+                  [elements]="dyncamicElement" [DataBind]="MainObject[MainPanel.ObjectMap][dyncamicElement.Key]"
                   (DataBindChanged)="MainObject[MainPanel.ObjectMap][dyncamicElement.Key] = $event"></dynamicElement>
               </div>
             </ng-template>
@@ -20,8 +20,8 @@
           <div class="card-header bg-dark text-white">{{MainPanel.panel.title}} </div>
           <div class="card-body">
             <div class="row">
-            <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.panel.elementList | orderBy: 'index': MainPanel.panel.applySort">
-                <div class="col-sm-4">
+              <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.panel.elementList | orderBy: 'index': MainPanel.panel.applySort">
+                <div class="col-sm-{{ dyncamicElement.position }}">
                   <div class="panel panel-primary">
                     <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [ShowCheck]="showcheckbox"
                       [(DataBind)]="MainObject[MainPanel.ObjectMap][MainPanel.panel.ObjectMap][dyncamicElement.Key]"
