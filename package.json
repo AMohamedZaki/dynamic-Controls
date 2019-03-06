@@ -25,6 +25,7 @@
     "@angular/router": "7.2.7",
     "@ngui/datetime-picker": "^0.16.2",
     "@progress/kendo-angular-buttons": "^4.3.3",
+    "@progress/kendo-angular-dateinputs": "^3.6.0",
     "@progress/kendo-angular-dropdowns": "3.5.1",
     "@progress/kendo-angular-l10n": "^1.1.0",
     "@progress/kendo-theme-default": "latest",
@@ -40,7 +41,8 @@
     "rxjs-compat": "^6.0.0",
     "rxjs-tslint": "^0.1.7",
     "tslib": "^1.9.0",
-    "zone.js": "^0.8.29"
+    "zone.js": "^0.8.29",
+    "@progress/kendo-angular-intl": "^1.4.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
