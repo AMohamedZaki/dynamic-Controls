@@ -28,17 +28,23 @@ export class PatientService extends DataService {
   CityList = [];
 
   testClick() {
-    console.log('The Object ', this.CurrentObject);
-    this.CurrentObject['lastName'] = 'ali';
-    console.log('ali', this.CurrentObject['firstName']);
+    // console.log('The Object ', this.CurrentObject);
+    // console.log('The Form ', this.form);
+    this.CurrentObject['lastName'] += 'ali';
+    this.ApplyChnage();
+    // console.log('ali', this.CurrentObject['firstName']);
   }
 
   testChange(value: any) {
     // console.log('value', value);
+    this.CurrentObject['lastName'] += 'testChange';
   }
 
   btnClick() {
+    // tslint:disable-next-line:no-debugger
+    debugger;
     this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'] ;
+    this.ApplyChnage();
    }
 
   ChangeCity(value: any) {

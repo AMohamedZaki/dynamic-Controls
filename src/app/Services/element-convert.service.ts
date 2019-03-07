@@ -10,29 +10,37 @@ export class ElementConvertService {
   constructor() { }
 
   toFormControl(elements: Panel[]) {
+    // const group: FormControl = <FormControl>{};
     const group: any = {};
-
     elements.forEach(controlElement => {
+
       const parentList = controlElement.elementList;
       const subParent = controlElement.panel || null;
       const subParentList = (subParent) ? controlElement.panel.elementList : [];
 
-      if (parentList && parentList.length > 0 ) {
+      if (parentList && parentList.length > 0) {
+        group[controlElement.ObjectMap] = {};
         parentList.forEach(item => {
-          group[item.Key] = item.required ?
-            new FormControl(item.value || '', Validators.required) : new FormControl(item.value || '');
-          group[item.id] = new FormControl(item.id || '');
+          const disable = item.readonly || false;
+          const formControlObj = { value: item.value || '', disabled: disable };
+          group[controlElement.ObjectMap][item.Key] = item.required ? new FormControl(formControlObj, Validators.required) :
+            new FormControl(formControlObj);
+          if (item.readonly) { group[item.Key].disable(); }
         });
       }
 
-      if (subParent && subParentList && subParentList.length > 0 ) {
+      // issue Here the sub panel in form group
+      if (subParent && subParentList && subParentList.length > 0) {
+        const subformPanel = group[controlElement.ObjectMap][subParent.ObjectMap] = {};
         subParentList.forEach(item => {
-          group[item.Key] = item.required ?
-            new FormControl(item.value || '', Validators.required) : new FormControl(item.value || '');
-          group[item.id] = new FormControl(item.id || '');
+          const disable = item.readonly || false;
+          const formControlObj = { value: item.value || '', disabled: disable };
+          subformPanel[item.Key] = item.required ?
+            new FormControl(formControlObj, Validators.required) : new FormControl(formControlObj);
         });
       }
 
+      group[controlElement.ObjectMap] = new FormGroup(group[controlElement.ObjectMap]);
     });
     return new FormGroup(group);
 

@@ -15,11 +15,10 @@ import { IEvent } from '../model/IEvents';
 export class DynamicElementComponent implements OnInit, AfterViewChecked, OnChanges {
 
   @Input() form: FormGroup;
+  @Input() GroupName = '';
   @Input() Service: any;
   // tslint:disable-next-line:no-input-rename
   @Input('elements') elements: BaseElement<any>;
-  // tslint:disable-next-line:no-input-rename
-  @Input('ShowCheck') ShowCheck: boolean;
 
   // custom two way binding
   @Input() DataBind: any;
@@ -59,15 +58,22 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked, OnChan
         }
       });
     }
+
+    // this.form.get(this.elements.Key).valueChanges.subscribe((controlValue) => {
+    //   // tslint:disable-next-line:no-debugger
+    //   this.DataBind = controlValue;
+    //   this.DataBindChanged.emit(this.DataBind);
+    // });
+
   }
 
 
-  changeValue() {
-    this.DataBindChanged.emit(this.DataBind);
-  }
+  // changeValue() {
+  //   this.DataBindChanged.emit(this.DataBind);
+  // }
 
   getElement(name: string): AbstractControl {
-    return this.form.get(name);
+    return this.form.get(`${this.GroupName}.${name}`);
   }
 
   // For The Validtion in Case the Validtion is Fire
@@ -81,6 +87,8 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked, OnChan
       this.DataBindChanged.emit(this.DataBind);
     }
   }
+
+
 
 }
 

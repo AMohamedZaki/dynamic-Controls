@@ -1,76 +1,74 @@
 <!-- {{ DataBind }} -->
-<ng-template [ngIf]="elements && elements.visible">
+<ng-container *ngIf="elements && elements.visible">
   <div [formGroup]="form" [ngSwitch]="true">
     <div class="panel-title">
       <label [attr.for]="elements.Key" *ngSwitchCase="elements.controlType !== 'datepicker'"> {{ elements.Label }}
         <span *ngIf="elements.required" style="color: red"> &nbsp; *</span>
       </label>
     </div>
-    
-    <!-- Textbox-->
-    <input [readonly]="elements.readonly" [ngStyle]="elements.style" class="form-control" [(ngModel)]="DataBind" type="text" (input)="changeValue()" *ngSwitchCase="elements.controlType === 'textbox'"
-      [id]="elements.Key" [formControlName]="elements.Key">
-  
-    <!-- TextArea -->
-    <textarea 
-    *ngSwitchCase="elements.controlType === 'textArea'"
-    [ngStyle]="elements.style" class="form-control" [(ngModel)]="DataBind" 
-    type="text" (input)="changeValue()"
-    [id]="elements.Key" [formControlName]="elements.Key"></textarea>
 
-    <!-- To Make Databind contains the select object-->
-    <!-- set att [ngValue]='option' -->
-    <!-- Normal Dropdown List (Single Select) -->
-    <select [ngStyle]="elements.style" class="form-control" (change)="changeValue()" [(ngModel)]="DataBind" *ngSwitchCase="elements.controlType === 'dropdown'"
-      [id]="elements.Key" [formControlName]="elements.Key">
-      <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key">{{ option.value }} </option>
-    </select>
+    <ng-container [formGroupName]="GroupName">
+      <!-- Textbox-->
+      <input [ngStyle]="elements.style" class="form-control" type="text" *ngSwitchCase="elements.controlType === 'textbox'"
+        [id]="elements.Key" [formControlName]="elements.Key">
 
-    <!-- Normal Dropdown List (MultiSelect) -->
-    <select [ngStyle]="elements.style" class="form-control" multiple (change)="changeValue()" [(ngModel)]="DataBind" *ngSwitchCase="elements.controlType === 'multipleSelected'"
-      [id]="elements.Key" [formControlName]="elements.Key">
-      <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key">{{ option.value }} </option>
-    </select>
+      <!-- TextArea -->
+      <textarea *ngSwitchCase="elements.controlType === 'textArea'" [ngStyle]="elements.style" class="form-control"
+        type="text" [id]="elements.Key" [formControlName]="elements.Key"></textarea>
 
-    <kendo-multiselect [ngStyle]="elements.style" class="form-control" *ngSwitchCase="elements.controlType === 'multiSelect'" [formControlName]="elements.Key"
-      (valueChange)="changeValue()" [data]="Service[elements.dataSource]" [(ngModel)]="DataBind" textField="value"
-      valueField="key" [valuePrimitive]="true"></kendo-multiselect>
+      <!-- To Make Databind contains the select object-->
+      <!-- set att [ngValue]='option' -->
+      <!-- Normal Dropdown List (Single Select) -->
+      <select [ngStyle]="elements.style" class="form-control" *ngSwitchCase="elements.controlType === 'dropdown'" [id]="elements.Key"
+        [formControlName]="elements.Key">
+        <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key">{{ option.value }} </option>
+      </select>
+
+      <!-- Normal Dropdown List (MultiSelect) -->
+      <select [ngStyle]="elements.style" class="form-control" multiple *ngSwitchCase="elements.controlType === 'multipleSelected'"
+        [id]="elements.Key" [formControlName]="elements.Key">
+        <option *ngFor="let option of Service[elements.dataSource]" [value]="option.key">{{ option.value }} </option>
+      </select>
+
+      <kendo-multiselect [ngStyle]="elements.style" class="form-control" *ngSwitchCase="elements.controlType === 'multiSelect'"
+        [formControlName]="elements.Key" [data]="Service[elements.dataSource]" textField="value" valueField="key"
+        [valuePrimitive]="true"></kendo-multiselect>
 
 
 
-    <!-- Radio Button-->
-    <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'radiobuttons'">
-      <ng-template let-j="index" let-option ngFor [ngForOf]="Service[elements.dataSource]">
-        <input type="radio" [ngStyle]="elements.style" [id]="elements.Key + j" [formControlName]="elements.Key" [value]="option.key" (change)="changeValue()"
-          [(ngModel)]="DataBind" /> {{ option.value }}
-      </ng-template>
-    </div>
-
-    <!-- CheckBox-->
-    <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'checkBox'">
-      <input type="checkbox" [id]="elements.Key" [ngStyle]="elements.style" [formControlName]="elements.Key" (change)="changeValue()" [(ngModel)]="DataBind" />
-    </div>
-
-    <!-- Calender -->
-    <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'calendar'">
-      <span style="font-size: small; font-weight: bold;"> Date</span>
-      <kendo-datepicker [(ngModel)]="DataBind" [ngStyle]="elements.style" (valueChange)="changeValue()" [formControlName]="elements.Key"></kendo-datepicker>
-      <span style="font-size: small; font-weight: bold;"> Time</span>
-      <kendo-timepicker [(ngModel)]="DataBind" [ngStyle]="elements.style" (valueChange)="changeValue()" [formControlName]="elements.Key"></kendo-timepicker>
-    </div>
-
-    <!-- Button -->
-    <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'button'">
-      <Button class="btn btn-primary" [ngStyle]="elements.style"> {{ elements.value }} </Button>
-    </div>
-
-    <!-- <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" /> -->
-    <!-- Validation -->
-    <div class="alert alert-danger" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
-      <div *ngIf="getElement(elements.Key)['errors']?.required">
-        {{elements.Label}} is required
+      <!-- Radio Button-->
+      <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'radiobuttons'">
+        <ng-template let-j="index" let-option ngFor [ngForOf]="Service[elements.dataSource]">
+          <input type="radio" [ngStyle]="elements.style" [id]="elements.Key + j" [formControlName]="elements.Key"
+            [value]="option.key" /> {{ option.value }}
+        </ng-template>
       </div>
-    </div>
 
+      <!-- CheckBox-->
+      <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'checkBox'">
+        <input type="checkbox" [id]="elements.Key" [ngStyle]="elements.style" [formControlName]="elements.Key" />
+      </div>
+
+      <!-- Calender -->
+      <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'calendar'">
+        <span style="font-size: small; font-weight: bold;"> Date</span>
+        <kendo-datepicker [ngStyle]="elements.style" [formControlName]="elements.Key"></kendo-datepicker>
+        <span style="font-size: small; font-weight: bold;"> Time</span>
+        <kendo-timepicker [ngStyle]="elements.style" [formControlName]="elements.Key"></kendo-timepicker>
+      </div>
+
+      <!-- Button -->
+      <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'button'">
+        <input type="button" class="btn btn-primary" [ngStyle]="elements.style" [value]="elements.value">
+      </div>
+
+      <!-- <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" /> -->
+      <!-- Validation -->
+      <div class="alert alert-danger" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
+        <div *ngIf="getElement(elements.Key)['errors']?.required">
+          {{elements.Label}} is required
+        </div>
+      </div>
+    </ng-container>
   </div>
-</ng-template>
+</ng-container>

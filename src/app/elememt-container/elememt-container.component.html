@@ -5,6 +5,7 @@
 
 registrationObject :- {{ registrationObject | json}}
 <br />
+form :- {{ this.form.value | json }}
 
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
   <dynamic-form [form]="form" [dataSource]="ElementDataList" [MainObject]="registrationObject" [ServiceSource]="ServiceList"></dynamic-form>

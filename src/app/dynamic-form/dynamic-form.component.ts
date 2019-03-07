@@ -50,6 +50,7 @@ export class DynamicFormComponent implements OnInit {
           if (service) {
             const index = this.ServiceSource.findIndex(item => item === service);
             this.ServiceSource[index].Service.CurrentObject = this.MainObject[panel.ObjectMap];
+            this.ServiceSource[index].Service.form = this.form.controls[panel.ObjectMap] as FormGroup;
           }
         }
 

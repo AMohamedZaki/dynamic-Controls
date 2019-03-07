@@ -27,7 +27,6 @@ export class GetElementsService {
           value: 'National Technology',
           required: true,
           visible: true,
-          readonly: true,
           index: 1,
           id: 0,
           position: Position.OneOfThree,
@@ -55,6 +54,7 @@ export class GetElementsService {
           Key: 'IsAgree',
           Label: 'Agree With Terms',
           required: true,
+          readonly: false,
           visible: true,
           position: Position.OneOfThree,
           id: 9,
@@ -87,6 +87,10 @@ export class GetElementsService {
           Label: 'Last name',
           value: '',
           position: Position.HalfOfThree,
+          events:
+          [
+            { Name: 'keyup.enter', callBack: 'testClick' },
+          ],
           required: true,
           visible: true,
           id: 2,
@@ -120,31 +124,31 @@ export class GetElementsService {
           style: {
             'background-color': 'red',
             'font-size': 'large',
-             border: '2px solid red',
-             width: '100%'
+            border: '2px solid red',
+            width: '100%'
           },
           events:
             [
-              { Name: 'click', callBack: 'btnClick', mainObject: true },
+              { Name: 'click', callBack: 'btnClick' },
             ]
         })
       ]
-      , panel: {
-        title: 'pathology contnent',
-        ObjectMap: 'PatientSub',
-        elementList: [
-          new TextArea({
-            Key: 'paragraph',
-            Label: 'paragraph',
-            value: '',
-            position: Position.ThreeOfThree,
-            style: { width: '50%' },
-            required: false,
-            visible: true,
-            id: 0
-          })
-        ]
-      }
+      // , panel: {
+      //   title: 'pathology contnent',
+      //   ObjectMap: 'PatientSub',
+      //   elementList: [
+      //     new TextArea({
+      //       Key: 'paragraph',
+      //       Label: 'paragraph',
+      //       value: '',
+      //       position: Position.ThreeOfThree,
+      //       style: { width: '50%' },
+      //       required: false,
+      //       visible: true,
+      //       id: 0
+      //     })
+      //   ]
+      // }
     }
       // , {
       //   title: 'Doctor',
@@ -157,19 +161,19 @@ export class GetElementsService {
       //       value: 'Abdel moneim Mohamed',
       //       required: true,
       //       visible: true,
-      //       position: Grid.TwoOfThree,
+      //       position: Position.TwoOfThree,
       //       id: 1,
       //       events:
       //         [
       //           { Name: 'click', callBack: 'testClick' },
       //           { Name: 'change', callBack: 'testChange', mainObject: true }
       //         ]
-      //     }),
-      //     new TextBoxElement({
+      //     })
+      //     , new TextBoxElement({
       //       Key: 'doctorlastName',
       //       Label: 'Last name',
       //       value: '',
-      //       position: Grid.OneOfThree,
+      //       position: Position.OneOfThree,
       //       required: false,
       //       visible: true,
       //       id: 5,
@@ -180,10 +184,11 @@ export class GetElementsService {
       //       value: '',
       //       required: true,
       //       visible: true,
-      //       position: Grid.TwoOfThree,
+      //       position: Position.TwoOfThree,
       //       id: 10,
       //     })
-      //   ], panel: {
+      //   ]
+      //   , panel: {
       //     title: 'Family Details',
       //     ObjectMap: 'SubDoctor',
       //     elementList: [
@@ -192,7 +197,7 @@ export class GetElementsService {
       //         Label: 'Father Name',
       //         value: '',
       //         required: false,
-      //         position: Grid.TwoOfThree,
+      //         position: Position.TwoOfThree,
       //         visible: true,
       //         id: 0
       //       })
