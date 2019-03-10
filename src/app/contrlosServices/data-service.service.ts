@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 
 @Injectable()
 export class DataService {
-  private form: FormGroup;
+  form: FormGroup;
 
   private _currentObject: any;
   set CurrentObject(value: any) {

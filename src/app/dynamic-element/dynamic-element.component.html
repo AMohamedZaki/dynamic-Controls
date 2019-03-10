@@ -3,7 +3,7 @@
   <div [formGroup]="form" [ngSwitch]="true">
     <div class="panel-title">
       <label [attr.for]="elements.Key" *ngSwitchCase="elements.controlType !== 'datepicker'"> {{ elements.Label }}
-        <span *ngIf="elements.required" style="color: red"> &nbsp; *</span>
+        <span *ngIf="HasRequiredValidation()" style="color: red"> &nbsp; *</span>
       </label>
     </div>
 

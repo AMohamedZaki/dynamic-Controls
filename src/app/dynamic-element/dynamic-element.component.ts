@@ -1,9 +1,10 @@
 import {
   Component, Input, OnInit,
   ElementRef, Renderer, AfterViewChecked,
-  ChangeDetectorRef} from '@angular/core';
+  ChangeDetectorRef
+} from '@angular/core';
 import { BaseElement } from '../model/baseElement';
-import { FormGroup, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl, Validators } from '@angular/forms';
 import { IEvent } from '../model/IEvents';
 import { FileRestrictions } from '@progress/kendo-angular-upload';
 
@@ -53,6 +54,11 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
     return this.form.get(`${this.GroupName}.${name}`);
   }
 
+  HasRequiredValidation() {
+    const Control = this.form.get(`${this.GroupName}.${this.elements.Key}`);
+    return hasRequiredField(Control);
+  }
+
   // For The Validtion in Case the Validtion is Fire
   // and the Control Value Changed under the hode
   ngAfterViewChecked(): void {
@@ -85,6 +91,24 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
       }
     }
   }
-
 }
+
+export const hasRequiredField = (abstractControl: AbstractControl): boolean => {
+  if (abstractControl.validator) {
+      const validator = abstractControl.validator({}as AbstractControl);
+      if (validator && validator.required) {
+          return true;
+      }
+  }
+  if (abstractControl['controls']) {
+      for (const controlName in abstractControl['controls']) {
+          if (abstractControl['controls'][controlName]) {
+              if (hasRequiredField(abstractControl['controls'][controlName])) {
+                  return true;
+              }
+          }
+      }
+  }
+  return false;
+};
 

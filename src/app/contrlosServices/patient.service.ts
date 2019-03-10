@@ -1,4 +1,5 @@
 import { DataService } from './data-service.service';
+import { Validators } from '@angular/forms';
 
 export class PatientService extends DataService {
 
@@ -43,6 +44,16 @@ export class PatientService extends DataService {
 
   btnClick() {
     this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'];
+    // tslint:disable-next-line:no-debugger
+    debugger;
+    if (this.CurrentObject['IsAgree']) {
+      this.form.controls['lastName'].setValidators(Validators.required);
+    } else {
+      this.form.controls['lastName'].clearValidators();
+    }
+    // this.ChangeProprty('IsAgree');
+    // this.form.get('lastName').updateValueAndValidity();
+    // console.log(this.form);
     // this.ChangeAll();
   }
 
