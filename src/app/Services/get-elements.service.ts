@@ -4,7 +4,8 @@ import { Panel } from '../model/panel';
 import {
   TextBoxElement, DropDown, CheckBox,
   Radiobuttons, TextArea
-  , Button as button
+  , Button as button,
+  FileUpload
 } from '../model/Controls';
 import { MultiSelect, Calendar } from '../model/KendoControls';
 import { Position } from '../model/PositionEnum';
@@ -33,7 +34,7 @@ export class GetElementsService {
           events:
             [
               { Name: 'keyup.enter', callBack: 'testClick' },
-              { Name: 'change', callBack: 'testChange', mainObject: true }
+              { Name: 'change', callBack: 'testChange', PassEventObject: true }
             ]
         }),
         new DropDown({
@@ -47,7 +48,7 @@ export class GetElementsService {
           dataSource: 'CountryList',
           events:
             [
-              { Name: 'change', callBack: 'ChangeCity', mainObject: true },
+              { Name: 'change', callBack: 'ChangeCity', PassEventObject: true },
             ]
         }),
         new CheckBox({
@@ -88,9 +89,9 @@ export class GetElementsService {
           value: '',
           position: Position.HalfOfThree,
           events:
-          [
-            { Name: 'keyup.enter', callBack: 'testClick' },
-          ],
+            [
+              { Name: 'keyup.enter', callBack: 'testClick' },
+            ],
           required: true,
           visible: true,
           id: 2,
@@ -110,7 +111,7 @@ export class GetElementsService {
           dataSource: 'NamesList',
           events:
             [
-              { Name: 'change', callBack: 'ChangeCity', mainObject: true },
+              { Name: 'change', callBack: 'ChangeCity', PassEventObject: true },
             ]
         }),
         new button({
@@ -131,6 +132,19 @@ export class GetElementsService {
             [
               { Name: 'click', callBack: 'btnClick' },
             ]
+        }),
+        new FileUpload({
+          Label: 'Upload Image',
+          Key: 'imageUpload',
+          required: false,
+          visible: true,
+          id: 18,
+          multiple: true,
+          index: 20,
+          position: Position.TwoOfThree,
+          events: [
+            { Name: 'change', callBack: 'TestUpload', PassEventObject: true }
+          ]
         })
       ]
       // , panel: {
@@ -150,60 +164,60 @@ export class GetElementsService {
       //   ]
       // }
     }
-      // , {
-      //   title: 'Doctor',
-      //   ObjectMap: 'Doctor',
-      //   Service: 'docService',
+      , {
+      title: 'Doctor',
+      ObjectMap: 'Doctor',
+      Service: 'docService',
+      elementList: [
+        new TextBoxElement({
+          Key: 'firstName',
+          Label: 'First name',
+          value: 'Abdel moneim Mohamed',
+          required: true,
+          visible: true,
+          position: Position.TwoOfThree,
+          id: 1,
+          events:
+            [
+              { Name: 'click', callBack: 'testClick' },
+              { Name: 'change', callBack: 'testChange', PassEventObject: true }
+            ]
+        })
+        , new TextBoxElement({
+          Key: 'lastName',
+          Label: 'Last name',
+          value: '',
+          position: Position.OneOfThree,
+          required: false,
+          visible: true,
+          id: 5,
+        }),
+        new Calendar({
+          Key: 'meeting',
+          Label: 'Meeting',
+          value: '',
+          required: true,
+          visible: true,
+          position: Position.TwoOfThree,
+          id: 10,
+        })
+      ]
+      // , panel: {
+      //   title: 'Family Details',
+      //   ObjectMap: 'SubDoctor',
       //   elementList: [
       //     new TextBoxElement({
-      //       Key: 'doctorName',
-      //       Label: 'First name',
-      //       value: 'Abdel moneim Mohamed',
-      //       required: true,
-      //       visible: true,
-      //       position: Position.TwoOfThree,
-      //       id: 1,
-      //       events:
-      //         [
-      //           { Name: 'click', callBack: 'testClick' },
-      //           { Name: 'change', callBack: 'testChange', mainObject: true }
-      //         ]
-      //     })
-      //     , new TextBoxElement({
-      //       Key: 'doctorlastName',
-      //       Label: 'Last name',
+      //       Key: 'FatherName',
+      //       Label: 'Father Name',
       //       value: '',
-      //       position: Position.OneOfThree,
       //       required: false,
-      //       visible: true,
-      //       id: 5,
-      //     }),
-      //     new Calendar({
-      //       Key: 'meeting',
-      //       Label: 'Meeting',
-      //       value: '',
-      //       required: true,
-      //       visible: true,
       //       position: Position.TwoOfThree,
-      //       id: 10,
+      //       visible: true,
+      //       id: 0
       //     })
       //   ]
-      //   , panel: {
-      //     title: 'Family Details',
-      //     ObjectMap: 'SubDoctor',
-      //     elementList: [
-      //       new TextBoxElement({
-      //         Key: 'FatherName',
-      //         Label: 'Father Name',
-      //         value: '',
-      //         required: false,
-      //         position: Position.TwoOfThree,
-      //         visible: true,
-      //         id: 0
-      //       })
-      //     ]
-      //   }
       // }
+    }
     ];
   }
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppComponent } from './app.component';
+import { AppComponent, UploadInterceptor } from './app.component';
 import { DynamicElementComponent } from './dynamic-element/dynamic-element.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ElementConvertService } from './Services/element-convert.service';
@@ -17,6 +17,10 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import 'hammerjs';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { IntlModule } from '@progress/kendo-angular-intl';
+import { UploadModule } from '@progress/kendo-angular-upload';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -36,16 +40,23 @@ import { IntlModule } from '@progress/kendo-angular-intl';
     IntlModule,
     DropDownsModule,
     RouterModule.forRoot([
-      { path: '' , component: ElememtContainerComponent } ,
+      { path: '', component: ElememtContainerComponent },
     ]),
-    DateInputsModule
+    DateInputsModule,
+    UploadModule,
+    HttpClientModule,
   ],
   providers: [
     GetElementsService,
     ElementConvertService,
     PatientService,
-    DoctorService
-    ],
+    DoctorService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UploadInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -50,12 +50,19 @@
       </div>
 
       <!-- Calender -->
-      <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'calendar'">
+      <div clasmyRestrictionss="d-inline-block" *ngSwitchCase="elements.controlType === 'calendar'">
         <span style="font-size: small; font-weight: bold;"> Date</span>
         <kendo-datepicker [ngStyle]="elements.style" [formControlName]="elements.Key"></kendo-datepicker>
         <span style="font-size: small; font-weight: bold;"> Time</span>
         <kendo-timepicker [ngStyle]="elements.style" [formControlName]="elements.Key"></kendo-timepicker>
       </div>
+
+      <!-- File Upload -->
+      <input type="file" [ngStyle]="elements.style" *ngSwitchCase="elements.controlType === 'fileUpload'" [id]="elements.Key"
+        [formControlName]="elements.Key" [multiple]="elements.multiple">
+
+      <kendo-upload [ngStyle]="elements.style" [formControlName]="elements.Key" *ngSwitchCase="elements.controlType === 'kendoFileUpload'">
+      </kendo-upload>
 
       <!-- Button -->
       <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'button'">
@@ -64,7 +71,7 @@
 
       <!-- <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" /> -->
       <!-- Validation -->
-      <div class="alert alert-danger" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
+      <div class="alert alert-danger" [ngStyle]="elements.validationStyle" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
         <div *ngIf="getElement(elements.Key)['errors']?.required">
           {{elements.Label}} is required
         </div>

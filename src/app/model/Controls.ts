@@ -35,7 +35,6 @@ export class Radiobuttons extends BaseElement<any> {
 // Drop down List
 export class DropDown extends BaseElement<any> {
     controlType = 'dropdown';
-    // options: { key: string, value: string, selected?: boolean };
     dataSource: string;
     constructor(Options: IElement<any> = {}) {
         super(Options);
@@ -56,6 +55,17 @@ export class TextArea extends BaseElement<any> {
     controlType = 'textArea';
     constructor(Options: IElement<any> = {}) {
         super(Options);
+    }
+}
+
+
+export class FileUpload extends BaseElement<any> {
+    controlType = 'fileUpload';
+    multiple = false;
+    constructor(Options: IElement<any> = {}) {
+        super(Options);
+        this.position = Options.position;
+        this.multiple = Options.multiple;
     }
 }
 

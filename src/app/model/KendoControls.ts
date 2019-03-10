@@ -26,3 +26,12 @@ export class Calendar extends BaseElement<any> {
         this.position = Options.position;
     }
 }
+
+
+export class KendoFileUpload extends BaseElement<any> {
+    controlType = 'fileUpload';
+    constructor(Options: IElement<any> = {}) {
+        super(Options);
+        this.position = Options.position;
+    }
+}
