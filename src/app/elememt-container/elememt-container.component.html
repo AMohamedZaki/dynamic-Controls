@@ -2,12 +2,26 @@
   <button class="btn btn-info"> Update Favrite Search (Not Work)</button>
   <button class="btn btn-info"> Use Favrite Search Field (Not Work)</button>
 </div>
-
-registrationObject :- {{ registrationObject | json}}
 <br />
 form :- {{ this.form.value | json }}
 
+
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
-  <dynamic-form [form]="form" [dataSource]="ElementDataList" [MainObject]="registrationObject" [ServiceSource]="ServiceList"></dynamic-form>
+  <dynamic-form [form]="form" [dataSource]="ElementDataList" [ServiceSource]="ServiceList"></dynamic-form>
   <button type="submit" class="btn btn-primary" ng-class="" [disabled]="!form.valid"> submit </button>
 </form>
+
+
+
+<!-- <kendo-upload
+[saveUrl]="uploadSaveUrl"
+[autoUpload]="false"
+[removeUrl]="uploadRemoveUrl"
+[restrictions]="myRestrictions">
+</kendo-upload>
+
+<br>
+<br>
+<br>
+<br>
+<br> -->

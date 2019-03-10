@@ -16,8 +16,8 @@ export class DynamicFormComponent implements OnInit {
   @Input() dataSource: any[] = [];
   @Input() ServiceSource: ServiceDetails[] = [];
   // Create Input Main Object That Contain all Sub Objects
-  @Input() MainObject: ControlMainObject = {};
-  @Output() MainObjectChange: EventEmitter<any> = new EventEmitter<any>();
+  // @Input() MainObject: ControlMainObject = {};
+  // @Output() MainObjectChange: EventEmitter<any> = new EventEmitter<any>();
 
   index = 0;
   length = 0;
@@ -36,44 +36,9 @@ export class DynamicFormComponent implements OnInit {
     if (this.dataSource) {
       this.elementList = this.dataSource;
       this.dataSource.forEach((panel: Panel) => {
-
-        if (panel.elementList) {
-          // get all Elements in Panel
-          const MainPanelObject = {};
-          panel.elementList.forEach((element: BaseElement<any>) => {
-            MainPanelObject[element.Key] = element.value;
-          });
-          this.MainObject[panel.ObjectMap] = MainPanelObject;
-          // tslint:disable-next-line:no-debugger
-          // set Object Value in the service that injected in service list
-          const service = this.ServiceSource.find(x => x.Name === panel.Service);
-          if (service) {
-            const index = this.ServiceSource.findIndex(item => item === service);
-            this.ServiceSource[index].Service.CurrentObject = this.MainObject[panel.ObjectMap];
-            this.ServiceSource[index].Service.form = this.form.controls[panel.ObjectMap] as FormGroup;
-          }
-        }
-
-        const subPanel = panel.panel;
-        if (subPanel) {
-          const SubPanelObject = {};
-          subPanel.elementList.forEach((element: BaseElement<any>) => {
-            SubPanelObject[element.Key] = element.value;
-          });
-          this.MainObject[panel.ObjectMap][subPanel.ObjectMap] = SubPanelObject;
-          if (subPanel.panel) {
-            throw new TypeError('Maximum one sub Panel');
-          }
-        }
-
+        this.assaginObjectToService(panel);
       });
     }
-
-    // // set object value in Each Service
-    // this.ServiceSource.forEach((item: ServiceDetails) => {
-    //   item.Service.CurrentObject = this.MainObject;
-    // });
-
   }
 
 
@@ -89,6 +54,36 @@ export class DynamicFormComponent implements OnInit {
       }
     }
     return null;
+  }
+
+  assaginObjectToService(panel: Panel) {
+
+    if (panel.elementList) {
+      // get all Elements in Panel
+      const MainPanelObject = {};
+      panel.elementList.forEach((element: BaseElement<any>) => {
+        MainPanelObject[element.Key] = element.value;
+      });
+      // this.MainObject[panel.ObjectMap] = MainPanelObject;
+      // set Object Value in the service that injected in service list
+      const service = this.ServiceSource.find(x => x.Name === panel.Service);
+      if (service) {
+        const index = this.ServiceSource.findIndex(item => item === service);
+        this.ServiceSource[index].Service.AddForm(this.form.controls[panel.ObjectMap] as FormGroup);
+      }
+    }
+
+    const subPanel = panel.panel;
+    if (subPanel) {
+      const SubPanelObject = {};
+      subPanel.elementList.forEach((element: BaseElement<any>) => {
+        SubPanelObject[element.Key] = element.value;
+      });
+      // this.MainObject[panel.ObjectMap][subPanel.ObjectMap] = SubPanelObject;
+      if (subPanel.panel) {
+        throw new TypeError('Maximum one sub Panel');
+      }
+    }
   }
 
 }

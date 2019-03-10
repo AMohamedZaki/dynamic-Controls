@@ -28,24 +28,23 @@ export class PatientService extends DataService {
   CityList = [];
 
   testClick() {
-    // console.log('The Object ', this.CurrentObject);
-    // console.log('The Form ', this.form);
-    this.CurrentObject['lastName'] += 'ali';
-    this.ApplyChnage();
+    // this.CurrentObject['lastName'] += 'ali';
+    this.CurrentObject['lastName'] = this.CurrentObject['lastName'] + 'Test ';
+    console.log('CurrentObject', this.CurrentObject);
+    this.CurrentObject['IsAgree'] = true;
+    // this.ChangeProprty('lastName');
+    this.ChangeAll();
     // console.log('ali', this.CurrentObject['firstName']);
   }
 
   testChange(value: any) {
-    // console.log('value', value);
     this.CurrentObject['lastName'] += 'testChange';
   }
 
   btnClick() {
-    // tslint:disable-next-line:no-debugger
-    debugger;
-    this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'] ;
-    this.ApplyChnage();
-   }
+    this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'];
+    // this.ChangeAll();
+  }
 
   ChangeCity(value: any) {
     const items = [
@@ -55,6 +54,12 @@ export class PatientService extends DataService {
       { key: '4', value: 'Madena', CountryId: '2' }
     ];
     this.CityList = items.filter((city: any) => city.CountryId === value);
+  }
+
+  TestUpload(event) {
+    console.log('image', event);
+    const file: File = event.target.files[0];
+    console.log('file', file);
   }
 
 }

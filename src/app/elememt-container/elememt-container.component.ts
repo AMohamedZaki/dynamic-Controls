@@ -5,8 +5,11 @@ import { FormGroup } from '@angular/forms';
 import { PatientService } from '../contrlosServices/patient.service';
 import { ServiceDetails } from '../model/ServiceDetails';
 import { DoctorService } from '../contrlosServices/doctor.service';
-import { Patient } from '../contrlosServices/Patient';
 import { ComboBoxComponent } from '@progress/kendo-angular-dropdowns';
+import { FileRestrictions } from '@progress/kendo-angular-upload';
+import { of } from 'rxjs/observable/of';
+import { HttpResponse } from '@angular/common/http';
+
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -21,13 +24,14 @@ export class ElememtContainerComponent implements OnInit {
   ElementDataList: any[];
   form: FormGroup;
   ServiceList: ServiceDetails[] = [];
-  patient: Patient;
-  registrationObject: any = {};
 
-  filteredItemTitle: string;
-  allowCustom = true;
+  uploadSaveUrl = 'saveUrl'; // should represent an actual API endpoint
+  uploadRemoveUrl = 'removeUrl'; // should represent an actual API endpoint
 
-  value: any;
+  // myRestrictions: FileRestrictions = {
+  //   allowedExtensions: ['.jpg', '.png', '.pdf'],
+  //   maxFileSize: 4194304
+  // };
 
   constructor(
     private elementConvertService: ElementConvertService,
@@ -46,7 +50,12 @@ export class ElememtContainerComponent implements OnInit {
     this.ServiceList.push({ Name: 'docService', Service: this.docService });
   }
 
-
+  uploadEventHandler(event) {
+    // tslint:disable-next-line:no-debugger
+    debugger;
+    console.log('event', event);
+        return of(new HttpResponse({ status: 200 }));
+  }
 
   onSubmit() {
     alert('Done');
