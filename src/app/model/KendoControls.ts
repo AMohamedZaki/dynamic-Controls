@@ -5,7 +5,6 @@ import { IElement } from './IElement';
 // Supported events valueChange($event), filterChange($event), open(), close() ,focus(), blur()
 export class MultiSelect extends BaseElement<any> {
     controlType = 'multiSelect';
-    // options: { key: string, value: string };
     dataSource: string;
     textField: string;
     valueField: string;

@@ -4,9 +4,8 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { BaseElement } from '../model/baseElement';
-import { FormGroup, AbstractControl, Validators } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 import { IEvent } from '../model/IEvents';
-import { FileRestrictions } from '@progress/kendo-angular-upload';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -18,16 +17,8 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
   @Input() form: FormGroup;
   @Input() GroupName = '';
   @Input() Service: any;
-  // tslint:disable-next-line:no-input-rename
-  @Input('elements') elements: BaseElement<any>;
+  @Input() elements: BaseElement<any>;
 
-
-  uploadSaveUrl = 'saveUrl';
-  uploadRemoveUrl = 'removeUrl';
-
-  public myRestrictions: FileRestrictions = {
-    allowedExtensions: ['.jpg', '.jpeg', '.png', '.pdf']
-  };
 
   constructor(private elementRef: ElementRef,
     private renderer: Renderer,
@@ -42,11 +33,6 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
       });
     }
 
-    // this.form.get(`${this.GroupName}.${this.elements.Key}`).valueChanges.subscribe((controlValue) => {
-    //   console.log(controlValue);
-    //   this.DataBind = controlValue;
-    //   this.DataBindChanged.emit(this.DataBind);
-    // });
 
   }
 
@@ -93,7 +79,7 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
   }
 }
 
-export const hasRequiredField = (abstractControl: AbstractControl): boolean => {
+const hasRequiredField = (abstractControl: AbstractControl): boolean => {
   if (abstractControl.validator) {
       const validator = abstractControl.validator({}as AbstractControl);
       if (validator && validator.required) {

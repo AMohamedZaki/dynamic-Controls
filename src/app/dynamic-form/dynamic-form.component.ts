@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Panel } from '../model/panel';
 import { ServiceDetails } from '../model/ServiceDetails';
-import { ControlMainObject } from '../model/ControlMainObject';
 import { BaseElement } from '../model/baseElement';
 
 @Component({
@@ -16,8 +15,6 @@ export class DynamicFormComponent implements OnInit {
   @Input() dataSource: any[] = [];
   @Input() ServiceSource: ServiceDetails[] = [];
   // Create Input Main Object That Contain all Sub Objects
-  // @Input() MainObject: ControlMainObject = {};
-  // @Output() MainObjectChange: EventEmitter<any> = new EventEmitter<any>();
 
   index = 0;
   length = 0;

@@ -1,6 +1,5 @@
 import { BaseElement } from './baseElement';
 import { IElement } from './IElement';
-import { ControlStyle } from './DynamicStyle';
 
 // TextBox
 export class TextBoxElement extends BaseElement<any> {
@@ -58,7 +57,7 @@ export class TextArea extends BaseElement<any> {
     }
 }
 
-
+// fileUpload
 export class FileUpload extends BaseElement<any> {
     controlType = 'fileUpload';
     multiple = false;
