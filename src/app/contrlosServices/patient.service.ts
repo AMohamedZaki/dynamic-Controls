@@ -1,5 +1,5 @@
 import { DataService } from './data-service.service';
-import { Validators } from '@angular/forms';
+import { AbstractControl, Validators, FormControl, ValidationErrors } from '@angular/forms';
 
 export class PatientService extends DataService {
 
@@ -30,6 +30,7 @@ export class PatientService extends DataService {
 
   testClick() {
     // this.CurrentObject['lastName'] += 'ali';
+    this.SetValidation('', [Validators.required]);
     this.CurrentObject['lastName'] = this.CurrentObject['lastName'] + 'Test ';
     console.log('CurrentObject', this.CurrentObject);
     this.CurrentObject['IsAgree'] = true;
@@ -43,14 +44,13 @@ export class PatientService extends DataService {
   }
 
   btnClick() {
+    this.SetValidation('firstName', [Validators.maxLength(3)]);
+   // console.log(this.form.get('lastName'));
     this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'];
-    // tslint:disable-next-line:no-debugger
-    debugger;
-    if (this.CurrentObject['IsAgree']) {
-      this.form.controls['lastName'].setValidators(Validators.required);
-    } else {
-      this.form.controls['lastName'].clearValidators();
-    }
+
+    this.getFormValidationErrors('firstName');
+    // this.getFormValidationErrors2();
+
     // this.ChangeProprty('IsAgree');
     // this.form.get('lastName').updateValueAndValidity();
     // console.log(this.form);

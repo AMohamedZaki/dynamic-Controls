@@ -7,7 +7,7 @@ import {
   , Button as button,
   FileUpload
 } from '../model/Controls';
-import { MultiSelect, Calendar } from '../model/KendoControls';
+import { MultiSelect, DatePicker } from '../model/KendoControls';
 import { Position } from '../model/PositionEnum';
 
 
@@ -26,7 +26,7 @@ export class GetElementsService {
           Key: 'firstName',
           Label: 'First name',
           value: 'National Technology',
-          required: true,
+          validation: { required: true, minLength: 8 },
           visible: true,
           index: 1,
           id: 0,
@@ -40,7 +40,7 @@ export class GetElementsService {
         new DropDown({
           Key: 'Country',
           Label: 'Choose The Country',
-          required: false,
+          validation: { required: true, minLength: 8 },
           visible: true,
           position: Position.OneOfThree,
           id: 3,
@@ -54,7 +54,7 @@ export class GetElementsService {
         new CheckBox({
           Key: 'IsAgree',
           Label: 'Agree With Terms',
-          required: true,
+          validation: { required: true },
           readonly: false,
           visible: true,
           position: Position.OneOfThree,
@@ -65,7 +65,7 @@ export class GetElementsService {
         new Radiobuttons({
           Key: 'CounRadio',
           Label: 'Choose Country',
-          required: false,
+          validation: { required: false },
           visible: true,
           position: Position.TwoOfThree,
           value: 'National Technology',
@@ -76,7 +76,7 @@ export class GetElementsService {
         new DropDown({
           Key: 'City',
           Label: 'Choose your City ?',
-          required: false,
+          validation: { required: true },
           visible: true,
           index: 4,
           position: Position.OneOfThree,
@@ -92,7 +92,7 @@ export class GetElementsService {
             [
               { Name: 'keyup.enter', callBack: 'testClick' },
             ],
-          required: true,
+          validation: { required: true, maxLength: 20, pattern: '/ahmed/' },
           visible: true,
           id: 2,
           index: 2,
@@ -101,7 +101,6 @@ export class GetElementsService {
         new MultiSelect({
           Key: 'NamesMultiSelect',
           Label: 'Choose Names',
-          required: false,
           visible: true,
           id: 3,
           index: 10,
@@ -116,7 +115,6 @@ export class GetElementsService {
         }),
         new button({
           Label: '',
-          required: false,
           visible: true,
           id: 18,
           value: 'Agree!',
@@ -136,7 +134,7 @@ export class GetElementsService {
         new FileUpload({
           Label: 'Upload Image',
           Key: 'imageUpload',
-          required: false,
+          validation: { required: true },
           visible: true,
           id: 18,
           multiple: true,
@@ -157,7 +155,6 @@ export class GetElementsService {
       //       value: '',
       //       position: Position.ThreeOfThree,
       //       style: { width: '50%' },
-      //       required: false,
       //       visible: true,
       //       id: 0
       //     })
@@ -173,7 +170,7 @@ export class GetElementsService {
           Key: 'firstName',
           Label: 'First name',
           value: 'Abdel moneim Mohamed',
-          required: true,
+          validation: { required: false },
           visible: true,
           position: Position.TwoOfThree,
           id: 1,
@@ -188,15 +185,14 @@ export class GetElementsService {
           Label: 'Last name',
           value: '',
           position: Position.OneOfThree,
-          required: false,
+          validation: { required: false },
           visible: true,
           id: 5,
         }),
-        new Calendar({
+        new DatePicker({
           Key: 'meeting',
           Label: 'Meeting',
-          value: '',
-          required: true,
+          validation:  { required: false },
           visible: true,
           position: Position.TwoOfThree,
           id: 10,

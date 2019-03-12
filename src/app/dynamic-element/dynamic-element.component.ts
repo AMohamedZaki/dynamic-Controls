@@ -10,12 +10,14 @@ import { IEvent } from '../model/IEvents';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dynamicElement',
-  templateUrl: './dynamic-element.component.html'
+  templateUrl: './dynamic-element.component.html',
+  styleUrls: ['./dynamic-element.component.css']
 })
 export class DynamicElementComponent implements OnInit, AfterViewChecked {
 
   @Input() form: FormGroup;
   @Input() GroupName = '';
+  @Input() SubGroupName;
   @Input() Service: any;
   @Input() elements: BaseElement<any>;
 
@@ -32,7 +34,7 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
         this.assaginMethodToControl(element);
       });
     }
-
+console.log(this.SubGroupName);
 
   }
 
@@ -51,6 +53,11 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
     this.cdRef.detectChanges();
   }
 
+  setControllerName(): string {
+    if (this.SubGroupName) {
+      return `${this.SubGroupName}`;
+    } else { return ''; }
+  }
 
   assaginMethodToControl(element: IEvent) {
     if (this.Service) {
@@ -80,20 +87,20 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
 }
 
 const hasRequiredField = (abstractControl: AbstractControl): boolean => {
-  if (abstractControl.validator) {
-      const validator = abstractControl.validator({}as AbstractControl);
-      if (validator && validator.required) {
-          return true;
-      }
+  if (abstractControl && abstractControl.validator) {
+    const validator = abstractControl.validator({} as AbstractControl);
+    if (validator && validator.required) {
+      return true;
+    }
   }
-  if (abstractControl['controls']) {
-      for (const controlName in abstractControl['controls']) {
-          if (abstractControl['controls'][controlName]) {
-              if (hasRequiredField(abstractControl['controls'][controlName])) {
-                  return true;
-              }
-          }
+  if (abstractControl && abstractControl['controls']) {
+    for (const controlName in abstractControl['controls']) {
+      if (abstractControl['controls'][controlName]) {
+        if (hasRequiredField(abstractControl['controls'][controlName])) {
+          return true;
+        }
       }
+    }
   }
   return false;
 };

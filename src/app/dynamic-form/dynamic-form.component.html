@@ -15,18 +15,20 @@
         </div>
 
         <!-- For the SubPanel -->
-        <div *ngIf="MainPanel.panel" class="card">
-          <div class="card-header bg-dark text-white">{{MainPanel.panel.title}} </div>
-          <div class="card-body">
-            <div class="row">
-              <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.panel.elementList | orderBy: 'index': MainPanel.panel.applySort">
-                <div class="col-sm-{{ dyncamicElement.position }}">
-                  <div class="panel panel-primary">
-                    <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [GroupName]="MainPanel.ObjectMap"
-                      [elements]="dyncamicElement"></dynamicElement>
+        <div *ngIf="MainPanel.panel">
+          <div class="card" [formGroupName]="MainPanel.panel.ObjectMap">
+            <div class="card-header bg-dark text-white">{{MainPanel.panel.title}} </div>
+            <div class="card-body">
+              <div class="row">
+                <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.panel.elementList | orderBy: 'index': MainPanel.panel.applySort">
+                  <div class="col-sm-{{ dyncamicElement.position }}" [hidden]="!dyncamicElement.visible">
+                    <div class="panel panel-primary">
+                      <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [SubGroupName]="MainPanel.panel.ObjectMap"
+                        [GroupName]="MainPanel.ObjectMap" [elements]="dyncamicElement"></dynamicElement>
+                    </div>
                   </div>
-                </div>
-              </ng-template>
+                </ng-template>
+              </div>
             </div>
           </div>
         </div>

@@ -2,13 +2,14 @@ import { IElement } from './IElement';
 import { IEvent } from './IEvents';
 import { Position  } from './PositionEnum';
 import { ControlStyle } from './DynamicStyle';
+import { Validation } from './Validation';
 
 export class BaseElement<T> {
 
     Key: string;
     value: T;
     Label: string;
-    required: boolean;
+    validation: Validation;
     controlType: string;
     visible?: boolean;
     events?: IEvent[];
@@ -21,7 +22,7 @@ export class BaseElement<T> {
         this.Key = options.Key || '';
         this.value = options.value;
         this.Label = options.Label || '';
-        this.required = options.required;
+        this.validation = options.validation;
         this.controlType = options.controlType || '';
         this.index = options.index || 0;
         this.events = options.events;

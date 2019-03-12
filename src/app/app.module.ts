@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppComponent, UploadInterceptor } from './app.component';
+import { AppComponent } from './app.component';
 import { DynamicElementComponent } from './dynamic-element/dynamic-element.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { ElementConvertService } from './Services/element-convert.service';
 import { GetElementsService } from './Services/get-elements.service';
 import { RouterModule } from '@angular/router';
 import { PatientService } from './contrlosServices/patient.service';
@@ -18,7 +17,7 @@ import 'hammerjs';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { IntlModule } from '@progress/kendo-angular-intl';
 import { UploadModule } from '@progress/kendo-angular-upload';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
 
 
 
@@ -29,7 +28,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     DynamicElementComponent,
     DynamicFormComponent,
     ElememtContainerComponent,
-    OrderByPipe
+    OrderByPipe,
+    DateTimePickerComponent
   ],
   imports: [
     BrowserModule,
@@ -44,18 +44,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     ]),
     DateInputsModule,
     UploadModule,
-    HttpClientModule,
   ],
   providers: [
     GetElementsService,
-    ElementConvertService,
     PatientService,
-    DoctorService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: UploadInterceptor,
-      multi: true
-    }
+    DoctorService
   ],
   bootstrap: [AppComponent]
 })

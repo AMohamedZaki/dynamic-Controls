@@ -13,16 +13,14 @@ export class MultiSelect extends BaseElement<any> {
         this.dataSource = Options.dataSource || '';
         this.textField = Options.textField || '';
         this.valueField = Options.valueField || '';
-        this.position = Options.position;
     }
 }
 
 
-export class Calendar extends BaseElement<any> {
-    controlType = 'calendar';
+export class DatePicker extends BaseElement<any> {
+    controlType = 'datePicker';
     constructor(Options: IElement<any> = {}) {
         super(Options);
-        this.position = Options.position;
     }
 }
 
@@ -31,6 +29,5 @@ export class KendoFileUpload extends BaseElement<any> {
     controlType = 'fileUpload';
     constructor(Options: IElement<any> = {}) {
         super(Options);
-        this.position = Options.position;
     }
 }
