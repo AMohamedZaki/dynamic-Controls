@@ -64,7 +64,7 @@ export class PatientService extends DataService {
       { key: '3', value: 'Makka', CountryId: '2' },
       { key: '4', value: 'Madena', CountryId: '2' }
     ];
-    this.CityList = items.filter((city: any) => city.CountryId === value);
+    this.CityList = items.filter((city: any) => city.CountryId === value.target.value);
   }
 
   TestUpload(event) {

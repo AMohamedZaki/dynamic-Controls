@@ -7,7 +7,44 @@ import { BaseElement } from '../model/baseElement';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dynamic-form',
-  templateUrl: './dynamic-form.component.html'
+  templateUrl: './dynamic-form.component.html',
+  styles: [`
+  .teamMate:after {
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.teamMate h2 {
+    font-size: 1.3em;
+    font-weight: normal;
+    padding-top: 17px;
+    margin: 0;
+}
+.teamMate p {
+    margin: 0;
+    font-size: .8em;
+}
+.teamMate img {
+    display: inline-block;
+    vertical-align: top;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+.mate-info {
+    display: inline-block;
+    vertical-align: top;
+}
+.panelbar-wrapper {
+    max-width: 95%;
+    margin: 0 auto;
+}
+  `]
 })
 export class DynamicFormComponent implements OnInit {
 
@@ -67,18 +104,6 @@ export class DynamicFormComponent implements OnInit {
       if (service) {
         const index = this.ServiceSource.findIndex(item => item === service);
         this.ServiceSource[index].Service.AddForm(this.form.controls[panel.ObjectMap] as FormGroup);
-      }
-    }
-
-    const subPanel = panel.panel;
-    if (subPanel) {
-      const SubPanelObject = {};
-      subPanel.elementList.forEach((element: BaseElement<any>) => {
-        SubPanelObject[element.Key] = element.value;
-      });
-      // this.MainObject[panel.ObjectMap][subPanel.ObjectMap] = SubPanelObject;
-      if (subPanel.panel) {
-        throw new TypeError('Maximum one sub Panel');
       }
     }
   }

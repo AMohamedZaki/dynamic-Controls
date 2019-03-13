@@ -1,41 +1,20 @@
 <form [formGroup]="form">
-  <div *ngFor="let MainPanel of dataSource; let i=index">
-    <div *ngIf="MainPanel">
-      <div class="card" [formGroupName]="MainPanel.ObjectMap">
-        <div class="card-header">{{MainPanel.title}}</div>
-        <div class="card-body">
-          <div class="row">
-            <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.elementList | orderBy: 'index': MainPanel.applySort">
-              <div class="col-sm-{{ dyncamicElement.position }}" [hidden]="!dyncamicElement.visible">
-                <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [GroupName]="MainPanel.ObjectMap"
-                  [elements]="dyncamicElement"></dynamicElement>
-              </div>
-            </ng-template>
-          </div>
-        </div>
-
-        <!-- For the SubPanel -->
-        <div *ngIf="MainPanel.panel">
-          <div class="card" [formGroupName]="MainPanel.panel.ObjectMap">
-            <div class="card-header bg-dark text-white">{{MainPanel.panel.title}} </div>
-            <div class="card-body">
-              <div class="row">
-                <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.panel.elementList | orderBy: 'index': MainPanel.panel.applySort">
-                  <div class="col-sm-{{ dyncamicElement.position }}" [hidden]="!dyncamicElement.visible">
-                    <div class="panel panel-primary">
-                      <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [SubGroupName]="MainPanel.panel.ObjectMap"
-                        [GroupName]="MainPanel.ObjectMap" [elements]="dyncamicElement"></dynamicElement>
-                    </div>
-                  </div>
-                </ng-template>
-              </div>
+  <div class="panelbar-wrapper">
+    <kendo-panelbar>
+      <kendo-panelbar-item *ngFor="let MainPanel of dataSource; let i=index" [title]="MainPanel.title">
+        <div class="contianer">
+          <ng-template [ngIf]="MainPanel" kendoPanelBarContent>
+            <div class="row" style="padding: 10px">
+              <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.elementList | orderBy: 'index': MainPanel.applySort">
+                <div class="col-sm-{{ dyncamicElement.position }}" [hidden]="!dyncamicElement.visible">
+                  <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [GroupName]="MainPanel.ObjectMap"
+                    [elements]="dyncamicElement"></dynamicElement>
+                </div>
+              </ng-template>
             </div>
-          </div>
+          </ng-template>
         </div>
-        <!-- End of SubPanel-->
-      </div>
-    </div>
-
+      </kendo-panelbar-item>
+    </kendo-panelbar>
   </div>
 </form>
-<br />

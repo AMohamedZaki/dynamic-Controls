@@ -10,8 +10,6 @@ export function ConvertListToFormGroup(elements: Panel[]) {
   elements.forEach(controlElement => {
 
     const parentList = controlElement.elementList;
-    const subParent = controlElement.panel || null;
-    const subParentList = (subParent) ? controlElement.panel.elementList : [];
 
     if (parentList && parentList.length > 0) {
       group[controlElement.ObjectMap] = {};
@@ -24,19 +22,6 @@ export function ConvertListToFormGroup(elements: Panel[]) {
         if (item.readonly) { group[item.Key].disable(); }
       });
     }
-    // issue Here the sub panel in form group
-    if (subParent && subParentList && subParentList.length > 0) {
-      const subPanel = group[controlElement.ObjectMap][subParent.ObjectMap] = {};
-      subParentList.forEach(item => {
-        const disable = item.readonly || false;
-        const formControlObj = { value: item.value || '', disabled: disable };
-        const validationList = getValidators(item.validation);
-        // group[controlElement.ObjectMap][subParent.ObjectMap][item.Key] = new FormControl(formControlObj, validationList);
-        subPanel[item.Key] = new FormControl(formControlObj, validationList);
-      });
-      group[controlElement.ObjectMap][subParent.ObjectMap] = new FormGroup(subPanel);
-    }
-
     group[controlElement.ObjectMap] = new FormGroup(group[controlElement.ObjectMap]);
   });
   return new FormGroup(group);

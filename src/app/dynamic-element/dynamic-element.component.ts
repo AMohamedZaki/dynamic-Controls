@@ -1,31 +1,36 @@
 import {
   Component, Input, OnInit,
   ElementRef, Renderer, AfterViewChecked,
-  ChangeDetectorRef
-} from '@angular/core';
+  ChangeDetectorRef, ViewChild,
+  ViewContainerRef} from '@angular/core';
 import { BaseElement } from '../model/baseElement';
-import { FormGroup, AbstractControl } from '@angular/forms';
+import {
+  FormGroup, AbstractControl, FormGroupDirective,
+  ControlContainer
+} from '@angular/forms';
 import { IEvent } from '../model/IEvents';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dynamicElement',
   templateUrl: './dynamic-element.component.html',
-  styleUrls: ['./dynamic-element.component.css']
+  styleUrls: ['./dynamic-element.component.css'],
+  viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class DynamicElementComponent implements OnInit, AfterViewChecked {
 
+  value: Date = new Date();
   @Input() form: FormGroup;
   @Input() GroupName = '';
-  @Input() SubGroupName;
   @Input() Service: any;
   @Input() elements: BaseElement<any>;
 
+  @ViewChild('ngForm') ngForm: FormGroupDirective;
+  @ViewChild('SubElementTemplate', { read: ViewContainerRef }) SubElement: ViewContainerRef;
 
   constructor(private elementRef: ElementRef,
     private renderer: Renderer,
-    private cdRef: ChangeDetectorRef
-  ) {
+    private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -34,8 +39,6 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
         this.assaginMethodToControl(element);
       });
     }
-console.log(this.SubGroupName);
-
   }
 
   getElement(name: string): AbstractControl {
@@ -51,12 +54,6 @@ console.log(this.SubGroupName);
   // and the Control Value Changed under the hode
   ngAfterViewChecked(): void {
     this.cdRef.detectChanges();
-  }
-
-  setControllerName(): string {
-    if (this.SubGroupName) {
-      return `${this.SubGroupName}`;
-    } else { return ''; }
   }
 
   assaginMethodToControl(element: IEvent) {

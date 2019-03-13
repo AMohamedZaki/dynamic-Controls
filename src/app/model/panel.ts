@@ -5,6 +5,5 @@ export interface Panel {
     ObjectMap: string;
     elementList: BaseElement<any>[];
     Service?: string;
-    panel?: Panel;
     applySort?: boolean;
 }

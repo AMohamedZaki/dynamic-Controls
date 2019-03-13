@@ -40,7 +40,7 @@ export class GetElementsService {
         new DropDown({
           Key: 'Country',
           Label: 'Choose The Country',
-          validation: { required: true, minLength: 8 },
+          validation: { required: true },
           visible: true,
           position: Position.OneOfThree,
           id: 3,
@@ -145,21 +145,6 @@ export class GetElementsService {
           ]
         })
       ]
-      // , panel: {
-      //   title: 'pathology contnent',
-      //   ObjectMap: 'PatientSub',
-      //   elementList: [
-      //     new TextArea({
-      //       Key: 'paragraph',
-      //       Label: 'paragraph',
-      //       value: '',
-      //       position: Position.ThreeOfThree,
-      //       style: { width: '50%' },
-      //       visible: true,
-      //       id: 0
-      //     })
-      //   ]
-      // }
     }
       , {
       title: 'Doctor',
@@ -196,23 +181,16 @@ export class GetElementsService {
           visible: true,
           position: Position.TwoOfThree,
           id: 10,
+        }),
+        new DatePicker({
+          Key: 'meeting2',
+          Label: 'Meeting2',
+          validation:  { required: false },
+          visible: true,
+          position: Position.OneOfThree,
+          id: 10,
         })
       ]
-      // , panel: {
-      //   title: 'Family Details',
-      //   ObjectMap: 'SubDoctor',
-      //   elementList: [
-      //     new TextBoxElement({
-      //       Key: 'FatherName',
-      //       Label: 'Father Name',
-      //       value: '',
-      //       required: false,
-      //       position: Position.TwoOfThree,
-      //       visible: true,
-      //       id: 0
-      //     })
-      //   ]
-      // }
     }
     ];
   }

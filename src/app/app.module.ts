@@ -18,8 +18,7 @@ import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { IntlModule } from '@progress/kendo-angular-intl';
 import { UploadModule } from '@progress/kendo-angular-upload';
 import { DateTimePickerComponent } from './date-time-picker/date-time-picker.component';
-
-
+import { LayoutModule } from '@progress/kendo-angular-layout';
 
 
 @NgModule({
@@ -38,6 +37,7 @@ import { DateTimePickerComponent } from './date-time-picker/date-time-picker.com
     ReactiveFormsModule,
     ButtonsModule,
     IntlModule,
+    LayoutModule,
     DropDownsModule,
     RouterModule.forRoot([
       { path: '', component: ElememtContainerComponent },
