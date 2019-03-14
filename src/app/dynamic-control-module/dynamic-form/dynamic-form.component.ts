@@ -1,50 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Panel } from '../model/panel';
-import { ServiceDetails } from '../model/ServiceDetails';
-import { BaseElement } from '../model/baseElement';
+import { ServiceDetails } from '../../model/ServiceDetails';
+import { Panel } from '../../model/panel';
+import { BaseElement } from '../../model/baseElement';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
-  styles: [`
-  .teamMate:after {
-    content: ".";
-    display: block;
-    height: 0;
-    line-height: 0;
-    clear: both;
-    visibility: hidden;
-}
-.teamMate h2 {
-    font-size: 1.3em;
-    font-weight: normal;
-    padding-top: 17px;
-    margin: 0;
-}
-.teamMate p {
-    margin: 0;
-    font-size: .8em;
-}
-.teamMate img {
-    display: inline-block;
-    vertical-align: top;
-    width: 50px;
-    height: 50px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-}
-.mate-info {
-    display: inline-block;
-    vertical-align: top;
-}
-.panelbar-wrapper {
-    max-width: 95%;
-    margin: 0 auto;
-}
-  `]
+  styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent implements OnInit {
 
@@ -93,12 +57,6 @@ export class DynamicFormComponent implements OnInit {
   assaginObjectToService(panel: Panel) {
 
     if (panel.elementList) {
-      // get all Elements in Panel
-      const MainPanelObject = {};
-      panel.elementList.forEach((element: BaseElement<any>) => {
-        MainPanelObject[element.Key] = element.value;
-      });
-      // this.MainObject[panel.ObjectMap] = MainPanelObject;
       // set Object Value in the service that injected in service list
       const service = this.ServiceSource.find(x => x.Name === panel.Service);
       if (service) {

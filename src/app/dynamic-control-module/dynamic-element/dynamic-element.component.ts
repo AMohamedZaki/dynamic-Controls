@@ -1,20 +1,22 @@
 import {
-  Component, Input, OnInit,
-  ElementRef, Renderer, AfterViewChecked,
-  ChangeDetectorRef, ViewChild,
-  ViewContainerRef} from '@angular/core';
-import { BaseElement } from '../model/baseElement';
-import {
-  FormGroup, AbstractControl, FormGroupDirective,
-  ControlContainer
-} from '@angular/forms';
-import { IEvent } from '../model/IEvents';
+  Component, OnInit, ElementRef, Renderer, AfterViewChecked,
+  ChangeDetectorRef,
+  Input,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
+import { FormGroupDirective, ControlContainer, FormGroup, AbstractControl } from '@angular/forms';
+import { BaseElement } from '../../model/baseElement';
+import { IEvent } from '../../model/IEvents';
+import { hasRequiredField } from '../validation/hasRequiredField';
+import { TooltipDirective } from '@progress/kendo-angular-tooltip';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dynamicElement',
   templateUrl: './dynamic-element.component.html',
   styleUrls: ['./dynamic-element.component.css'],
+  encapsulation: ViewEncapsulation.None,
   viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }]
 })
 export class DynamicElementComponent implements OnInit, AfterViewChecked {
@@ -24,9 +26,9 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
   @Input() GroupName = '';
   @Input() Service: any;
   @Input() elements: BaseElement<any>;
+  // @ViewChild(TooltipDirective) public tooltipDir: TooltipDirective;
+  // @ViewChild('templateMessage') public template: HTMLElement;
 
-  @ViewChild('ngForm') ngForm: FormGroupDirective;
-  @ViewChild('SubElementTemplate', { read: ViewContainerRef }) SubElement: ViewContainerRef;
 
   constructor(private elementRef: ElementRef,
     private renderer: Renderer,
@@ -39,16 +41,10 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
         this.assaginMethodToControl(element);
       });
     }
+
+    this.detectControlValueChange();
   }
 
-  getElement(name: string): AbstractControl {
-    return this.form.get(`${this.GroupName}.${name}`);
-  }
-
-  HasRequiredValidation() {
-    const Control = this.form.get(`${this.GroupName}.${this.elements.Key}`);
-    return hasRequiredField(Control);
-  }
 
   // For The Validtion in Case the Validtion is Fire
   // and the Control Value Changed under the hode
@@ -81,24 +77,44 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
       }
     }
   }
+
+  HasRequiredValidation() {
+    const Control = this.form.get(`${this.GroupName}.${this.elements.Key}`);
+    return hasRequiredField(Control);
+  }
+
+
+  getElement(name: string): AbstractControl {
+    return this.form.get(`${this.GroupName}.${name}`);
+  }
+
+  showTooltip(e: any): void {
+    // if (this.getElement(this.elements.Key) && this.getElement(this.elements.Key).invalid && this.getElement(this.elements.Key).touched) {
+    //   this.tooltipDir.show(e);
+    // } else {
+    //   this.tooltipDir.hide();
+    // }
+  }
+
+
+  detectControlValueChange() {
+    // const ElementKey = this.elements.Key;
+    // const control = this.getElement(ElementKey);
+    // control.valueChanges.subscribe(() => {
+    //   console.log(control['errors']);
+    //   // tslint:disable-next-line:no-debugger
+    //   debugger;
+    //   if (control && control.invalid) {
+    //     if (control['errors'].required ||
+    //       control['errors'].maxLength ||
+    //       control['errors'].minLength ||
+    //       control['errors'].pattern) {
+    //         console.log(this.tooltipDir);
+    //       this.tooltipDir.show(this.template);
+    //       console.log('asdas');
+    //     } }
+    // });
 }
 
-const hasRequiredField = (abstractControl: AbstractControl): boolean => {
-  if (abstractControl && abstractControl.validator) {
-    const validator = abstractControl.validator({} as AbstractControl);
-    if (validator && validator.required) {
-      return true;
-    }
-  }
-  if (abstractControl && abstractControl['controls']) {
-    for (const controlName in abstractControl['controls']) {
-      if (abstractControl['controls'][controlName]) {
-        if (hasRequiredField(abstractControl['controls'][controlName])) {
-          return true;
-        }
-      }
-    }
-  }
-  return false;
-};
 
+}
