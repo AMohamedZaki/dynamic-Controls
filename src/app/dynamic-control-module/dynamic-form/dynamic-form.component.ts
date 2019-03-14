@@ -55,13 +55,13 @@ export class DynamicFormComponent implements OnInit {
   }
 
   assaginObjectToService(panel: Panel) {
-
     if (panel.elementList) {
       // set Object Value in the service that injected in service list
       const service = this.ServiceSource.find(x => x.Name === panel.Service);
       if (service) {
         const index = this.ServiceSource.findIndex(item => item === service);
         this.ServiceSource[index].Service.AddForm(this.form.controls[panel.ObjectMap] as FormGroup);
+        this.ServiceSource[index].Service.GetValidtors(panel.elementList);
       }
     }
   }

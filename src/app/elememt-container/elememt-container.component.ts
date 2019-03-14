@@ -29,7 +29,10 @@ export class ElememtContainerComponent implements OnInit {
 
   ngOnInit() {
 
+    // call the server..
     this.ElementDataList = this.elemntMockService.getElements();
+
+    // convert thr result to form group
     this.form = ConvertListToFormGroup(this.elemntMockService.elemnents);
 
     // Assain Services

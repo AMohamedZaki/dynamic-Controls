@@ -92,7 +92,7 @@ export class GetElementsService {
             [
               { Name: 'keyup.enter', callBack: 'testClick' },
             ],
-          validation: { required: true, maxLength: 20, pattern: '/ahmed/' },
+          validation: { required: true, maxLength: 20, pattern: 'ahmed' },
           visible: true,
           id: 2,
           index: 2,

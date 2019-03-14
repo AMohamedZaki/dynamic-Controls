@@ -1,13 +1,13 @@
 import { IEvent } from './IEvents';
 import { Position } from './PositionEnum';
 import { ControlStyle } from './DynamicStyle';
-import { Validation } from './Validation';
+import { CustomValidation } from './Validation';
 
 export interface IElement<T> {
     Key?: string;
     value?: T;
     Label?: string;
-    validation?: Validation;
+    validation?: CustomValidation;
     controlType?: string;
     visible?: boolean;
     readonly?: boolean;

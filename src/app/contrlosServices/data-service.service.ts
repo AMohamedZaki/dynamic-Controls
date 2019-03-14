@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
-// import { Observable } from 'rxjs';
+import { CustomValidation } from '../model/Validation';
+import { BaseElement } from '../model/baseElement';
 
 @Injectable()
 export class DataService {
-  form: FormGroup;
-
+  private form: FormGroup;
   private _currentObject: any;
+  private _ControlsValidators: { Name: string, Validators: CustomValidation }[] = [];
+
   set CurrentObject(value: any) {
     if (value) { this._currentObject = value; }
   }
@@ -19,7 +21,6 @@ export class DataService {
   * Add Reference of form Group of the panel
   */
   AddForm(form: FormGroup) {
-    // this.CurrentObject = form;
     this.CurrentObject = this.form = form;
   }
 
@@ -77,17 +78,6 @@ export class DataService {
     const control = this.form.get('firstName');
     const controlValidators = control.validator({} as FormControl) as ValidationErrors;
 
-    // in Control contains Validation then Replace the new
-    // with the old (if similer) and add the new one
-    // if (controlValidators && validators) {
-
-    //   Object.keys((controlValidators)).forEach((key) => {
-    //     if (key == validators.) {
-
-    //     }
-    //   });
-
-    // } else {
     //   this.form.controls[propertyName].setValidators(validators);
     //   this.form.get(propertyName).updateValueAndValidity();
     // }
@@ -121,6 +111,14 @@ export class DataService {
         Object.keys(controlErrors).forEach(keyError => {
           console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
         });
+      }
+    });
+  }
+
+  GetValidtors(controlsValue: BaseElement<any>[]) {
+    controlsValue.forEach((control: BaseElement<any>) => {
+      if (this._ControlsValidators && this._ControlsValidators.length === 0) {
+        this._ControlsValidators.push({ Name: control.Key, Validators: control.validation });
       }
     });
   }

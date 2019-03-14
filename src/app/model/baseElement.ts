@@ -2,14 +2,14 @@ import { IElement } from './IElement';
 import { IEvent } from './IEvents';
 import { Position  } from './PositionEnum';
 import { ControlStyle } from './DynamicStyle';
-import { Validation } from './Validation';
+import { CustomValidation } from './Validation';
 
 export class BaseElement<T> {
 
     Key: string;
     value: T;
     Label: string;
-    validation: Validation;
+    validation: CustomValidation;
     controlType: string;
     visible?: boolean;
     events?: IEvent[];

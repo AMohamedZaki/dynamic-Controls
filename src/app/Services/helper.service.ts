@@ -1,6 +1,6 @@
 import { FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { Panel } from '../model/panel';
-import { Validation as CustomValidation } from '../model/Validation';
+import { CustomValidation } from '../model/Validation';
 
 // export abstract class HelperService {
 
