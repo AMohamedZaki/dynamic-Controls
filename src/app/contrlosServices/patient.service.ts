@@ -1,5 +1,5 @@
-import { DataService } from './data-service.service';
-import { AbstractControl, Validators, FormControl, ValidationErrors } from '@angular/forms';
+import { DataService } from '../dynamic-control-module/service/data-service.service';
+import { Validators } from '@angular/forms';
 
 export class PatientService extends DataService {
 
@@ -39,12 +39,12 @@ export class PatientService extends DataService {
     // console.log('ali', this.CurrentObject['firstName']);
   }
 
-  testChange(value: any) {
+  testChange() {
     this.CurrentObject['lastName'] += 'testChange';
   }
 
   btnClick() {
-    this.SetValidation('firstName', [Validators.maxLength(3)]);
+    this.SetValidation('firstName', [Validators.maxLength(3), Validators.required]);
    // console.log(this.form.get('lastName'));
     this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'];
 

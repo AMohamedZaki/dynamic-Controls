@@ -1,4 +1,4 @@
-import { DataService } from './data-service.service';
+import { DataService } from '../dynamic-control-module/service/data-service.service';
 
 export class DoctorService extends DataService {
 

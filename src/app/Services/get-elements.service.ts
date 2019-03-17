@@ -1,14 +1,9 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Panel } from '../model/panel';
-import {
-  TextBoxElement, DropDown, CheckBox,
-  Radiobuttons, TextArea
-  , Button as button,
-  FileUpload
-} from '../model/Controls';
-import { MultiSelect, DatePicker } from '../model/KendoControls';
-import { Position } from '../model/PositionEnum';
+import { Injectable } from '@angular/core';
+import { Panel } from '../dynamic-control-module/model/panel';
+import { TextBoxElement, DropDown, CheckBox, Radiobuttons, FileUpload, Button } from '../dynamic-control-module/model/Controls';
+import { Position } from '../dynamic-control-module/model/PositionEnum';
+import { MultiSelect, DatePicker } from '../dynamic-control-module/model/KendoControls';
 
 
 @Injectable()
@@ -96,7 +91,7 @@ export class GetElementsService {
           visible: true,
           id: 2,
           index: 2,
-          style: { 'width': '100px' }
+          style: { 'width': '100%' }
         }),
         new MultiSelect({
           Key: 'NamesMultiSelect',
@@ -113,7 +108,7 @@ export class GetElementsService {
               { Name: 'change', callBack: 'ChangeCity', PassEventObject: true },
             ]
         }),
-        new button({
+        new Button({
           Label: '',
           visible: true,
           id: 18,

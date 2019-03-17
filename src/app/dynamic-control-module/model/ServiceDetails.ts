@@ -1,4 +1,4 @@
-import { DataService } from '../contrlosServices/data-service.service';
+import { DataService } from '../service/data-service.service';
 
 export class ServiceDetails {
     Name: string;

@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { GetElementsService } from '../Services/get-elements.service';
-import { FormGroup } from '@angular/forms';
-import { PatientService } from '../contrlosServices/patient.service';
-import { ServiceDetails } from '../model/ServiceDetails';
-import { DoctorService } from '../contrlosServices/doctor.service';
 import { ComboBoxComponent } from '@progress/kendo-angular-dropdowns';
-import { ConvertListToFormGroup } from '../Services/helper.service';
+import { FormGroup } from '@angular/forms';
+import { ServiceDetails } from '../dynamic-control-module/model/ServiceDetails';
+import { GetElementsService } from '../Services/get-elements.service';
+import { PatientService } from '../contrlosServices/patient.service';
+import { DoctorService } from '../contrlosServices/doctor.service';
+import { ConvertListToFormGroup } from '../dynamic-control-module/service/helper.service';
 
 @Component({
   // tslint:disable-next-line:component-selector

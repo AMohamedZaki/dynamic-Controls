@@ -3,6 +3,7 @@ import { FormGroup, ValidatorFn, FormControl, ValidationErrors } from '@angular/
 import { CustomValidation } from '../model/Validation';
 import { BaseElement } from '../model/baseElement';
 
+
 @Injectable()
 export class DataService {
   private form: FormGroup;
@@ -74,14 +75,11 @@ export class DataService {
   * And overwrite the existing similar ones
   */
   SetValidation(propertyName: string, validators: ValidatorFn | ValidatorFn[]) {
+    // console.log(validators);
+    // // tslint:disable-next-line:no-debugger
 
-    const control = this.form.get('firstName');
-    const controlValidators = control.validator({} as FormControl) as ValidationErrors;
-
-    //   this.form.controls[propertyName].setValidators(validators);
-    //   this.form.get(propertyName).updateValueAndValidity();
-    // }
-
+    // this.form.controls[propertyName].setValidators(validators);
+    // this.form.get(propertyName).updateValueAndValidity();
   }
 
   /**

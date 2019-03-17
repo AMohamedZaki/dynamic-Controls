@@ -2,14 +2,12 @@ import {
   Component, OnInit, ElementRef, Renderer, AfterViewChecked,
   ChangeDetectorRef,
   Input,
-  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { FormGroupDirective, ControlContainer, FormGroup, AbstractControl } from '@angular/forms';
-import { BaseElement } from '../../model/baseElement';
-import { IEvent } from '../../model/IEvents';
 import { hasRequiredField } from '../validation/hasRequiredField';
-import { TooltipDirective } from '@progress/kendo-angular-tooltip';
+import { BaseElement } from '../model/baseElement';
+import { IEvent } from '../model/IEvents';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -88,7 +86,7 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
     return this.form.get(`${this.GroupName}.${name}`);
   }
 
-  showTooltip(e: any): void {
+  showTooltip(): void {
     // if (this.getElement(this.elements.Key) && this.getElement(this.elements.Key).invalid && this.getElement(this.elements.Key).touched) {
     //   this.tooltipDir.show(e);
     // } else {
@@ -114,7 +112,7 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
     //       console.log('asdas');
     //     } }
     // });
-}
+  }
 
 
 }

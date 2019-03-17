@@ -17,9 +17,10 @@ export function ConvertListToFormGroup(elements: Panel[]) {
         const disable = item.readonly || false;
         const formControlObj = { value: item.value || '', disabled: disable };
         const validationList = getValidators(item.validation);
-
+        if (item.Key) {
         group[controlElement.ObjectMap][item.Key] = new FormControl(formControlObj, validationList);
-        if (item.readonly) { group[item.Key].disable(); }
+          if (item.readonly) { group[item.Key].disable(); }
+        }
       });
     }
     group[controlElement.ObjectMap] = new FormGroup(group[controlElement.ObjectMap]);

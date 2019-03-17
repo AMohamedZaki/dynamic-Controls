@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ServiceDetails } from '../../model/ServiceDetails';
-import { Panel } from '../../model/panel';
-import { BaseElement } from '../../model/baseElement';
+import { ServiceDetails } from '../model/ServiceDetails';
+import { Panel } from '../model/panel';
+
 
 @Component({
   // tslint:disable-next-line:component-selector

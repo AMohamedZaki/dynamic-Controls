@@ -79,22 +79,20 @@ margin-top: 0px;" [formControlName]="elements.Key"
 
       <!-- <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" /> -->
       <!-- Validation -->
-      <div class="alert alert-danger" [ngStyle]="elements.validationStyle" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
-        <div *ngIf="getElement(elements.Key)['errors']?.required">
-          {{elements.Label}} is required
-        </div>
+      <div class="error" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
+          <div *ngIf="getElement(elements.Key)['errors']?.required">
+            {{elements.Label}} is required
+          </div>
+          <div *ngIf="getElement(elements.Key)['errors']?.maxlength">
+            maximum length is {{ getElement(elements.Key)['errors']?.maxlength.requiredLength }}
+          </div>
+          <div *ngIf="getElement(elements.Key)['errors']?.minlength">
+            maximum length is {{ getElement(elements.Key)['errors']?.minlength.requiredLength }}
+          </div>
+          <div *ngIf="getElement(elements.Key)['errors']?.pattern">
+            invalid input.
+          </div>
       </div>
-
-      <!-- <ng-template let-anchor>
-        Validation error {{elements.Label}} is required
-      </ng-template>
-
-      <div #templateMessage style="display: none" class="alert alert-danger" [ngStyle]="elements.validationStyle" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
-        asdasd
-        <div *ngIf="getElement(elements.Key)['errors']?.required">
-          {{elements.Label}} is required
-        </div>
-      </div> -->
 
     </div>
   </div>
