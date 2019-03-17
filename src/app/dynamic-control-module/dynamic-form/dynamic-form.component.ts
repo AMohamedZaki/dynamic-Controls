@@ -61,7 +61,7 @@ export class DynamicFormComponent implements OnInit {
       if (service) {
         const index = this.ServiceSource.findIndex(item => item === service);
         this.ServiceSource[index].Service.AddForm(this.form.controls[panel.ObjectMap] as FormGroup);
-        this.ServiceSource[index].Service.GetValidtors(panel.elementList);
+        this.ServiceSource[index].Service.SetValidtors(panel.elementList);
       }
     }
   }

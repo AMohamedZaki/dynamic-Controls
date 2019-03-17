@@ -5,8 +5,8 @@
  * just set the pattern to regular expression
 */
 export class CustomValidation {
-    maxLength?: number;
-    minLength?: number;
-    required?: boolean;
-    pattern?: string;
+    maxLength?: number = null;
+    minLength?: number = null;
+    required?: boolean = null;
+    pattern?: string = null;
 }

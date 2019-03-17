@@ -1,6 +1,7 @@
 import { FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { Panel } from '../model/panel';
 import { CustomValidation } from '../model/Validation';
+import { isBoolean } from 'util';
 
 // export abstract class HelperService {
 
@@ -18,7 +19,7 @@ export function ConvertListToFormGroup(elements: Panel[]) {
         const formControlObj = { value: item.value || '', disabled: disable };
         const validationList = getValidators(item.validation);
         if (item.Key) {
-        group[controlElement.ObjectMap][item.Key] = new FormControl(formControlObj, validationList);
+          group[controlElement.ObjectMap][item.Key] = new FormControl(formControlObj, validationList);
           if (item.readonly) { group[item.Key].disable(); }
         }
       });
@@ -45,6 +46,18 @@ export function getValidators(_validation: CustomValidation): ValidatorFn[] {
   }
 }
 
-// }
+
+export function GetObjectNames<T>(obj: T): string[] {
+  const objectKeys = Object.keys(obj) as Array<string>;
+  return objectKeys;
+}
+
+
+export function IsNotNullorEmpty(property: any): boolean {
+  if (isBoolean(property)) {
+    return property != null && property !== undefined;
+  }
+  return property && property != null && property !== undefined;
+}
 
 

@@ -61,14 +61,14 @@
           <kendo-timepicker style="width: calc(6.1px + 1.4285714286em);
 margin-top: 0px;" [formControlName]="elements.Key"
             [(value)]="value"></kendo-timepicker>
+
+
+            <!-- <date-time-picker [formControlName]="elements.Key" [format]="'dd-MMM-yyyy hh:mm'" ></date-time-picker> -->
         </div>
 
         <!-- File Upload -->
         <input type="file" [ngStyle]="elements.style" *ngSwitchCase="elements.controlType === 'fileUpload'" [id]="elements.Key"
           [formControlName]="elements.Key" [multiple]="elements.multiple">
-
-        <kendo-upload [ngStyle]="elements.style" [formControlName]="elements.Key" *ngSwitchCase="elements.controlType === 'kendoFileUpload'">
-        </kendo-upload>
 
         <!-- Button -->
         <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'button'">
@@ -87,7 +87,7 @@ margin-top: 0px;" [formControlName]="elements.Key"
             maximum length is {{ getElement(elements.Key)['errors']?.maxlength.requiredLength }}
           </div>
           <div *ngIf="getElement(elements.Key)['errors']?.minlength">
-            maximum length is {{ getElement(elements.Key)['errors']?.minlength.requiredLength }}
+            manimum length is {{ getElement(elements.Key)['errors']?.minlength.requiredLength }}
           </div>
           <div *ngIf="getElement(elements.Key)['errors']?.pattern">
             invalid input.

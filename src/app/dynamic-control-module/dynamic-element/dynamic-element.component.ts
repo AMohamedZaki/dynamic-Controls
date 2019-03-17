@@ -1,5 +1,5 @@
 import {
-  Component, OnInit, ElementRef, Renderer, AfterViewChecked,
+  Component, OnInit, ElementRef, Renderer2, AfterViewChecked,
   ChangeDetectorRef,
   Input,
   ViewEncapsulation
@@ -29,7 +29,7 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
 
 
   constructor(private elementRef: ElementRef,
-    private renderer: Renderer,
+    private renderer: Renderer2,
     private cdRef: ChangeDetectorRef) {
   }
 
@@ -39,8 +39,6 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
         this.assaginMethodToControl(element);
       });
     }
-
-    this.detectControlValueChange();
   }
 
 
@@ -86,33 +84,8 @@ export class DynamicElementComponent implements OnInit, AfterViewChecked {
     return this.form.get(`${this.GroupName}.${name}`);
   }
 
-  showTooltip(): void {
-    // if (this.getElement(this.elements.Key) && this.getElement(this.elements.Key).invalid && this.getElement(this.elements.Key).touched) {
-    //   this.tooltipDir.show(e);
-    // } else {
-    //   this.tooltipDir.hide();
-    // }
+  fullControlname() {
+    return `${this.GroupName}.${this.elements.Key}`;
   }
-
-
-  detectControlValueChange() {
-    // const ElementKey = this.elements.Key;
-    // const control = this.getElement(ElementKey);
-    // control.valueChanges.subscribe(() => {
-    //   console.log(control['errors']);
-    //   // tslint:disable-next-line:no-debugger
-    //   debugger;
-    //   if (control && control.invalid) {
-    //     if (control['errors'].required ||
-    //       control['errors'].maxLength ||
-    //       control['errors'].minLength ||
-    //       control['errors'].pattern) {
-    //         console.log(this.tooltipDir);
-    //       this.tooltipDir.show(this.template);
-    //       console.log('asdas');
-    //     } }
-    // });
-  }
-
 
 }

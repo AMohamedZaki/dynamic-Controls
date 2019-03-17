@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComboBoxComponent } from '@progress/kendo-angular-dropdowns';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators, ValidatorFn } from '@angular/forms';
 import { ServiceDetails } from '../dynamic-control-module/model/ServiceDetails';
 import { GetElementsService } from '../Services/get-elements.service';
 import { PatientService } from '../contrlosServices/patient.service';
@@ -28,7 +28,6 @@ export class ElememtContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-
     // call the server..
     this.ElementDataList = this.elemntMockService.getElements();
 

@@ -4,7 +4,6 @@ import { DynamicElementComponent } from './dynamic-element/dynamic-element.compo
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ElememtContainerComponent } from '../elememt-container/elememt-container.component';
 
-import { DateTimePickerComponent } from '../date-time-picker/date-time-picker.component';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { IntlModule } from '@progress/kendo-angular-intl';
 import { LayoutModule } from '@progress/kendo-angular-layout';
@@ -14,6 +13,7 @@ import { UploadModule } from '@progress/kendo-angular-upload';
 import { TooltipModule } from '@progress/kendo-angular-tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderByPipe } from './Pipes/orderBy.pipe';
+import { DateTimePickerComponent } from './controls/date-time-picker/date-time-picker.component';
 
 @NgModule({
   declarations: [

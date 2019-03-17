@@ -21,7 +21,7 @@ export class GetElementsService {
           Key: 'firstName',
           Label: 'First name',
           value: 'National Technology',
-          validation: { required: true, minLength: 8 },
+          validation: { required: true, minLength: 2 },
           visible: true,
           index: 1,
           id: 0,
@@ -112,7 +112,7 @@ export class GetElementsService {
           Label: '',
           visible: true,
           id: 18,
-          value: 'Agree!',
+          value: 'NewValidation',
           index: 13,
           position: Position.OneOfThree,
           style: {
@@ -126,6 +126,30 @@ export class GetElementsService {
               { Name: 'click', callBack: 'btnClick' },
             ]
         }),
+        new Button({
+          Label: '',
+          visible: true,
+          id: 18,
+          value: 'restoreFirstName',
+          index: 13,
+          position: Position.OneOfThree,
+          events:
+            [
+              { Name: 'click', callBack: 'btnRestore' },
+            ]
+        }),
+        new Button({
+          Label: '',
+          visible: true,
+          id: 18,
+          value: 'remove Required',
+          index: 13,
+          position: Position.OneOfThree,
+          events:
+            [
+              { Name: 'click', callBack: 'removeRequired' },
+            ]
+        }),
         new FileUpload({
           Label: 'Upload Image',
           Key: 'imageUpload',
@@ -134,7 +158,7 @@ export class GetElementsService {
           id: 18,
           multiple: true,
           index: 20,
-          position: Position.TwoOfThree,
+          position: Position.OneOfThree,
           events: [
             { Name: 'change', callBack: 'TestUpload', PassEventObject: true }
           ]

@@ -35,7 +35,7 @@ export class PatientService extends DataService {
     console.log('CurrentObject', this.CurrentObject);
     this.CurrentObject['IsAgree'] = true;
     // this.ChangeProprty('lastName');
-    this.ChangeAll();
+    this.ApplyAllChange();
     // console.log('ali', this.CurrentObject['firstName']);
   }
 
@@ -44,18 +44,21 @@ export class PatientService extends DataService {
   }
 
   btnClick() {
-    this.SetValidation('firstName', [Validators.maxLength(3), Validators.required]);
-   // console.log(this.form.get('lastName'));
+    // console.log(this.form.get('lastName'));
     this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'];
+    this.ApplyPropertyChange('IsAgree');
+    this.SetValidation('firstName', [Validators.maxLength(8)]);
 
-    this.getFormValidationErrors('firstName');
-    // this.getFormValidationErrors2();
-
-    // this.ChangeProprty('IsAgree');
-    // this.form.get('lastName').updateValueAndValidity();
-    // console.log(this.form);
-    // this.ChangeAll();
   }
+
+  btnRestore() {
+    this.restoreValidation('firstName');
+  }
+
+  removeRequired() {
+    this.updateValidation('firstName', {required: false});
+  }
+
 
   ChangeCity(value: any) {
     const items = [
