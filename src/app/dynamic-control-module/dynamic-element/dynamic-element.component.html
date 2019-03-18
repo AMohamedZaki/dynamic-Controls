@@ -6,9 +6,7 @@
       </label>
     </div>
     <div [formGroupName]="GroupName">
-      <!-- <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" /> -->
 
-      <div kendoTooltip showOn="none" #kendoTooltipInstance tooltipClass="error" [tooltipTemplate]="template">
         <!-- Textbox-->
         <input [title]="elements.Label" [ngStyle]="elements.style" class="form-control" type="text" *ngSwitchCase="elements.controlType === 'textbox'"
           [id]="elements.Key" [formControlName]="elements.Key">
@@ -33,11 +31,10 @@
           </option>
         </select>
 
-        <kendo-multiselect [title]="elements.Label" [ngStyle]="elements.style" class="form-control" *ngSwitchCase="elements.controlType === 'multiSelect'"
-          [formControlName]="elements.Key" [data]="Service[elements.dataSource]" textField="value" valueField="key"
-          [valuePrimitive]="true"></kendo-multiselect>
-
-
+        <kendo-multiselect style=" height: 66px; overflow-y: scroll;" [title]="elements.Label" [ngStyle]="elements.style" class="form-control"
+          *ngSwitchCase="elements.controlType === 'multiSelect'" [formControlName]="elements.Key" [data]="Service[elements.dataSource]"
+          textField="value" valueField="key" [valuePrimitive]="true">
+        </kendo-multiselect>
 
         <!-- Radio Button-->
         <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'radiobuttons'">
@@ -54,16 +51,11 @@
 
         <!-- Calender -->
         <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'datePicker'">
-          <kendo-datepicker [title]="elements.Label" [ngStyle]="elements.style" [format]="'dd-MMM-yyyy hh:mm'"
-            [formControlName]="elements.Key" [(value)]="value">
-          </kendo-datepicker>
-
-          <kendo-timepicker style="width: calc(6.1px + 1.4285714286em);
-margin-top: 0px;" [formControlName]="elements.Key"
-            [(value)]="value"></kendo-timepicker>
-
-
-            <!-- <date-time-picker [formControlName]="elements.Key" [format]="'dd-MMM-yyyy hh:mm'" ></date-time-picker> -->
+           <date-time-picker [fGName]="GroupName" [fCName]="elements.Key" [format]="'dd-MMM-yyyy hh:mm'"></date-time-picker>
+        </div>
+       
+        <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'dateDetails'">
+           <date-details [fGName]="GroupName" [fCName]="elements.Key" [DataValue]="elements.dateDetails"></date-details>
         </div>
 
         <!-- File Upload -->
@@ -74,24 +66,21 @@ margin-top: 0px;" [formControlName]="elements.Key"
         <div class="d-inline-block" *ngSwitchCase="elements.controlType === 'button'">
           <input type="button" class="btn btn-primary" [ngStyle]="elements.style" [value]="elements.value">
         </div>
-      </div>
 
-
-      <!-- <input type="checkbox" [formControlName]="elements.id" *ngIf="ShowCheck" [(ngModel)]="elements.visible" /> -->
       <!-- Validation -->
       <div class="error" *ngIf="getElement(elements.Key) && getElement(elements.Key).invalid && getElement(elements.Key).touched">
-          <div *ngIf="getElement(elements.Key)['errors']?.required">
-            {{elements.Label}} is required
-          </div>
-          <div *ngIf="getElement(elements.Key)['errors']?.maxlength">
-            maximum length is {{ getElement(elements.Key)['errors']?.maxlength.requiredLength }}
-          </div>
-          <div *ngIf="getElement(elements.Key)['errors']?.minlength">
-            manimum length is {{ getElement(elements.Key)['errors']?.minlength.requiredLength }}
-          </div>
-          <div *ngIf="getElement(elements.Key)['errors']?.pattern">
-            invalid input.
-          </div>
+        <div *ngIf="getElement(elements.Key)['errors']?.required">
+          {{elements.Label}} is required
+        </div>
+        <div *ngIf="getElement(elements.Key)['errors']?.maxlength">
+          maximum length is {{ getElement(elements.Key)['errors']?.maxlength.requiredLength }}
+        </div>
+        <div *ngIf="getElement(elements.Key)['errors']?.minlength">
+          manimum length is {{ getElement(elements.Key)['errors']?.minlength.requiredLength }}
+        </div>
+        <div *ngIf="getElement(elements.Key)['errors']?.pattern">
+          invalid input.
+        </div>
       </div>
 
     </div>

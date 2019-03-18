@@ -23,14 +23,20 @@ export class PatientService extends DataService {
     { value: 'Zaki', key: 3 },
     { value: 'Mohamed', key: 4 },
     { value: 'Adraid', key: 5 },
-    { value: '3wad', key: 6 }
+    { value: '3wad', key: 6 },
+    { value: 'Ahmed1', key: 1 },
+    { value: 'Ali2', key: 2 },
+    { value: 'Zaki3', key: 3 },
+    { value: 'Mohamed4', key: 4 },
+    { value: 'Adraid5', key: 5 },
+    { value: '3wad6', key: 6 }
   ];
 
   CityList = [];
 
   testClick() {
     // this.CurrentObject['lastName'] += 'ali';
-    this.SetValidation('', [Validators.required]);
+   // this.SetValidation('', [Validators.required]);
     this.CurrentObject['lastName'] = this.CurrentObject['lastName'] + 'Test ';
     console.log('CurrentObject', this.CurrentObject);
     this.CurrentObject['IsAgree'] = true;

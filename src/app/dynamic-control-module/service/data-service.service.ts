@@ -73,19 +73,21 @@ export class DataService {
   * if the Validtion exist it will not override the old one
   */
   SetValidation(propertyName: string, _validators: ValidatorFn | ValidatorFn[]) {
-    let Validators: ValidatorFn | ValidatorFn[] = [];
-    const OldValidation = this._ControlsValidators.find(item => item.Name === propertyName).Validators;
-    if (OldValidation) {
-      Validators = getValidators(OldValidation);
-      console.log(Validators as ValidatorFn[]);
-      if (_validators instanceof Array) {
-        Validators.push(..._validators as ValidatorFn[]);
-      } else {
-        Validators.push(_validators);
-      }
-    } else { Validators = _validators; }
+    if (_validators) {
+      let Validators: ValidatorFn | ValidatorFn[] = [];
+      const OldValidation = this._ControlsValidators.find(item => item.Name === propertyName).Validators;
+      if (OldValidation) {
+        Validators = getValidators(OldValidation);
+        console.log(Validators as ValidatorFn[]);
+        if (_validators instanceof Array) {
+          Validators.push(..._validators as ValidatorFn[]);
+        } else {
+          Validators.push(_validators);
+        }
+      } else { Validators = _validators; }
 
-    this.setValidators(propertyName, Validators);
+      this.setValidators(propertyName, Validators);
+    }
   }
 
   /**
@@ -109,12 +111,19 @@ export class DataService {
     // and set the new value in new object
     // if the old one contain the validation then don't take it
     console.log(ObjectKey);
+
     ObjectKey.forEach(key => {
-      debugger;
-      if (IsNotNullorEmpty(_newValidation[key])) {
-        nValidation[key] = _newValidation[key];
-      } else if (IsNotNullorEmpty(OldValidation[key])) {
-        nValidation[key] = OldValidation[key];
+      if (_newValidation) {
+        const newValidationKeys = Object.getOwnPropertyNames(_newValidation);
+        const keyExistOrNotinNewValidtion = newValidationKeys.find(x => x === key);
+
+        if (keyExistOrNotinNewValidtion && IsNotNullorEmpty(_newValidation[key])) {
+          nValidation[key] = _newValidation[key];
+        } else if (OldValidation) {
+          const OldValidationKeys = Object.getOwnPropertyNames(OldValidation);
+          const keyExistOrNotinOldValidation = OldValidationKeys.find(x => x === key);
+          if (keyExistOrNotinOldValidation && IsNotNullorEmpty(OldValidation[key])) { nValidation[key] = OldValidation[key]; }
+        }
       }
     });
 

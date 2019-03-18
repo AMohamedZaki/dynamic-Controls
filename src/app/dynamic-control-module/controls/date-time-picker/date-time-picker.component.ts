@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, forwardRef } from '@angular/core';
 import { ControlContainer, FormGroupDirective, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BaseComponent } from '../BasControl/BaseControl';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -13,41 +14,16 @@ import { ControlContainer, FormGroupDirective, ControlValueAccessor, NG_VALUE_AC
     multi: true
   }]
 })
-export class DateTimePickerComponent implements OnInit, ControlValueAccessor {
+export class DateTimePickerComponent extends BaseComponent implements OnInit, ControlValueAccessor {
 
   @Input() format = '';
-  @Input() formControlName = '';
-  @Input() ngStyle: any;
-  @Input() class: string;
   theDate = new Date();
-  _value = new Date();
 
-  get value() {
-    return this._value;
+  constructor() {
+    super();
   }
-
-  set value(val) {
-    this._value = val;
-    this.onChange(val);
-    this.onTouched();
-  }
-
-  onChange: any = () => { };
-  onTouched: any = () => { };
-
-  constructor() { }
 
   ngOnInit() {
-  }
-
-  writeValue(value: any): void {
-    this.value = value;
-  }
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
   }
 
 }

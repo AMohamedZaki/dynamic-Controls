@@ -2,8 +2,9 @@ import { BaseElement } from './baseElement';
 
 export interface Panel {
     title: string;
-    ObjectMap: string;
+    ObjectMap?: string;
     elementList: BaseElement<any>[];
     Service?: string;
     applySort?: boolean;
+    expandPanel?: boolean;
 }

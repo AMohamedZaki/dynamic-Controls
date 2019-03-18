@@ -1,7 +1,7 @@
 <form [formGroup]="form">
   <kendo-panelbar>
     <kendo-panelbar-item *ngFor="let MainPanel of dataSource; let i=index" [title]="MainPanel.title" style="color: black"
-      [expanded]="i == 0">
+      [expanded]="MainPanel.expandPanel">
       <div class="contianer">
         <ng-template [ngIf]="MainPanel" kendoPanelBarContent>
           <div class="row" style="padding: 3% 1% 3% 1%;">

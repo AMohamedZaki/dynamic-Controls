@@ -1,7 +1,10 @@
 import { BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Panel } from '../dynamic-control-module/model/panel';
-import { TextBoxElement, DropDown, CheckBox, Radiobuttons, FileUpload, Button } from '../dynamic-control-module/model/Controls';
+import {
+  TextBoxElement, DropDown, CheckBox, Radiobuttons, FileUpload,
+  Button, TextArea, DateDetails
+} from '../dynamic-control-module/model/Controls';
 import { Position } from '../dynamic-control-module/model/PositionEnum';
 import { MultiSelect, DatePicker } from '../dynamic-control-module/model/KendoControls';
 
@@ -16,12 +19,13 @@ export class GetElementsService {
       Service: 'patService',
       ObjectMap: 'Patient',
       applySort: false,
+      expandPanel: true,
       elementList: [
         new TextBoxElement({
           Key: 'firstName',
           Label: 'First name',
           value: 'National Technology',
-          validation: { required: true, minLength: 2 },
+          validation: { required: true, minLength: 4 },
           visible: true,
           index: 1,
           id: 0,
@@ -82,7 +86,7 @@ export class GetElementsService {
           Key: 'lastName',
           Label: 'Last name',
           value: '',
-          position: Position.HalfOfThree,
+          position: Position.OneOfThree,
           events:
             [
               { Name: 'keyup.enter', callBack: 'testClick' },
@@ -99,7 +103,7 @@ export class GetElementsService {
           visible: true,
           id: 3,
           index: 10,
-          position: Position.HalfOfThree,
+          position: Position.OneOfThree,
           textField: 'name',
           valueField: 'value',
           dataSource: 'NamesList',
@@ -162,6 +166,14 @@ export class GetElementsService {
           events: [
             { Name: 'change', callBack: 'TestUpload', PassEventObject: true }
           ]
+        }),
+        new TextArea({
+          Label: 'Summery',
+          Key: 'Summery',
+          visible: true,
+          id: 18,
+          index: 20,
+          position: Position.ThreeOfThree
         })
       ]
     }
@@ -169,6 +181,7 @@ export class GetElementsService {
       title: 'Doctor',
       ObjectMap: 'Doctor',
       Service: 'docService',
+      expandPanel: true,
       elementList: [
         new TextBoxElement({
           Key: 'firstName',
@@ -196,7 +209,8 @@ export class GetElementsService {
         new DatePicker({
           Key: 'meeting',
           Label: 'Meeting',
-          validation:  { required: false },
+          value: new Date(),
+          validation: { required: false },
           visible: true,
           position: Position.TwoOfThree,
           id: 10,
@@ -204,11 +218,20 @@ export class GetElementsService {
         new DatePicker({
           Key: 'meeting2',
           Label: 'Meeting2',
-          validation:  { required: false },
+          validation: { required: false },
           visible: true,
           position: Position.OneOfThree,
           id: 10,
         })
+        // ,
+        // new DateDetails({
+        //   Key: 'age',
+        //   Label: 'Age',
+        //   position: Position.OneOfThree,
+        //   visible: true,
+        //   index: 55,
+        //   dateDetails: { Day: 'TheDay', Month: 'TheMonth', Year: 'TheYear' }
+        // })
       ]
     }
     ];

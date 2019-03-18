@@ -1,0 +1,17 @@
+<div class="row" [formGroupName]="fGName">
+  <div [formGroupName]="fCName">
+    <div class="col-1">
+      <label for="inlineFormInput">Day</label>
+      <input type="text" [formControlName]="DataValue.Day" class="form-control" id="inlineFormInput" placeholder="Day">
+    </div>
+    <div class="col-1">
+      <label for="inlineFormInputGroup">Month</label>
+      <input type="text" [formControlName]="DataValue.Month" class="form-control" id="inlineFormInputGroup" placeholder="Month">
+    </div>
+    <div class="col-1">
+      <label for="inlineFormInput">Year</label>
+      <input type="text" [formControlName]="DataValue.Year" class="form-control" id="inlineFormInput" placeholder="Year">
+    </div>
+  </div>
+</div>
+

@@ -1,23 +1,25 @@
 import { IElement } from './IElement';
 import { IEvent } from './IEvents';
-import { Position  } from './PositionEnum';
+import { Position } from './PositionEnum';
 import { ControlStyle } from './DynamicStyle';
 import { CustomValidation } from './Validation';
+import { DateDetailsModel } from './dateDetails';
 
 export class BaseElement<T> {
 
     Key: string;
+    controlType: string;
     value: T;
     Label: string;
     validation: CustomValidation;
-    controlType: string;
     visible?: boolean;
     events?: IEvent[];
     id?: number; // for checkBox visibal checkbox
     index?: number;
-    position: Position ;
+    position: Position;
     style: ControlStyle;
     readonly: boolean;
+    dateDetails?: DateDetailsModel;
     constructor(options: IElement<T>) {
         this.Key = options.Key || '';
         this.value = options.value;
@@ -28,9 +30,10 @@ export class BaseElement<T> {
         this.events = options.events;
         this.visible = options.visible;
         this.id = options.id;
-        this.position = options.position ;
+        this.position = options.position;
         this.style = options.style || {};
         this.position = options.position || 4;
-        this.readonly = options.readonly ;
+        this.readonly = options.readonly;
+        this.dateDetails = options.dateDetails;
     }
 }

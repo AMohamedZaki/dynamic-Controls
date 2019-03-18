@@ -14,6 +14,7 @@ import { TooltipModule } from '@progress/kendo-angular-tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderByPipe } from './Pipes/orderBy.pipe';
 import { DateTimePickerComponent } from './controls/date-time-picker/date-time-picker.component';
+import { DateDetailsComponent } from './controls/date-details/date-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DateTimePickerComponent } from './controls/date-time-picker/date-time-p
     DynamicFormComponent,
     ElememtContainerComponent,
     OrderByPipe,
-    DateTimePickerComponent
+    DateTimePickerComponent,
+    DateDetailsComponent
   ],
   imports: [
     CommonModule,

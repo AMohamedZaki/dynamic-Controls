@@ -1,5 +1,6 @@
 import { BaseElement } from './baseElement';
 import { IElement } from './IElement';
+import { DateDetailsModel } from './dateDetails';
 
 // TextBox
 export class TextBoxElement extends BaseElement<any> {
@@ -63,8 +64,17 @@ export class FileUpload extends BaseElement<any> {
     multiple = false;
     constructor(Options: IElement<any> = {}) {
         super(Options);
-        this.position = Options.position;
         this.multiple = Options.multiple;
+    }
+}
+
+// DateDetails
+export class DateDetails extends BaseElement<any> {
+    dateDetails: DateDetailsModel;
+    controlType = 'dateDetails';
+    constructor(Options: IElement<any> = {}) {
+        super(Options);
+        this.dateDetails = Options.dateDetails;
     }
 }
 

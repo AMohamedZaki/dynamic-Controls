@@ -19,6 +19,7 @@ export function ConvertListToFormGroup(elements: Panel[]) {
         const formControlObj = { value: item.value || '', disabled: disable };
         const validationList = getValidators(item.validation);
         if (item.Key) {
+          // if(item.controlType !== 'dat')
           group[controlElement.ObjectMap][item.Key] = new FormControl(formControlObj, validationList);
           if (item.readonly) { group[item.Key].disable(); }
         }

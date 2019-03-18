@@ -1,12 +1,7 @@
-<kendo-datepicker 
-[ngStyle]="ngStyle" 
-[format]="'dd-MMM-yyyy hh:mm'"
-[formControlName]="formControlName" 
-[(value)]="theDate">
-</kendo-datepicker>
-{{ formControlName }}
-<kendo-timepicker 
-style="width: calc(6.1px + 1.4285714286em);
-margin-top: 0px;" 
-[formControlName]="formControlName"
-[(value)]="theDate"></kendo-timepicker>
+<div [formGroupName]="fGName">
+  <kendo-datepicker [format]="format" [formControlName]="fCName" [(value)]="theDate">
+  </kendo-datepicker>
+  <kendo-timepicker style="width: calc(6.1px + 1.4285714286em);
+    margin-top: 0px;" [formControlName]="fCName"
+    [(value)]="theDate"></kendo-timepicker>
+</div>
