@@ -14,13 +14,13 @@ import { BaseComponent } from '../BasControl/BaseControl';
     multi: true
   }]
 })
-export class DateTimePickerComponent extends BaseComponent implements OnInit, ControlValueAccessor {
+export class DateTimePickerComponent implements OnInit {
 
   @Input() format = '';
   theDate = new Date();
 
   constructor() {
-    super();
+    // super();
   }
 
   ngOnInit() {

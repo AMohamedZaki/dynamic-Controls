@@ -14,11 +14,11 @@ import { BaseComponent } from '../BasControl/BaseControl';
     multi: true
   }]
 })
-export class DateDetailsComponent extends BaseComponent implements OnInit {
+export class DateDetailsComponent implements OnInit {
 
   @Input() DataValue: DateDetailsModel;
   constructor() {
-    super();
+    // super();
    }
 
   ngOnInit() {

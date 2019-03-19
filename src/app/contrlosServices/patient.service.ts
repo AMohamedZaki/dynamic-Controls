@@ -35,6 +35,7 @@ export class PatientService extends DataService {
   CityList = [];
 
   testClick() {
+    this.updateValidation('firstName', {required: false});
     // this.CurrentObject['lastName'] += 'ali';
    // this.SetValidation('', [Validators.required]);
     this.CurrentObject['lastName'] = this.CurrentObject['lastName'] + 'Test ';

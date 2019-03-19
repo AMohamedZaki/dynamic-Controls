@@ -1,0 +1,18 @@
+<ng-container [formGroupName]="GroupName"  *ngIf="element && element.visible">
+
+    <div class="panel-title">
+      <label [attr.for]="element.Key">
+        {{ element.Label }}
+        <span *ngIf="HasRequiredValidation()" style="color: red"> &nbsp; *</span>
+      </label>
+    </div>
+  
+<!-- To Make Databind contains the select object-->
+<!-- set att [ngValue]='option' -->
+<!-- Normal Dropdown List (Single Select) -->
+<select [title]="element.Label" [ngStyle]="element.style" class="form-control"
+  [id]="element.Key" [formControlName]="element.Key">
+  <option *ngFor="let option of Service[element.dataSource]" [value]="option.key">{{ option.value }}
+  </option>
+</select>
+</ng-container>

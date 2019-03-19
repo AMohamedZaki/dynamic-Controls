@@ -1,0 +1,15 @@
+<ng-container [formGroupName]="GroupName" *ngIf="element && element.visible">
+
+  <div class="panel-title">
+    <label [attr.for]="element.Key">
+      {{ element.Label }}
+      <span *ngIf="HasRequiredValidation()" style="color: red"> &nbsp; *</span>
+    </label>
+  </div>
+
+  <!-- TextArea -->
+  <textarea [title]="element.Label" [ngStyle]="element.style"
+    class="form-control" type="text" [id]="element.Key" 
+    [formControlName]="element.Key"></textarea>
+
+</ng-container>

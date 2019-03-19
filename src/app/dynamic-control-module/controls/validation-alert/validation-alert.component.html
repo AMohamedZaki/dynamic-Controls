@@ -1,0 +1,16 @@
+
+<!-- Validation -->
+<div class="error" *ngIf="getElement(controlName) && getElement(controlName).invalid && getElement(controlName).touched">
+  <div *ngIf="getElement(controlName)['errors']?.required">
+    {{element.Label}} is required
+  </div>
+  <div *ngIf="getElement(controlName)['errors']?.maxlength">
+    maximum length is {{ getElement(controlName)['errors']?.maxlength.requiredLength }}
+  </div>
+  <div *ngIf="getElement(controlName)['errors']?.minlength">
+    manimum length is {{ getElement(controlName)['errors']?.minlength.requiredLength }}
+  </div>
+  <div *ngIf="getElement(controlName)['errors']?.pattern">
+    invalid input.
+  </div>
+</div>

@@ -7,8 +7,12 @@
           <div class="row" style="padding: 3% 1% 3% 1%;">
             <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.elementList | orderBy: 'index': MainPanel.applySort">
               <div class="col-sm-{{ dyncamicElement.position }}" [hidden]="!dyncamicElement.visible">
-                <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [GroupName]="MainPanel.ObjectMap"
-                  [elements]="dyncamicElement"></dynamicElement>
+                <ng-container DynamicFeild [FGroup]="form" [Service]="getService(MainPanel.Service)" [GroupName]="MainPanel.ObjectMap"
+                [element]="dyncamicElement">
+                </ng-container>
+                
+                <!-- <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [GroupName]="MainPanel.ObjectMap"
+                  [elements]="dyncamicElement"></dynamicElement> -->
               </div>
             </ng-template>
           </div>

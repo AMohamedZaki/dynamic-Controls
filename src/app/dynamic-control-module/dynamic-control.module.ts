@@ -15,6 +15,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderByPipe } from './Pipes/orderBy.pipe';
 import { DateTimePickerComponent } from './controls/date-time-picker/date-time-picker.component';
 import { DateDetailsComponent } from './controls/date-details/date-details.component';
+import { DynamicFeildDirective } from './directive/dynamic-feild.directive';
+import { DynamicTextBoxComponent } from './controls/dynamic-text-box/dynamic-text-box.component';
+import { ValidationAlertComponent } from './controls/validation-alert/validation-alert.component';
+import { DynamicDropdownComponent } from './controls/dynamic-dropdown/dynamic-dropdown.component';
+import { DynamicCheckboxComponent } from './controls/dynamic-checkbox/dynamic-checkbox.component';
+import { DynamicFileUploadComponent } from './controls/dynamic-file-upload/dynamic-file-upload.component';
+import { DynamicButtonComponent } from './controls/dynamic-button/dynamic-button.component';
+import { DynamicDatePickerComponent } from './controls/dynamic-date-picker/dynamic-date-picker.component';
+import { DynamicDateDetailsComponent } from './controls/dynamic-date-details/dynamic-date-details.component';
+import { DynamicRadiobuttonsComponent } from './controls/dynamic-radiobuttons/dynamic-radiobuttons.component';
+import { DynamicMultiSelectComponent } from './controls/dynamic-multi-select/dynamic-multi-select.component';
+import { DynamicTextAreaComponent } from './controls/dynamic-text-area/dynamic-text-area.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +34,20 @@ import { DateDetailsComponent } from './controls/date-details/date-details.compo
     DynamicFormComponent,
     ElememtContainerComponent,
     OrderByPipe,
-    DateTimePickerComponent,
-    DateDetailsComponent
+    // DateTimePickerComponent,
+    DateDetailsComponent,
+    DynamicFeildDirective,
+    DynamicTextBoxComponent,
+    ValidationAlertComponent,
+    DynamicDropdownComponent,
+    DynamicCheckboxComponent,
+    DynamicFileUploadComponent,
+    DynamicButtonComponent,
+    DynamicDatePickerComponent,
+    DynamicDateDetailsComponent,
+    DynamicRadiobuttonsComponent,
+    DynamicMultiSelectComponent,
+    DynamicTextAreaComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +60,22 @@ import { DateDetailsComponent } from './controls/date-details/date-details.compo
     TooltipModule,
     FormsModule,
     ReactiveFormsModule,
+  ],
+  exports: [
+    DynamicFormComponent
+  ],
+  entryComponents: [
+    DynamicTextBoxComponent,
+    DynamicDropdownComponent,
+    ValidationAlertComponent,
+    DynamicTextAreaComponent,
+    DynamicRadiobuttonsComponent,
+    DynamicMultiSelectComponent,
+    DynamicCheckboxComponent,
+    DynamicDatePickerComponent,
+    DynamicDateDetailsComponent,
+    DynamicFileUploadComponent,
+    DynamicButtonComponent
   ]
 })
 export class DynamicControlModule { }

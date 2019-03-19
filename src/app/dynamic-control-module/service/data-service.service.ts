@@ -78,7 +78,6 @@ export class DataService {
       const OldValidation = this._ControlsValidators.find(item => item.Name === propertyName).Validators;
       if (OldValidation) {
         Validators = getValidators(OldValidation);
-        console.log(Validators as ValidatorFn[]);
         if (_validators instanceof Array) {
           Validators.push(..._validators as ValidatorFn[]);
         } else {
@@ -110,7 +109,6 @@ export class DataService {
     // take the new validation from the parameter
     // and set the new value in new object
     // if the old one contain the validation then don't take it
-    console.log(ObjectKey);
 
     ObjectKey.forEach(key => {
       if (_newValidation) {
