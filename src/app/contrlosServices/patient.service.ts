@@ -52,8 +52,9 @@ export class PatientService extends DataService {
 
   btnClick() {
     // console.log(this.form.get('lastName'));
-    this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'];
-    this.ApplyPropertyChange('IsAgree');
+    // this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'];
+    // this.ApplyPropertyChange('IsAgree');
+    console.log('asdasd');
     this.SetValidation('firstName', [Validators.maxLength(8)]);
 
   }

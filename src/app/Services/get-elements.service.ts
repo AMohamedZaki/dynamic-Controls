@@ -112,24 +112,24 @@ export class GetElementsService {
         //       { Name: 'change', callBack: 'ChangeCity', PassEventObject: true },
         //     ]
         // }),
-        // new Button({
-        //   Label: '',
-        //   visible: true,
-        //   id: 18,
-        //   value: 'NewValidation',
-        //   index: 13,
-        //   position: Position.OneOfThree,
-        //   style: {
-        //     'background-color': 'red',
-        //     'font-size': 'large',
-        //     border: '2px solid red',
-        //     width: '100%'
-        //   },
-        //   events:
-        //     [
-        //       { Name: 'click', callBack: 'btnClick' },
-        //     ]
-        // }),
+        new Button({
+          Label: '',
+          visible: true,
+          id: 18,
+          value: 'NewValidation',
+          index: 13,
+          position: Position.OneOfThree,
+          style: {
+            'background-color': 'red',
+            'font-size': 'large',
+            border: '2px solid red',
+            width: '100%'
+          },
+          events:
+            [
+              { Name: 'click', callBack: 'btnClick' },
+            ]
+        }),
         // new Button({
         //   Label: '',
         //   visible: true,
@@ -169,14 +169,14 @@ export class GetElementsService {
         //   ]
         // })
         // ,
-        // new TextArea({
-        //   Label: 'Summery',
-        //   Key: 'Summery',
-        //   visible: true,
-        //   id: 18,
-        //   index: 20,
-        //   position: Position.ThreeOfThree
-        // })
+        new TextArea({
+          Label: 'Summery',
+          Key: 'Summery',
+          visible: true,
+          id: 18,
+          index: 20,
+          position: Position.ThreeOfThree
+        })
       ]
     }
       // , {

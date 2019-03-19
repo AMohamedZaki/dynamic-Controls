@@ -1,10 +1,12 @@
 import { Component, OnInit, ElementRef, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { BaseComponent } from '../BasControl/BaseControl';
+import { ControlContainer, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'app-dynamic-text-area',
   templateUrl: './dynamic-text-area.component.html',
-  styleUrls: ['./dynamic-text-area.component.css']
+  styleUrls: ['./dynamic-text-area.component.css'],
+  viewProviders: [{ provide: ControlContainer, useExisting: FormGroupDirective }],
 })
 export class DynamicTextAreaComponent extends BaseComponent implements OnInit {
 
