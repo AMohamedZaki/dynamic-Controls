@@ -9,16 +9,15 @@
   <div class="form-row" [formGroupName]="element.Key">
     <div class="col">
       <label for="inlineFormInput">Day</label>
-      <input type="text" [formControlName]="'Day'" class="form-control" id="inlineFormInput" placeholder="Day">
+      <input type="text" (keypress)="keybeard($event)" [formControlName]="'Day'" class="form-control" id="inlineFormInput" placeholder="Day">
     </div>
     <div class="col">
       <label for="inlineFormInputGroup">Month</label>
-      <input type="text" [formControlName]="'Month'" class="form-control" id="inlineFormInputGroup" placeholder="Month">
+      <input type="text" (keypress)="keybeard($event)" (input)="SetmaxMonth($event.target.value)" [formControlName]="'Month'" class="form-control" id="inlineFormInputGroup" placeholder="Month">
     </div>
-
     <div class="col">
       <label for="inlineFormInput">Year</label>
-      <input type="text" [formControlName]="'Year'" class="form-control" id="inlineFormInput" placeholder="Year">
+      <input type="text" (keypress)="keybeard($event)"  (input)="SetmaxYear($event.target.value)" [formControlName]="'Year'" class="form-control" id="inlineFormInput" placeholder="Year">
     </div>
   </div>
 </ng-container>

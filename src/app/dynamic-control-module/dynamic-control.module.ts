@@ -25,6 +25,7 @@ import { DynamicDateDetailsComponent } from './controls/dynamic-date-details/dyn
 import { DynamicRadiobuttonsComponent } from './controls/dynamic-radiobuttons/dynamic-radiobuttons.component';
 import { DynamicMultiSelectComponent } from './controls/dynamic-multi-select/dynamic-multi-select.component';
 import { DynamicTextAreaComponent } from './controls/dynamic-text-area/dynamic-text-area.component';
+import { DynamicEditableDropDownListComponent } from './controls/dynamic-editable-drop-down-list/editable-drop-down-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { DynamicTextAreaComponent } from './controls/dynamic-text-area/dynamic-t
     DynamicDateDetailsComponent,
     DynamicRadiobuttonsComponent,
     DynamicMultiSelectComponent,
-    DynamicTextAreaComponent
+    DynamicTextAreaComponent,
+    DynamicEditableDropDownListComponent
   ],
   imports: [
     CommonModule,
@@ -72,7 +74,8 @@ import { DynamicTextAreaComponent } from './controls/dynamic-text-area/dynamic-t
     DynamicDatePickerComponent,
     DynamicDateDetailsComponent,
     DynamicFileUploadComponent,
-    DynamicButtonComponent
+    DynamicButtonComponent,
+    DynamicEditableDropDownListComponent
   ]
 })
 export class DynamicControlModule { }

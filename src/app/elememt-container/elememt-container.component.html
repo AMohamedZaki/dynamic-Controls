@@ -1,23 +1,24 @@
 
 
 
+<div style="padding:10px">
 
-<!-- 
-<date-details></date-details>
+    <kendo-combobox [value]="selectedValue" required [data]="listItems" [allowCustom]="true">
+    </kendo-combobox>
+</div>
 
 <br>
-<br>   -->
+<br>
 
 
 <!-- <div class="form-group">
   <button class="btn btn-info"> Update Favrite Search (Not Work)</button>
   <button class="btn btn-info"> Use Favrite Search Field (Not Work)</button>
 </div> -->
- form :- {{ this.form.value | json }} 
+form :- {{ this.form.value | json }}
 
 
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
   <dynamic-form [form]="form" [dataSource]="ElementDataList" [ServiceSource]="ServiceList"></dynamic-form>
   <!-- <button type="submit" class="btn btn-primary" ng-class="" [disabled]="!form.valid"> submit </button> -->
 </form>
-

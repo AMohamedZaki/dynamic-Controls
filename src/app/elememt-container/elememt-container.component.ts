@@ -21,6 +21,11 @@ export class ElememtContainerComponent implements OnInit {
   form: FormGroup;
   ServiceList: ServiceDetails[] = [];
 
+  selectedValue = 'asdasd';
+  public allowCustom = true;
+  public listItems = ['Baseball', 'Basketball', 'Cricket', 'Field Hockey',
+   'Football', 'Table Tennis', 'Tennis', 'Volleyball'];
+
   constructor(
     private elemntMockService: GetElementsService,
     private patService: PatientService,

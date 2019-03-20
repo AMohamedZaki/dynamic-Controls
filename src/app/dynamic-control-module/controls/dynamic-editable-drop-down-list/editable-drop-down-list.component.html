@@ -1,0 +1,14 @@
+<ng-container [formGroupName]="GroupName" *ngIf="element && element.visible">
+
+  <div class="panel-title">
+    <label class="h6" [attr.for]="element.Key">
+      {{ element.Label }}
+      <span *ngIf="HasRequiredValidation()" style="color: red"> &nbsp; *</span>
+    </label>
+  </div>
+
+  <kendo-combobox [ngStyle]="element.style" textField="value"  valueField="key" [data]="Service[element.dataSource]"
+    [formControlName]="element.Key" class="form-control" [allowCustom]="true"  [valuePrimitive]="true">
+  </kendo-combobox>
+
+</ng-container>

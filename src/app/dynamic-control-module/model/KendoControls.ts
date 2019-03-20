@@ -7,13 +7,9 @@ import { ControlType } from './controlsTypeEnum';
 export class MultiSelect extends BaseElement<any> {
     controlType = ControlType[ControlType.multiSelect];
     dataSource: string;
-    textField: string;
-    valueField: string;
     constructor(Options: IElement<any> = {}) {
         super(Options);
         this.dataSource = Options.dataSource || '';
-        this.textField = Options.textField || '';
-        this.valueField = Options.valueField || '';
     }
 }
 
@@ -27,9 +23,11 @@ export class DatePicker extends BaseElement<any> {
     }
 }
 
-export class KendoFileUpload extends BaseElement<any> {
-    controlType = ControlType[ControlType.fileUpload];
+export class EditableDropdown extends BaseElement<any> {
+    controlType = ControlType[ControlType.editableDropdown];
+    dataSource: string;
     constructor(Options: IElement<any> = {}) {
         super(Options);
+        this.dataSource = Options.dataSource || '';
     }
 }

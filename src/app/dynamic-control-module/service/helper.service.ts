@@ -34,7 +34,6 @@ export function ConvertListToFormGroup(elements: Panel[]) {
     }
     group[controlElement.ObjectMap] = new FormGroup(group[controlElement.ObjectMap]);
   });
-  console.log(group);
   return new FormGroup(group);
 
 }

@@ -6,7 +6,7 @@ import {
   Button, TextArea, DateDetails
 } from '../dynamic-control-module/model/Controls';
 import { Position } from '../dynamic-control-module/model/PositionEnum';
-import { MultiSelect, DatePicker } from '../dynamic-control-module/model/KendoControls';
+import { MultiSelect, DatePicker, EditableDropdown } from '../dynamic-control-module/model/KendoControls';
 import { DateDetailsModel } from '../dynamic-control-module/model/dateDetails';
 
 
@@ -122,8 +122,6 @@ export class GetElementsService {
           id: 3,
           index: 10,
           position: Position.OneOfThree,
-          textField: 'name',
-          valueField: 'value',
           dataSource: 'NamesList',
           events:
             [
@@ -147,7 +145,7 @@ export class GetElementsService {
           visible: true,
           id: 18,
           value: 'remove Required',
-          index: 13,
+          index: 14,
           position: Position.OneOfThree,
           events:
             [
@@ -173,9 +171,18 @@ export class GetElementsService {
           Label: 'Summery',
           Key: 'Summery',
           visible: true,
-          id: 18,
+          id: 63,
           index: 20,
           position: Position.ThreeOfThree
+        }),
+        new EditableDropdown({
+          Label: 'Search',
+          Key: 'Search',
+          visible: true,
+          id: 100,
+          index: 100,
+          position: Position.HalfOfThree,
+          dataSource: 'SearchList'
         })
       ]
     }

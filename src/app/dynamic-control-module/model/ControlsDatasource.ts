@@ -10,6 +10,7 @@ import { DynamicDatePickerComponent } from '../controls/dynamic-date-picker/dyna
 import { DynamicDateDetailsComponent } from '../controls/dynamic-date-details/dynamic-date-details.component';
 import { DynamicFileUploadComponent } from '../controls/dynamic-file-upload/dynamic-file-upload.component';
 import { DynamicButtonComponent } from '../controls/dynamic-button/dynamic-button.component';
+import { DynamicEditableDropDownListComponent } from '../controls/dynamic-editable-drop-down-list/editable-drop-down-list.component';
 
 interface ControlElement {
     [ket: string]: Type<BaseComponent>;
@@ -26,7 +27,8 @@ export function Controls(): ControlElement {
         datePicker: DynamicDatePickerComponent,
         dateDetails: DynamicDateDetailsComponent,
         fileUpload: DynamicFileUploadComponent,
-        button: DynamicButtonComponent
+        button: DynamicButtonComponent,
+        editableDropdown: DynamicEditableDropDownListComponent
     };
     return controls;
 }
