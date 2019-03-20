@@ -1,3 +1,24 @@
-<p>
-  dynamic-date-details works!
-</p>
+<ng-container [formGroupName]="GroupName">
+  <div class="panel-title">
+    <label  class="h6" [attr.for]="element.Key">
+      {{ element.Label }}
+      <span *ngIf="HasRequiredValidation()" style="color: red"> &nbsp; *</span>
+    </label>
+  </div>
+
+  <div class="form-row" [formGroupName]="element.Key">
+    <div class="col">
+      <label for="inlineFormInput">Day</label>
+      <input type="text" [formControlName]="'Day'" class="form-control" id="inlineFormInput" placeholder="Day">
+    </div>
+    <div class="col">
+      <label for="inlineFormInputGroup">Month</label>
+      <input type="text" [formControlName]="'Month'" class="form-control" id="inlineFormInputGroup" placeholder="Month">
+    </div>
+
+    <div class="col">
+      <label for="inlineFormInput">Year</label>
+      <input type="text" [formControlName]="'Year'" class="form-control" id="inlineFormInput" placeholder="Year">
+    </div>
+  </div>
+</ng-container>

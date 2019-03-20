@@ -26,7 +26,7 @@ export class DynamicFormComponent implements OnInit {
   constructor() {
   }
 
-  async ngOnInit() {
+  ngOnInit() {
 
     if (this.dataSource.length || this.dataSource.length > 0) {
       this.length = this.dataSource.length;
@@ -35,8 +35,10 @@ export class DynamicFormComponent implements OnInit {
       this.elementList = this.dataSource;
       this.dataSource.forEach((panel: Panel) => {
         this.assaginObjectToService(panel);
+
       });
     }
+
   }
 
 

@@ -1,0 +1,17 @@
+<ng-container [formGroupName]="GroupName" *ngIf="element && element.visible">
+
+    <div class="panel-title">
+      <label class="h6" [attr.for]="element.Key">
+        {{ element.Label }}
+        <span *ngIf="HasRequiredValidation()" style="color: red"> &nbsp; *</span>
+      </label>
+    </div>
+  
+
+
+<!-- CheckBox-->
+<div class="d-inline-block">
+  <input type="checkbox" [id]="element.Key" [ngStyle]="element.style" [formControlName]="element.Key" />
+</div>
+
+</ng-container>

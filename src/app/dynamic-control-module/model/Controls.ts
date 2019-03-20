@@ -1,11 +1,10 @@
 import { BaseElement } from './baseElement';
 import { IElement } from './IElement';
-import { DateDetailsModel } from './dateDetails';
+import { ControlType } from './controlsTypeEnum';
 
 // TextBox
 export class TextBoxElement extends BaseElement<any> {
-    controlType = 'textbox';
-    type: string;
+    controlType = ControlType[ControlType.textbox];
     constructor(Options: IElement<string> = {}) {
         super(Options);
     }
@@ -13,7 +12,7 @@ export class TextBoxElement extends BaseElement<any> {
 
 // CheckBox
 export class CheckBox extends BaseElement<any> {
-    controlType = 'checkBox';
+    controlType = ControlType[ControlType.checkBox];
     dataSource: string;
     constructor(Options: IElement<any> = {}) {
         super(Options);
@@ -23,7 +22,7 @@ export class CheckBox extends BaseElement<any> {
 
 // Radio button
 export class Radiobuttons extends BaseElement<any> {
-    controlType = 'radiobuttons';
+    controlType = ControlType[ControlType.radiobuttons];
     dataSource: string;
     constructor(Options: IElement<any> = {}) {
         super(Options);
@@ -34,7 +33,7 @@ export class Radiobuttons extends BaseElement<any> {
 
 // Drop down List
 export class DropDown extends BaseElement<any> {
-    controlType = 'dropdown';
+    controlType = ControlType[ControlType.dropdown];
     dataSource: string;
     constructor(Options: IElement<any> = {}) {
         super(Options);
@@ -44,7 +43,7 @@ export class DropDown extends BaseElement<any> {
 
 // Drop down List
 export class Button extends BaseElement<any> {
-    controlType = 'button';
+    controlType = ControlType[ControlType.button];
     constructor(Options: IElement<any> = {}) {
         super(Options);
     }
@@ -52,7 +51,7 @@ export class Button extends BaseElement<any> {
 
 // TextArea
 export class TextArea extends BaseElement<any> {
-    controlType = 'textArea';
+    controlType = ControlType[ControlType.textArea];
     constructor(Options: IElement<any> = {}) {
         super(Options);
     }
@@ -60,7 +59,7 @@ export class TextArea extends BaseElement<any> {
 
 // fileUpload
 export class FileUpload extends BaseElement<any> {
-    controlType = 'fileUpload';
+    controlType = ControlType[ControlType.fileUpload];
     multiple = false;
     constructor(Options: IElement<any> = {}) {
         super(Options);
@@ -70,11 +69,15 @@ export class FileUpload extends BaseElement<any> {
 
 // DateDetails
 export class DateDetails extends BaseElement<any> {
-    dateDetails: DateDetailsModel;
-    controlType = 'dateDetails';
+    nestedControls = {
+        Day: '',
+        Month: '',
+        Year: ''
+    };
+    controlType = ControlType[ControlType.dateDetails];
     constructor(Options: IElement<any> = {}) {
         super(Options);
-        this.dateDetails = Options.dateDetails;
+        this.nestedControls = Options.nestedControls;
     }
 }
 

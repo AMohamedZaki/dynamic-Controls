@@ -3,7 +3,6 @@ import { IEvent } from './IEvents';
 import { Position } from './PositionEnum';
 import { ControlStyle } from './DynamicStyle';
 import { CustomValidation } from './Validation';
-import { DateDetailsModel } from './dateDetails';
 
 export class BaseElement<T> {
 
@@ -19,7 +18,7 @@ export class BaseElement<T> {
     position: Position;
     style: ControlStyle;
     readonly: boolean;
-    dateDetails?: DateDetailsModel;
+    nestedControls?: {[key: string]: any};
     constructor(options: IElement<T>) {
         this.Key = options.Key || '';
         this.value = options.value;
@@ -34,6 +33,6 @@ export class BaseElement<T> {
         this.style = options.style || {};
         this.position = options.position || 4;
         this.readonly = options.readonly;
-        this.dateDetails = options.dateDetails;
+        this.nestedControls = options.nestedControls;
     }
 }

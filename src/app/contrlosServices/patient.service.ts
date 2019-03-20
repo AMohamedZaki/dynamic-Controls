@@ -35,7 +35,6 @@ export class PatientService extends DataService {
   CityList = [];
 
   testClick() {
-    this.updateValidation('firstName', {required: false});
     // this.CurrentObject['lastName'] += 'ali';
    // this.SetValidation('', [Validators.required]);
     this.CurrentObject['lastName'] = this.CurrentObject['lastName'] + 'Test ';
@@ -51,12 +50,9 @@ export class PatientService extends DataService {
   }
 
   btnClick() {
-    // console.log(this.form.get('lastName'));
-    // this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'];
-    // this.ApplyPropertyChange('IsAgree');
-    console.log('asdasd');
+    this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'];
+    this.ApplyPropertyChange('IsAgree');
     this.SetValidation('firstName', [Validators.maxLength(8)]);
-
   }
 
   btnRestore() {
@@ -64,7 +60,7 @@ export class PatientService extends DataService {
   }
 
   removeRequired() {
-    this.updateValidation('firstName', {required: false});
+    this.SetValidationAndUpdateIfExist('firstName', {required: false});
   }
 
 

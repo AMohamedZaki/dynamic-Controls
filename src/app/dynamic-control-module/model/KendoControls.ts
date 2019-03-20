@@ -1,10 +1,11 @@
 
 import { BaseElement } from './baseElement';
 import { IElement } from './IElement';
+import { ControlType } from './controlsTypeEnum';
 
 // Supported events valueChange($event), filterChange($event), open(), close() ,focus(), blur()
 export class MultiSelect extends BaseElement<any> {
-    controlType = 'multiSelect';
+    controlType = ControlType[ControlType.multiSelect];
     dataSource: string;
     textField: string;
     valueField: string;
@@ -18,15 +19,16 @@ export class MultiSelect extends BaseElement<any> {
 
 
 export class DatePicker extends BaseElement<any> {
-    controlType = 'datePicker';
+    controlType = ControlType[ControlType.datePicker];
+    format: string;
     constructor(Options: IElement<any> = {}) {
         super(Options);
+        this.format = Options.format;
     }
 }
 
-
 export class KendoFileUpload extends BaseElement<any> {
-    controlType = 'fileUpload';
+    controlType = ControlType[ControlType.fileUpload];
     constructor(Options: IElement<any> = {}) {
         super(Options);
     }

@@ -7,6 +7,7 @@ import {
 } from '../dynamic-control-module/model/Controls';
 import { Position } from '../dynamic-control-module/model/PositionEnum';
 import { MultiSelect, DatePicker } from '../dynamic-control-module/model/KendoControls';
+import { DateDetailsModel } from '../dynamic-control-module/model/dateDetails';
 
 
 @Injectable()
@@ -19,7 +20,7 @@ export class GetElementsService {
       Service: 'patService',
       ObjectMap: 'Patient',
       applySort: false,
-      expandPanel: true,
+      expandPanel: false,
       elementList: [
         new TextBoxElement({
           Key: 'firstName',
@@ -50,28 +51,27 @@ export class GetElementsService {
               { Name: 'change', callBack: 'ChangeCity', PassEventObject: true },
             ]
         }),
-        // new CheckBox({
-        //   Key: 'IsAgree',
-        //   Label: 'Agree With Terms',
-        //   validation: { required: true },
-        //   readonly: false,
-        //   visible: true,
-        //   position: Position.OneOfThree,
-        //   id: 9,
-        //   index: 5,
-        //   // dataSource: 'CountryRaddio'
-        // }),
-        // new Radiobuttons({
-        //   Key: 'CounRadio',
-        //   Label: 'Choose Country',
-        //   validation: { required: false },
-        //   visible: true,
-        //   position: Position.TwoOfThree,
-        //   value: 'National Technology',
-        //   id: 9,
-        //   index: 6,
-        //   dataSource: 'CountryRaddio'
-        // }),
+        new CheckBox({
+          Key: 'IsAgree',
+          Label: 'Agree With Terms',
+          validation: { required: true },
+          readonly: false,
+          visible: true,
+          position: Position.OneOfThree,
+          id: 9,
+          index: 5,
+        }),
+        new Radiobuttons({
+          Key: 'CounRadio',
+          Label: 'Choose Country',
+          validation: { required: false },
+          visible: true,
+          position: Position.TwoOfThree,
+          value: 'National Technology',
+          id: 9,
+          index: 6,
+          dataSource: 'CountryRaddio'
+        }),
         new DropDown({
           Key: 'City',
           Label: 'Choose your City ?',
@@ -97,21 +97,6 @@ export class GetElementsService {
           index: 2,
           style: { 'width': '100%' }
         }),
-        // new MultiSelect({
-        //   Key: 'NamesMultiSelect',
-        //   Label: 'Choose Names',
-        //   visible: true,
-        //   id: 3,
-        //   index: 10,
-        //   position: Position.OneOfThree,
-        //   textField: 'name',
-        //   valueField: 'value',
-        //   dataSource: 'NamesList',
-        //   events:
-        //     [
-        //       { Name: 'change', callBack: 'ChangeCity', PassEventObject: true },
-        //     ]
-        // }),
         new Button({
           Label: '',
           visible: true,
@@ -130,45 +115,60 @@ export class GetElementsService {
               { Name: 'click', callBack: 'btnClick' },
             ]
         }),
-        // new Button({
-        //   Label: '',
-        //   visible: true,
-        //   id: 18,
-        //   value: 'restoreFirstName',
-        //   index: 13,
-        //   position: Position.OneOfThree,
-        //   events:
-        //     [
-        //       { Name: 'click', callBack: 'btnRestore' },
-        //     ]
-        // }),
-        // new Button({
-        //   Label: '',
-        //   visible: true,
-        //   id: 18,
-        //   value: 'remove Required',
-        //   index: 13,
-        //   position: Position.OneOfThree,
-        //   events:
-        //     [
-        //       { Name: 'click', callBack: 'removeRequired' },
-        //     ]
-        // })
-        // ,
-        // new FileUpload({
-        //   Label: 'Upload Image',
-        //   Key: 'imageUpload',
-        //   validation: { required: true },
-        //   visible: true,
-        //   id: 18,
-        //   multiple: true,
-        //   index: 20,
-        //   position: Position.OneOfThree,
-        //   events: [
-        //     { Name: 'change', callBack: 'TestUpload', PassEventObject: true }
-        //   ]
-        // })
-        // ,
+        new MultiSelect({
+          Key: 'NamesMultiSelect',
+          Label: 'Choose Names',
+          visible: true,
+          id: 3,
+          index: 10,
+          position: Position.OneOfThree,
+          textField: 'name',
+          valueField: 'value',
+          dataSource: 'NamesList',
+          events:
+            [
+              { Name: 'change', callBack: 'ChangeCity', PassEventObject: true },
+            ]
+        }),
+        new Button({
+          Label: '',
+          visible: true,
+          id: 18,
+          value: 'restoreFirstName',
+          index: 13,
+          position: Position.OneOfThree,
+          events:
+            [
+              { Name: 'click', callBack: 'btnRestore' },
+            ]
+        }),
+        new Button({
+          Label: '',
+          visible: true,
+          id: 18,
+          value: 'remove Required',
+          index: 13,
+          position: Position.OneOfThree,
+          events:
+            [
+              { Name: 'click', callBack: 'removeRequired' },
+            ]
+        })
+       ,
+        new FileUpload({
+          Label: 'Upload Image',
+          Key: 'imageUpload',
+          validation: { required: true },
+          visible: true,
+          id: 18,
+          multiple: true,
+          index: 20,
+          position: Position.OneOfThree,
+          events: [
+            { Name: 'change', callBack: 'TestUpload', PassEventObject: true }
+          ]
+        })
+        ,
         new TextArea({
           Label: 'Summery',
           Key: 'Summery',
@@ -179,63 +179,65 @@ export class GetElementsService {
         })
       ]
     }
-      // , {
-      // title: 'Doctor',
-      // ObjectMap: 'Doctor',
-      // Service: 'docService',
-      // expandPanel: true,
-      // elementList: [
-      //   new TextBoxElement({
-      //     Key: 'firstName',
-      //     Label: 'First name',
-      //     value: 'Abdel moneim Mohamed',
-      //     validation: { required: false },
-      //     visible: true,
-      //     position: Position.TwoOfThree,
-      //     id: 1,
-      //     events:
-      //       [
-      //         { Name: 'click', callBack: 'testClick' },
-      //         { Name: 'change', callBack: 'testChange', PassEventObject: true }
-      //       ]
-      //   })
-      // , new TextBoxElement({
-      //   Key: 'lastName',
-      //   Label: 'Last name',
-      //   value: '',
-      //   position: Position.OneOfThree,
-      //   validation: { required: false },
-      //   visible: true,
-      //   id: 5,
-      // }),
-      // new DatePicker({
-      //   Key: 'meeting',
-      //   Label: 'Meeting',
-      //   value: new Date(),
-      //   validation: { required: false },
-      //   visible: true,
-      //   position: Position.TwoOfThree,
-      //   id: 10,
-      // }),
-      // new DatePicker({
-      //   Key: 'meeting2',
-      //   Label: 'Meeting2',
-      //   validation: { required: false },
-      //   visible: true,
-      //   position: Position.OneOfThree,
-      //   id: 10,
-      // })
-      // ,
-      // new DateDetails({
-      //   Key: 'age',
-      //   Label: 'Age',
-      //   position: Position.OneOfThree,
-      //   visible: true,
-      //   index: 55,
-      //   dateDetails: { Day: 'TheDay', Month: 'TheMonth', Year: 'TheYear' }
-      // })
-      // ]
-      // }
+      , {
+      title: 'Doctor',
+      ObjectMap: 'Doctor',
+      Service: 'docService',
+      expandPanel: false,
+      elementList: [
+        new TextBoxElement({
+          Key: 'firstName',
+          Label: 'First name',
+          value: 'Abdel moneim Mohamed',
+          validation: { required: false },
+          visible: true,
+          position: Position.TwoOfThree,
+          id: 1,
+          events:
+            [
+              { Name: 'click', callBack: 'testClick' },
+              { Name: 'change', callBack: 'testChange', PassEventObject: true }
+            ]
+        })
+      , new TextBoxElement({
+        Key: 'lastName',
+        Label: 'Last name',
+        value: '',
+        position: Position.OneOfThree,
+        validation: { required: false },
+        visible: true,
+        id: 5,
+      }),
+      new DatePicker({
+        Key: 'meeting',
+        Label: 'Meeting',
+        value: new Date(),
+        validation: { required: false },
+        visible: true,
+        position: Position.TwoOfThree,
+        id: 10,
+        format: 'dd-MMM-yyyy hh:mm'
+      }),
+      new DatePicker({
+        Key: 'meeting2',
+        Label: 'Meeting2',
+        validation: { required: false },
+        visible: true,
+        position: Position.OneOfThree,
+        id: 10,
+        format: 'dd / MM / yyyy'
+      })
+      ,
+      new DateDetails({
+        Key: 'age',
+        Label: 'Age',
+        position: Position.HalfOfThree,
+        visible: true,
+        index: 55,
+        nestedControls: new DateDetailsModel()
+      })
+      ]
+      }
     ];
   }
 

@@ -2,6 +2,7 @@ import { FormControl, FormGroup, Validators, ValidatorFn } from '@angular/forms'
 import { Panel } from '../model/panel';
 import { CustomValidation } from '../model/Validation';
 import { isBoolean } from 'util';
+import { ControlType } from '../model/controlsTypeEnum';
 
 // export abstract class HelperService {
 
@@ -15,18 +16,25 @@ export function ConvertListToFormGroup(elements: Panel[]) {
     if (parentList && parentList.length > 0) {
       group[controlElement.ObjectMap] = {};
       parentList.forEach(item => {
-        const disable = item.readonly || false;
-        const formControlObj = { value: item.value || '', disabled: disable };
-        const validationList = getValidators(item.validation);
-        if (item.Key) {
-          // if(item.controlType !== 'dat')
-          group[controlElement.ObjectMap][item.Key] = new FormControl(formControlObj, validationList);
-          if (item.readonly) { group[item.Key].disable(); }
+        if (item.controlType !== ControlType[ControlType.button] && item.Key) {
+          const disable = item.readonly || false;
+          const formControlObj = { value: item.value || '', disabled: disable };
+          const validationList = getValidators(item.validation);
+          const haveNestedPropertois = (item.nestedControls) ? Object.keys(item.nestedControls) : null;
+
+          if (haveNestedPropertois && haveNestedPropertois.length > 1) {
+            group[controlElement.ObjectMap][item.Key] = {};
+            haveNestedPropertois.forEach(key => {
+              group[controlElement.ObjectMap][item.Key][key] = new FormControl('');
+            });
+            group[controlElement.ObjectMap][item.Key] = new FormGroup(group[controlElement.ObjectMap][item.Key]);
+          } else { group[controlElement.ObjectMap][item.Key] = new FormControl(formControlObj, validationList); }
         }
       });
     }
     group[controlElement.ObjectMap] = new FormGroup(group[controlElement.ObjectMap]);
   });
+  console.log(group);
   return new FormGroup(group);
 
 }

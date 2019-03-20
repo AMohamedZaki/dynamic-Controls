@@ -1,3 +1,15 @@
-<p>
-  dynamic-multi-select works!
-</p>
+<ng-container [formGroupName]="GroupName" *ngIf="element && element.visible">
+
+  <div class="panel-title">
+    <label class="h6" [attr.for]="element.Key">
+      {{ element.Label }}
+      <span *ngIf="HasRequiredValidation()" style="color: red"> &nbsp; *</span>
+    </label>
+  </div>
+
+  <kendo-multiselect [title]="element.Label" [ngStyle]="element.style"
+    class="form-control" [formControlName]="element.Key" [data]="Service[element.dataSource]"
+    textField="value" valueField="key" [valuePrimitive]="true">
+  </kendo-multiselect>
+
+</ng-container>

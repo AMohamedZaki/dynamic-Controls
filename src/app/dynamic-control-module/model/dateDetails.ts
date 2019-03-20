@@ -1,8 +1,8 @@
 
 
 export class DateDetailsModel {
-    Day: string;
-    Month: string;
-    Year: string;
+    Day = '';
+    Month = '';
+    Year = '';
 }
 

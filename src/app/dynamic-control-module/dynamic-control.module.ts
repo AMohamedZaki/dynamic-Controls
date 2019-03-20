@@ -13,8 +13,6 @@ import { UploadModule } from '@progress/kendo-angular-upload';
 import { TooltipModule } from '@progress/kendo-angular-tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderByPipe } from './Pipes/orderBy.pipe';
-import { DateTimePickerComponent } from './controls/date-time-picker/date-time-picker.component';
-import { DateDetailsComponent } from './controls/date-details/date-details.component';
 import { DynamicFeildDirective } from './directive/dynamic-feild.directive';
 import { DynamicTextBoxComponent } from './controls/dynamic-text-box/dynamic-text-box.component';
 import { ValidationAlertComponent } from './controls/validation-alert/validation-alert.component';
@@ -35,7 +33,6 @@ import { DynamicTextAreaComponent } from './controls/dynamic-text-area/dynamic-t
     ElememtContainerComponent,
     OrderByPipe,
     // DateTimePickerComponent,
-    DateDetailsComponent,
     DynamicFeildDirective,
     DynamicTextBoxComponent,
     ValidationAlertComponent,

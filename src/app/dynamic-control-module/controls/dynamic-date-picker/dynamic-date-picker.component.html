@@ -1,3 +1,17 @@
-<p>
-  dynamic-date-picker works!
-</p>
+
+<ng-container [formGroupName]="GroupName" *ngIf="element && element.visible">
+
+  <div class="panel-title">
+    <label class="h6" [attr.for]="element.Key">
+      {{ element.Label }}
+      <span *ngIf="HasRequiredValidation()" style="color: red"> &nbsp; *</span>
+    </label>
+  </div>
+ 
+  <kendo-datepicker  [format]="element.format" (change)="setDateValue()" [formControlName]="element.Key" [(value)]="theDate">
+  </kendo-datepicker>
+  <kendo-timepicker style="width: calc(6.1px + 1.4285714286em);
+      margin-top: 0px;" (change)="setDateValue()" [formControlName]="element.Key"
+    [(value)]="theDate"></kendo-timepicker>
+
+</ng-container>

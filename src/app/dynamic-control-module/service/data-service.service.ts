@@ -101,7 +101,7 @@ export class DataService {
 
   }
 
-  updateValidation(propertyName: string, _newValidation: CustomValidation) {
+  SetValidationAndUpdateIfExist(propertyName: string, _newValidation: CustomValidation) {
     const nValidation: any = {};
     const ObjectKey = GetObjectNames(new CustomValidation());
     const OldValidation = this._ControlsValidators.find(item => item.Name === propertyName).Validators;

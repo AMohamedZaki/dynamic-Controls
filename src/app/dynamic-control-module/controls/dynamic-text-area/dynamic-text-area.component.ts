@@ -16,6 +16,7 @@ export class DynamicTextAreaComponent extends BaseComponent implements OnInit {
     super(elementRef, renderer, cdRef);
   }
 
+
   ngOnInit() {
     this.assaginMethod();
   }

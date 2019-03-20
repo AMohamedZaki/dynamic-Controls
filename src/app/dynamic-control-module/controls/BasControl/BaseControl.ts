@@ -1,10 +1,11 @@
 import {
     OnInit, forwardRef, Component, ElementRef,
-    Renderer2, ChangeDetectorRef
+    Renderer2, ChangeDetectorRef, AfterViewChecked
 } from '@angular/core';
 import {
     ControlValueAccessor, ControlContainer, FormGroupDirective,
-    NG_VALUE_ACCESSOR, FormGroup} from '@angular/forms';
+    NG_VALUE_ACCESSOR, FormGroup, AbstractControl
+} from '@angular/forms';
 import { BaseElement } from '../../model/baseElement';
 import { hasRequiredField } from '../../validation/hasRequiredField';
 import { IEvent } from '../../model/IEvents';
@@ -17,7 +18,7 @@ import { IEvent } from '../../model/IEvents';
         multi: true
     }]
 })
-export class BaseComponent implements OnInit, ControlValueAccessor {
+export class BaseComponent implements OnInit, ControlValueAccessor, AfterViewChecked {
 
     private _value: boolean;
 
@@ -50,7 +51,7 @@ export class BaseComponent implements OnInit, ControlValueAccessor {
         }
     }
 
-   private assaginMethodToControl(element: IEvent) {
+    private assaginMethodToControl(element: IEvent) {
         if (this.Service && element) {
             if (typeof this.Service[element.callBack] === 'function') {
                 this.renderer.listen(this.elementRef.nativeElement, element.Name,
@@ -80,9 +81,21 @@ export class BaseComponent implements OnInit, ControlValueAccessor {
         return hasRequiredField(Control);
     }
 
+    // get form control item by send control name
+    getElement(name: string): AbstractControl {
+        return this.form.get(`${this.GroupName}.${name}`);
+    }
+
+
     // get full form control name (groupname.controlname)
     fullControlname() {
         return `${this.GroupName}.${this.element.Key}`;
+    }
+
+    // For The Validtion in Case the Validtion is Fire
+    // and the Control Value Changed under the hode
+    ngAfterViewChecked(): void {
+        this.cdRef.detectChanges();
     }
 
     // the implement of Value Accessor

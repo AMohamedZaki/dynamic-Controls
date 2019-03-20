@@ -7,9 +7,9 @@
           <div class="row" style="padding: 3% 1% 3% 1%;">
             <ng-template ngFor let-j="index" let-dyncamicElement [ngForOf]="MainPanel.elementList | orderBy: 'index': MainPanel.applySort">
               <div class="col-sm-{{ dyncamicElement.position }}" [hidden]="!dyncamicElement.visible">
-                <ng-container DynamicFeild [FGroup]="form" [Service]="getService(MainPanel.Service)" [GroupName]="MainPanel.ObjectMap"
+                <div style="padding: 5px;" DynamicFeild [FGroup]="form" [Service]="getService(MainPanel.Service)" [GroupName]="MainPanel.ObjectMap"
                 [element]="dyncamicElement">
-                </ng-container>
+                </div>
                 
                 <!-- <dynamicElement [form]="form" [Service]="getService(MainPanel.Service)" [GroupName]="MainPanel.ObjectMap"
                   [elements]="dyncamicElement"></dynamicElement> -->

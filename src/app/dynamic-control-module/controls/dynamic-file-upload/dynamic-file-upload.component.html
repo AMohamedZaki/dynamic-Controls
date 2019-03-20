@@ -1,3 +1,14 @@
-<p>
-  dynamic-file-upload works!
-</p>
+<div class="alignUpload" [formGroupName]="GroupName" *ngIf="element && element.visible">
+
+  <div class="panel-title">
+    <label class="h6" [attr.for]="element.Key">
+      {{ element.Label }}
+      <span *ngIf="HasRequiredValidation()" style="color: red"> &nbsp; *</span>
+    </label>
+  </div>
+
+
+  <!-- File Upload -->
+  <input type="file" [ngStyle]="element.style" [id]="element.Key" [formControlName]="element.Key" [multiple]="element.multiple">
+
+</div>

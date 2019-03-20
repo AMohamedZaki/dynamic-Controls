@@ -16,6 +16,7 @@ export class DynamicDropdownComponent extends BaseComponent implements OnInit {
     super(elementRef, renderer, cdRef);
   }
 
+
   ngOnInit() {
     this.assaginMethod();
   }
