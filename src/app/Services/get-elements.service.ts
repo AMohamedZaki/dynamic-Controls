@@ -152,7 +152,7 @@ export class GetElementsService {
               { Name: 'click', callBack: 'removeRequired' },
             ]
         })
-       ,
+        ,
         new FileUpload({
           Label: 'Upload Image',
           Key: 'imageUpload',
@@ -182,7 +182,11 @@ export class GetElementsService {
           id: 100,
           index: 100,
           position: Position.HalfOfThree,
-          dataSource: 'SearchList'
+          dataSource: 'SearchList',
+          events: [{
+            Name: 'keydown.enter',
+            callBack: 'getItem'
+          }]
         })
       ]
     }
@@ -206,45 +210,45 @@ export class GetElementsService {
               { Name: 'change', callBack: 'testChange', PassEventObject: true }
             ]
         })
-      , new TextBoxElement({
-        Key: 'lastName',
-        Label: 'Last name',
-        value: '',
-        position: Position.OneOfThree,
-        validation: { required: false },
-        visible: true,
-        id: 5,
-      }),
-      new DatePicker({
-        Key: 'meeting',
-        Label: 'Meeting',
-        value: new Date(),
-        validation: { required: false },
-        visible: true,
-        position: Position.TwoOfThree,
-        id: 10,
-        format: 'dd-MMM-yyyy hh:mm'
-      }),
-      new DatePicker({
-        Key: 'meeting2',
-        Label: 'Meeting2',
-        validation: { required: false },
-        visible: true,
-        position: Position.OneOfThree,
-        id: 10,
-        format: 'dd / MM / yyyy'
-      })
-      ,
-      new DateDetails({
-        Key: 'age',
-        Label: 'Age',
-        position: Position.HalfOfThree,
-        visible: true,
-        index: 55,
-        nestedControls: new DateDetailsModel()
-      })
+        , new TextBoxElement({
+          Key: 'lastName',
+          Label: 'Last name',
+          value: '',
+          position: Position.OneOfThree,
+          validation: { required: false },
+          visible: true,
+          id: 5,
+        }),
+        new DatePicker({
+          Key: 'meeting',
+          Label: 'Meeting',
+          value: new Date(),
+          validation: { required: false },
+          visible: true,
+          position: Position.TwoOfThree,
+          id: 10,
+          format: 'dd-MMM-yyyy hh:mm'
+        }),
+        new DatePicker({
+          Key: 'meeting2',
+          Label: 'Meeting2',
+          validation: { required: false },
+          visible: true,
+          position: Position.OneOfThree,
+          id: 10,
+          format: 'dd / MM / yyyy'
+        })
+        ,
+        new DateDetails({
+          Key: 'age',
+          Label: 'Age',
+          position: Position.HalfOfThree,
+          visible: true,
+          index: 55,
+          nestedControls: new DateDetailsModel()
+        })
       ]
-      }
+    }
     ];
   }
 

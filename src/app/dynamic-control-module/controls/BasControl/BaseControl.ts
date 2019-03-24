@@ -35,9 +35,9 @@ export class BaseComponent implements OnInit, ControlValueAccessor, AfterViewChe
     onChange: any = () => { };
     onTouched: any = () => { };
 
-    constructor(private elementRef: ElementRef,
-        private renderer: Renderer2,
-        private cdRef: ChangeDetectorRef) { }
+    constructor(protected elementRef: ElementRef,
+        protected renderer: Renderer2,
+        protected cdRef: ChangeDetectorRef) { }
 
     ngOnInit() {
         this.assaginMethod();

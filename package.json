@@ -26,7 +26,7 @@
     "@ngui/datetime-picker": "^0.16.2",
     "@progress/kendo-angular-buttons": "^4.3.3",
     "@progress/kendo-angular-dateinputs": "^3.6.0",
-    "@progress/kendo-angular-dropdowns": "3.5.1",
+    "@progress/kendo-angular-dropdowns": "^3.5.2",
     "@progress/kendo-angular-intl": "^1.4.0",
     "@progress/kendo-angular-l10n": "^1.1.0",
     "@progress/kendo-angular-layout": "^3.2.0",

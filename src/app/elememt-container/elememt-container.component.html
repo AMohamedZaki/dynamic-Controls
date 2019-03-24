@@ -1,12 +1,16 @@
 
 
 
-<div style="padding:10px">
-
-    <kendo-combobox [value]="selectedValue" required [data]="listItems" [allowCustom]="true">
-    </kendo-combobox>
-</div>
-
+<!-- <form [formGroup]="form">
+  <kendo-combobox
+   [data]="listItems"
+   kendoDropDownFilter
+   formControlName="dataName" 
+   (valueChange)="setSelectedItem($event)"
+   (keydown.enter)="PressEnter($event)"
+   [allowCustom]="true" >
+  </kendo-combobox>
+</form> -->
 <br>
 <br>
 
@@ -19,6 +23,6 @@ form :- {{ this.form.value | json }}
 
 
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
-  <dynamic-form [form]="form" [dataSource]="ElementDataList" [ServiceSource]="ServiceList"></dynamic-form>
+  <dynamic-form [form]="form" [dataSource]="ElementDataList" [ServiceSource]="ServiceList"></dynamic-form> 
   <!-- <button type="submit" class="btn btn-primary" ng-class="" [disabled]="!form.valid"> submit </button> -->
 </form>

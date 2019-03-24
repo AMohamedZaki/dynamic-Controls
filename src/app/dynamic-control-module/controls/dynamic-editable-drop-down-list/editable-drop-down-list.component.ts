@@ -1,6 +1,8 @@
-import { Component, OnInit, ElementRef, Renderer2, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { BaseComponent } from '../BasControl/BaseControl';
 import { ControlContainer, FormGroupDirective } from '@angular/forms';
+import { ComboBoxComponent } from '@progress/kendo-angular-dropdowns';
+
 
 @Component({
   selector: 'dynamic-editable-drop-down-list',
@@ -10,6 +12,10 @@ import { ControlContainer, FormGroupDirective } from '@angular/forms';
 })
 export class DynamicEditableDropDownListComponent extends BaseComponent implements OnInit {
 
+  currentValue: any;
+  selectedItem: any = {};
+  allowCustom = true;
+  @ViewChild('kendoComboBoxInstance') ComboBoxInstance: ComboBoxComponent;
   constructor(elementRef: ElementRef,
     renderer: Renderer2,
     cdRef: ChangeDetectorRef) {
@@ -19,6 +25,15 @@ export class DynamicEditableDropDownListComponent extends BaseComponent implemen
 
   ngOnInit() {
     this.assaginMethod();
+  }
+
+  pressEnter() {
+    this.openDialog();
+  }
+
+  openDialog() {
+    this.ComboBoxInstance.toggle(true);
+    this.ComboBoxInstance.focus();
   }
 
 }

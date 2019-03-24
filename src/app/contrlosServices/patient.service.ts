@@ -32,26 +32,13 @@ export class PatientService extends DataService {
     { value: '3wad6', key: 6 }
   ];
 
-  SearchList = [
-    { value: 'Cairo', key: 1 },
-    { value: 'Nasr', key: 2 },
-    { value: '7elwam', key: 3 },
-    { value: 'Aswan', key: 4 },
-    { value: 'Giza', key: 5 },
-    { value: 'October', key: 6 },
-    { value: 'Cairo1', key: 1 },
-    { value: 'Nasr2', key: 2 },
-    { value: '7elwam3', key: 3 },
-    { value: 'Aswan4', key: 4 },
-    { value: 'Giza5', key: 5 },
-    { value: 'October6', key: 6 }
-  ];
+  SearchList = [];
 
   CityList = [];
 
   testClick() {
     // this.CurrentObject['lastName'] += 'ali';
-   // this.SetValidation('', [Validators.required]);
+    // this.SetValidation('', [Validators.required]);
     this.CurrentObject['lastName'] = this.CurrentObject['lastName'] + 'Test ';
     console.log('CurrentObject', this.CurrentObject);
     this.CurrentObject['IsAgree'] = true;
@@ -75,7 +62,7 @@ export class PatientService extends DataService {
   }
 
   removeRequired() {
-    this.SetValidationAndUpdateIfExist('firstName', {required: false});
+    this.SetValidationAndUpdateIfExist('firstName', { required: false });
   }
 
 
@@ -93,6 +80,28 @@ export class PatientService extends DataService {
     console.log('image', event);
     const file: File = event.target.files[0];
     console.log('file', file);
+  }
+
+  getItem() {
+    debugger;
+    const word = this.CurrentObject['Search'];
+    const items =
+      [{ value: 'Cairo', key: 1 },
+      { value: 'Nasr', key: 2 },
+      { value: '7elwam', key: 3 },
+      { value: 'Aswan', key: 4 },
+      { value: 'Giza', key: 5 },
+      { value: 'October', key: 6 },
+      { value: 'Cairo1', key: 1 },
+      { value: 'Nasr2', key: 2 },
+      { value: '7elwam3', key: 3 },
+      { value: 'Aswan4', key: 4 },
+      { value: 'Giza5', key: 5 },
+      { value: 'October6', key: 6 }
+      ];
+    this.SearchList = items.filter(item => item.value.includes(word));
+    console.log('getItem, Search', this.CurrentObject['Search']);
+    // this.SearchList = this.SearchList.filter(item => item.value === word);
   }
 
 }

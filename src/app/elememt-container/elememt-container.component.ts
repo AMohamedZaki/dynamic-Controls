@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComboBoxComponent } from '@progress/kendo-angular-dropdowns';
-import { FormGroup, Validators, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ServiceDetails } from '../dynamic-control-module/model/ServiceDetails';
 import { GetElementsService } from '../Services/get-elements.service';
 import { PatientService } from '../contrlosServices/patient.service';
 import { DoctorService } from '../contrlosServices/doctor.service';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
 import { ConvertListToFormGroup } from '../dynamic-control-module/service/helper.service';
+
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -20,11 +23,6 @@ export class ElememtContainerComponent implements OnInit {
   ElementDataList: any[];
   form: FormGroup;
   ServiceList: ServiceDetails[] = [];
-
-  selectedValue = 'asdasd';
-  public allowCustom = true;
-  public listItems = ['Baseball', 'Basketball', 'Cricket', 'Field Hockey',
-   'Football', 'Table Tennis', 'Tennis', 'Volleyball'];
 
   constructor(
     private elemntMockService: GetElementsService,

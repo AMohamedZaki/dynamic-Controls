@@ -7,8 +7,23 @@
     </label>
   </div>
 
-  <kendo-combobox [ngStyle]="element.style" textField="value"  valueField="key" [data]="Service[element.dataSource]"
-    [formControlName]="element.Key" class="form-control" [allowCustom]="true"  [valuePrimitive]="true">
-  </kendo-combobox>
+  <kendo-combobox
+  #kendoComboBoxInstance
+  [ngStyle]="element.style"
+  [data]="Service[element.dataSource]"
+  [formControlName]="element.Key" 
+  class="form-control"
+  [textField]="'value'"
+  [valueField]="'key'"
+  [valuePrimitive]="true"
+  (keydown.enter)="pressEnter()"
+  (click)="openDialog()"
+  [allowCustom]="allowCustom" >
+ </kendo-combobox>
 
+
+  {{ dropdown }}
 </ng-container>
+
+
+

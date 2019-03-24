@@ -15,6 +15,8 @@ export class DynamicButtonComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
+    // to set the element for click is (input) not the entire element
+    this.elementRef.nativeElement = this.elementRef.nativeElement.querySelector('input');
     this.assaginMethod();
   }
 
