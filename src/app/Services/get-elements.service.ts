@@ -8,6 +8,7 @@ import {
 import { Position } from '../dynamic-control-module/model/PositionEnum';
 import { MultiSelect, DatePicker, EditableDropdown } from '../dynamic-control-module/model/KendoControls';
 import { DateDetailsModel } from '../dynamic-control-module/model/dateDetails';
+import { ValidtionTypes } from '../dynamic-control-module/model/validation/ValidtionTypes';
 
 
 @Injectable()
@@ -26,7 +27,7 @@ export class GetElementsService {
           Key: 'firstName',
           Label: 'First name',
           value: 'National Technology',
-          validation: { required: true, minLength: 4 },
+          validation: [{ type: ValidtionTypes.required, arg: '', value: true }],
           visible: true,
           index: 1,
           id: 0,
@@ -40,7 +41,7 @@ export class GetElementsService {
         new DropDown({
           Key: 'Country',
           Label: 'Choose The Country',
-          validation: { required: true },
+          validation: [{ type: ValidtionTypes.required }],
           visible: true,
           position: Position.OneOfThree,
           id: 3,
@@ -54,7 +55,7 @@ export class GetElementsService {
         new CheckBox({
           Key: 'IsAgree',
           Label: 'Agree With Terms',
-          validation: { required: true },
+          validation: [{ type: ValidtionTypes.required }],
           readonly: false,
           visible: true,
           position: Position.OneOfThree,
@@ -64,7 +65,7 @@ export class GetElementsService {
         new Radiobuttons({
           Key: 'CounRadio',
           Label: 'Choose Country',
-          validation: { required: false },
+          validation: [{ type: ValidtionTypes.required }],
           visible: true,
           position: Position.TwoOfThree,
           value: 'National Technology',
@@ -75,7 +76,7 @@ export class GetElementsService {
         new DropDown({
           Key: 'City',
           Label: 'Choose your City ?',
-          validation: { required: true },
+          validation: [{ type: ValidtionTypes.required }],
           visible: true,
           index: 4,
           position: Position.OneOfThree,
@@ -91,7 +92,7 @@ export class GetElementsService {
             [
               { Name: 'keyup.enter', callBack: 'testClick' },
             ],
-          validation: { required: true, maxLength: 20, pattern: 'ahmed' },
+          validation: [{ type: ValidtionTypes.required }],
           visible: true,
           id: 2,
           index: 2,
@@ -156,7 +157,7 @@ export class GetElementsService {
         new FileUpload({
           Label: 'Upload Image',
           Key: 'imageUpload',
-          validation: { required: true },
+          validation: [{ type: ValidtionTypes.required }],
           visible: true,
           id: 18,
           multiple: true,
@@ -200,7 +201,7 @@ export class GetElementsService {
           Key: 'firstName',
           Label: 'First name',
           value: 'Abdel moneim Mohamed',
-          validation: { required: false },
+          validation: [{ type: ValidtionTypes.required }],
           visible: true,
           position: Position.TwoOfThree,
           id: 1,
@@ -215,7 +216,7 @@ export class GetElementsService {
           Label: 'Last name',
           value: '',
           position: Position.OneOfThree,
-          validation: { required: false },
+          validation: [{ type: ValidtionTypes.required }],
           visible: true,
           id: 5,
         }),
@@ -223,7 +224,7 @@ export class GetElementsService {
           Key: 'meeting',
           Label: 'Meeting',
           value: new Date(),
-          validation: { required: false },
+          validation: [{ type: ValidtionTypes.required }],
           visible: true,
           position: Position.TwoOfThree,
           id: 10,
@@ -232,7 +233,7 @@ export class GetElementsService {
         new DatePicker({
           Key: 'meeting2',
           Label: 'Meeting2',
-          validation: { required: false },
+          validation: [{ type: ValidtionTypes.required }],
           visible: true,
           position: Position.OneOfThree,
           id: 10,

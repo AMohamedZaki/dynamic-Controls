@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, ValidatorFn, FormControl, ValidationErrors } from '@angular/forms';
-import { CustomValidation } from '../model/Validation';
+import { FormGroup, ValidatorFn } from '@angular/forms';
 import { BaseElement } from '../model/baseElement';
-import { getValidators, GetObjectNames, IsNotNullorEmpty } from './helper.service';
+import { ValidationRoleBase } from '../model/validation/ValidationRoleBase';
+import { getValidators } from '../model/validation/ValidationHelper.service';
 
 
 @Injectable()
 export class DataService {
   private form: FormGroup;
   private _currentObject: any;
-  private _ControlsValidators: { Name: string, Validators: CustomValidation }[] = [];
+  private _ControlsValidators: { Name: string, Validators: ValidationRoleBase[] }[] = [];
 
   set CurrentObject(value: any) {
     if (value) { this._currentObject = value; }
@@ -71,6 +71,7 @@ export class DataService {
   /**
   * Set Validation to Property And pass the Validations in array
   * if the Validtion exist it will not override the old one
+  * but it will not saved in case of restoring validation
   */
   SetValidation(propertyName: string, _validators: ValidatorFn | ValidatorFn[]) {
     if (_validators) {
@@ -101,31 +102,20 @@ export class DataService {
 
   }
 
-  SetValidationAndUpdateIfExist(propertyName: string, _newValidation: CustomValidation) {
-    const nValidation: any = {};
-    const ObjectKey = GetObjectNames(new CustomValidation());
+  SetValidationAndUpdateIfExist(propertyName: string, _newValidation: ValidationRoleBase[]) {
+    let nValidation: ValidationRoleBase[] = [];
     const OldValidation = this._ControlsValidators.find(item => item.Name === propertyName).Validators;
 
-    // take the new validation from the parameter
-    // and set the new value in new object
-    // if the old one contain the validation then don't take it
+    nValidation = [..._newValidation];
 
-    ObjectKey.forEach(key => {
-      if (_newValidation) {
-        const newValidationKeys = Object.getOwnPropertyNames(_newValidation);
-        const keyExistOrNotinNewValidtion = newValidationKeys.find(x => x === key);
-
-        if (keyExistOrNotinNewValidtion && IsNotNullorEmpty(_newValidation[key])) {
-          nValidation[key] = _newValidation[key];
-        } else if (OldValidation) {
-          const OldValidationKeys = Object.getOwnPropertyNames(OldValidation);
-          const keyExistOrNotinOldValidation = OldValidationKeys.find(x => x === key);
-          if (keyExistOrNotinOldValidation && IsNotNullorEmpty(OldValidation[key])) { nValidation[key] = OldValidation[key]; }
-        }
+    const len = OldValidation.length;
+    for (let i = 0; i < len; i++) {
+      const item = OldValidation[i];
+      const isExist = _newValidation.find(nv => nv.type === item.type);
+      if (!isExist) {
+        nValidation.push(OldValidation[i]);
       }
-    });
-
-    // set the new Validation
+    }
     const Validators = getValidators(nValidation);
     this.setValidators(propertyName, Validators);
   }

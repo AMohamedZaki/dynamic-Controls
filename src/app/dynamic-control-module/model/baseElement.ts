@@ -2,7 +2,7 @@ import { IElement } from './IElement';
 import { IEvent } from './IEvents';
 import { Position } from './PositionEnum';
 import { ControlStyle } from './DynamicStyle';
-import { CustomValidation } from './Validation';
+import { ValidationRoleBase } from './validation/ValidationRoleBase';
 
 export class BaseElement<T> {
 
@@ -10,7 +10,7 @@ export class BaseElement<T> {
     controlType: string;
     value: T;
     Label: string;
-    validation: CustomValidation;
+    validation: ValidationRoleBase[];
     visible?: boolean;
     events?: IEvent[];
     id?: number; // for checkBox visibal checkbox

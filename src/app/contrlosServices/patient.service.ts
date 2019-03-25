@@ -1,5 +1,6 @@
 import { DataService } from '../dynamic-control-module/service/data-service.service';
 import { Validators } from '@angular/forms';
+import { ValidtionTypes } from '../dynamic-control-module/model/validation/ValidtionTypes';
 
 export class PatientService extends DataService {
 
@@ -54,7 +55,9 @@ export class PatientService extends DataService {
   btnClick() {
     this.CurrentObject['IsAgree'] = !this.CurrentObject['IsAgree'];
     this.ApplyPropertyChange('IsAgree');
-    this.SetValidation('firstName', [Validators.maxLength(8)]);
+    // this.SetValidation('firstName', [Validators.maxLength(8)]);
+    this.SetValidationAndUpdateIfExist('firstName', [{ type: ValidtionTypes.maxLength, value: 10 },
+    { type: ValidtionTypes.minLength, value: 8 }]);
   }
 
   btnRestore() {
@@ -62,7 +65,7 @@ export class PatientService extends DataService {
   }
 
   removeRequired() {
-    this.SetValidationAndUpdateIfExist('firstName', { required: false });
+    this.SetValidationAndUpdateIfExist('firstName', [{ type: ValidtionTypes.required, value: false }]);
   }
 
 
@@ -83,7 +86,6 @@ export class PatientService extends DataService {
   }
 
   getItem() {
-    debugger;
     const word = this.CurrentObject['Search'];
     const items =
       [{ value: 'Cairo', key: 1 },
