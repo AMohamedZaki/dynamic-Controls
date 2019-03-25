@@ -96,7 +96,7 @@ export class GetElementsService {
           visible: true,
           id: 2,
           index: 2,
-          style: { 'width': '100%' }
+          style: '{"width": "100%" }'
         }),
         new Button({
           Label: '',
@@ -105,12 +105,7 @@ export class GetElementsService {
           value: 'NewValidation',
           index: 13,
           position: Position.OneOfThree,
-          style: {
-            'background-color': 'red',
-            'font-size': 'large',
-            border: '2px solid red',
-            width: '100%'
-          },
+          style: '{"background-color": "red","font-size": "large","border": "2px solid red", "width": "100%"}',
           events:
             [
               { Name: 'click', callBack: 'btnClick' },

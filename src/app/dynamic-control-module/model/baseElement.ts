@@ -1,7 +1,6 @@
 import { IElement } from './IElement';
 import { IEvent } from './IEvents';
 import { Position } from './PositionEnum';
-import { ControlStyle } from './DynamicStyle';
 import { ValidationRoleBase } from './validation/ValidationRoleBase';
 
 export class BaseElement<T> {
@@ -16,7 +15,7 @@ export class BaseElement<T> {
     id?: number; // for checkBox visibal checkbox
     index?: number;
     position: Position;
-    style: ControlStyle;
+    style: any;
     readonly: boolean;
     nestedControls?: {[key: string]: any};
     constructor(options: IElement<T>) {

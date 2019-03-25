@@ -1,6 +1,5 @@
 import { IEvent } from './IEvents';
 import { Position } from './PositionEnum';
-import { ControlStyle } from './DynamicStyle';
 import { DateDetailsModel } from './dateDetails';
 import { ValidationRoleBase } from './validation/ValidationRoleBase';
 
@@ -16,7 +15,7 @@ export interface IElement<T> {
     id?: number;
     index?: number;
     position?: Position;
-    style?: ControlStyle;
+    style?: any;
     dateDetails?: DateDetailsModel;
     [key: string]: any;
 }

@@ -49,7 +49,7 @@ export class DynamicFeildDirective implements OnChanges, OnInit {
 
   initializeControlsComponentInstance() {
     this.component.instance.form = this.FGroup;
-    this.component.instance.element = this.element;
+    this.component.instance.element = this.setElement(this.element);
     this.component.instance.Service = this.Service;
     this.component.instance.GroupName = this.GroupName;
   }
@@ -57,10 +57,16 @@ export class DynamicFeildDirective implements OnChanges, OnInit {
   initializeValidationComponentInstance() {
     this.validationComponent.instance.form = this.FGroup;
     this.validationComponent.instance.GroupName = this.GroupName;
-    this.validationComponent.instance.element = this.element;
+    this.validationComponent.instance.element = this.setElement(this.element);
     this.validationComponent.instance.controlName = this.element.Key;
   }
 
+  setElement(element: BaseElement<any>): BaseElement<any> {
+    if (element.style && typeof (element.style) === 'string') {
+      element.style = JSON.parse(element.style as string);
+    }
+    return element;
+  }
 
 
 }
