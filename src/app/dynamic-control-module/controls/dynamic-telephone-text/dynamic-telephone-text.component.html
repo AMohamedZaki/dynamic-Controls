@@ -1,0 +1,25 @@
+<ng-container [formGroupName]="GroupName">
+    <div class="panel-title">
+      <label class="h6" [attr.for]="element.Key">
+        {{ element.Label }}
+        <span *ngIf="HasRequiredValidation()" style="color: rgb(240, 4, 4)"> &nbsp; *</span>
+      </label>
+    </div>
+
+    <div [formGroupName]="element.Key">
+      <div class="form-inline">
+        <div class="form-group" *ngIf="element.nestedControls['country']">
+          <input type="text" [formControlName]="element.nestedControls['country']" readonly=true
+           class="form-control" id="inlineFormInput" placeholder="CountryCode">
+        </div>
+        <div class="form-group" *ngIf="element.nestedControls['governorate']">
+          <input type="text" [formControlName]="element.nestedControls['governorate']" readonly=true
+            class="form-control" id="inlineFormInput" placeholder="governorate">
+        </div>
+        <div class="form-group" *ngIf="element.nestedControls['telephone']">
+          <input type="text" [formControlName]="element.nestedControls['telephone']" class="form-control"
+            id="inlineFormInputGroup" placeholder="Telephone" (keypress)="keybeard($event)">
+        </div>
+      </div>
+    </div>
+</ng-container>

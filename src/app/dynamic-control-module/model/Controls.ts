@@ -1,6 +1,8 @@
 import { BaseElement } from './baseElement';
 import { IElement } from './IElement';
 import { ControlType } from './controlsTypeEnum';
+import { TelephoneDetailsModel } from './telephoneDetails';
+import { DateDetailsModel } from './dateDetails';
 
 // TextBox
 export class TextBoxElement extends BaseElement<any> {
@@ -68,16 +70,21 @@ export class FileUpload extends BaseElement<any> {
 }
 
 // DateDetails
-export class DateDetails extends BaseElement<any> {
-    nestedControls = {
-        Day: '',
-        Month: '',
-        Year: ''
-    };
+export class DateDetails extends BaseElement<DateDetailsModel> {
     controlType = ControlType[ControlType.dateDetails];
-    constructor(Options: IElement<any> = {}) {
+    constructor(Options: IElement<DateDetailsModel> = {}) {
         super(Options);
         this.nestedControls = Options.nestedControls;
     }
 }
+
+// telephone number
+export class TelephoneDetails extends BaseElement<TelephoneDetailsModel> {
+    controlType = ControlType[ControlType.telephoneDetails];
+    constructor(Options: IElement<TelephoneDetailsModel> = {}) {
+        super(Options);
+        this.nestedControls = Options.nestedControls;
+    }
+}
+
 

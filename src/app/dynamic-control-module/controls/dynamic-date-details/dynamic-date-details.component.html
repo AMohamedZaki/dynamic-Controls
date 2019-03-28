@@ -6,18 +6,18 @@
     </label>
   </div>
 
-  <div class="form-row" [formGroupName]="element.Key">
-    <div class="col">
+  <div class="form-row" [formGroupName]="element.Key" *ngIf="element.nestedControls">
+    <div class="col" *ngIf="element.nestedControls['Day']">
       <label for="inlineFormInput">Day</label>
-      <input type="text" (keypress)="keybeard($event)" [formControlName]="'Day'" class="form-control" id="inlineFormInput" placeholder="Day">
+      <input type="text" (keypress)="keybeard($event)" (input)="SetmaxDay($event.target.value)" [formControlName]="element.nestedControls['Day']" class="form-control" id="inlineFormInput" placeholder="Day">
     </div>
-    <div class="col">
+    <div class="col" *ngIf="element.nestedControls['Month']">
       <label for="inlineFormInputGroup">Month</label>
-      <input type="text" (keypress)="keybeard($event)" (input)="SetmaxMonth($event.target.value)" [formControlName]="'Month'" class="form-control" id="inlineFormInputGroup" placeholder="Month">
+      <input type="text" (keypress)="keybeard($event)" (input)="SetmaxMonth($event.target.value)" [formControlName]="element.nestedControls['Month']" class="form-control" id="inlineFormInputGroup" placeholder="Month">
     </div>
-    <div class="col">
+    <div class="col" *ngIf="element.nestedControls['Year']">
       <label for="inlineFormInput">Year</label>
-      <input type="text" (keypress)="keybeard($event)"  (input)="SetmaxYear($event.target.value)" [formControlName]="'Year'" class="form-control" id="inlineFormInput" placeholder="Year">
+      <input type="text" (keypress)="keybeard($event)"  (input)="SetmaxYear($event.target.value)" [formControlName]="element.nestedControls['Year']" class="form-control" id="inlineFormInput" placeholder="Year">
     </div>
   </div>
 </ng-container>

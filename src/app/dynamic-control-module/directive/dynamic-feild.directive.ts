@@ -65,6 +65,18 @@ export class DynamicFeildDirective implements OnChanges, OnInit {
     if (element.style && typeof (element.style) === 'string') {
       element.style = JSON.parse(element.style as string);
     }
+
+    const NestedValues = (element.nestedControls && Object.keys(element.nestedControls).length > 0)
+      ? Object.keys(element.nestedControls) : null;
+
+    if (NestedValues) {
+      NestedValues.forEach(key => {
+        const propertyvalue = element.nestedControls[key];
+        element.nestedControls[key] = (propertyvalue) ? propertyvalue : key;
+      });
+
+    }
+
     return element;
   }
 

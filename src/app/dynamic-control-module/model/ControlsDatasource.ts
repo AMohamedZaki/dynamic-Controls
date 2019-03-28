@@ -11,6 +11,7 @@ import { DynamicDateDetailsComponent } from '../controls/dynamic-date-details/dy
 import { DynamicFileUploadComponent } from '../controls/dynamic-file-upload/dynamic-file-upload.component';
 import { DynamicButtonComponent } from '../controls/dynamic-button/dynamic-button.component';
 import { DynamicEditableDropDownListComponent } from '../controls/dynamic-editable-drop-down-list/editable-drop-down-list.component';
+import { DynamicTelephoneTextComponent } from '../controls/dynamic-telephone-text/dynamic-telephone-text.component';
 
 interface ControlElement {
     [ket: string]: Type<BaseComponent>;
@@ -28,7 +29,8 @@ export function Controls(): ControlElement {
         dateDetails: DynamicDateDetailsComponent,
         fileUpload: DynamicFileUploadComponent,
         button: DynamicButtonComponent,
-        editableDropdown: DynamicEditableDropDownListComponent
+        editableDropdown: DynamicEditableDropDownListComponent,
+        telephoneDetails: DynamicTelephoneTextComponent
     };
     return controls;
 }

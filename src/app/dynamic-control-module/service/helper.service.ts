@@ -25,7 +25,9 @@ export function ConvertListToFormGroup(elements: Panel[]) {
           if (haveNestedPropertois && haveNestedPropertois.length > 1) {
             group[controlElement.ObjectMap][item.Key] = {};
             haveNestedPropertois.forEach(key => {
-              group[controlElement.ObjectMap][item.Key][key] = new FormControl('');
+              const keyValue = (item.nestedControls[key]) ? item.nestedControls[key] : key;
+
+              group[controlElement.ObjectMap][item.Key][keyValue] = new FormControl('');
             });
             group[controlElement.ObjectMap][item.Key] = new FormGroup(group[controlElement.ObjectMap][item.Key]);
           } else { group[controlElement.ObjectMap][item.Key] = new FormControl(formControlObj, validationList); }

@@ -10,6 +10,10 @@ import { ControlContainer, FormGroupDirective, AbstractControl } from '@angular/
 })
 export class DynamicDateDetailsComponent extends BaseComponent implements OnInit {
 
+  year: number = new Date().getFullYear();
+  month: number = new Date().getMonth() + 1;
+  day: number = new Date().getDay();
+
   constructor(elementRef: ElementRef,
     renderer: Renderer2,
     cdRef: ChangeDetectorRef) {
@@ -32,26 +36,59 @@ export class DynamicDateDetailsComponent extends BaseComponent implements OnInit
     }
   }
 
-  SetmaxYear(ev: string) {
-    // if (ev && ((ev as Number) < 1900 && (ev as Number) > 2099)) {
-    //   const CurrentYear = new Date().getFullYear();
-    //   this.getDataControl('Year').setValue(CurrentYear);
-    // }
+  SetmaxYear(ev: any) {
+    const setMaxYear = new Date().getFullYear() + 80;
+    const input = ev as Number;
+    if (input && input < setMaxYear && input > 1900) {
+      const CurrentYear = new Date().getFullYear();
+      const yearElement = this.element.nestedControls['Year'];
+      this.getDataControl(yearElement).setValue(CurrentYear);
+    }
   }
 
-  // SetmaxMonth(ev: any) {
-  //   if (ev && (ev) as Number > 12) {
-  //     this.getDataControl('Month').setValue(12);
-  //   }
-  // }
+  SetmaxDay(ev: any) {
+    this.day = this.MaxDayValueOfMonth(ev);
+  }
 
   SetmaxMonth(ev: any) {
+    // debugger;
+    const MonthElement = this.element.nestedControls['Month'];
+    const dayElement = this.element.nestedControls['Day'];
     if (ev && (ev) as Number > 12) {
-      this.getDataControl('Month').setValue(12);
+      this.getDataControl(MonthElement).setValue(12);
+      ev = 12;
     }
+    this.month = ev;
+    const dayValue = (this.getDataControl(dayElement)) ? this.getDataControl(dayElement).value : null;
+    if (dayValue) { this.day = this.MaxDayValueOfMonth(dayValue); }
   }
 
   private getDataControl(Key: string): AbstractControl {
     return this.form.get(`${this.GroupName}.${this.element.Key}.${Key}`);
   }
+
+  /**
+   * get number of days in the month
+   */
+  getDays(year: number, month: number) {
+    const d = new Date(year, month, 0);
+    return d.getDate();
+  }
+
+  digitalCount(n: number) {
+    for (let i = 0; i < n; i++) {
+
+    }
+  }
+
+  private MaxDayValueOfMonth(ev: number): number {
+    const maxDayNumber = this.getDays(this.year, this.month);
+    if (ev && (ev) as Number > maxDayNumber) {
+      const dayElement = this.element.nestedControls['Day'];
+      this.getDataControl(dayElement).setValue(maxDayNumber);
+      ev = maxDayNumber;
+    }
+    return ev;
+  }
+
 }

@@ -17,7 +17,7 @@ export class BaseElement<T> {
     position: Position;
     style: any;
     readonly: boolean;
-    nestedControls?: {[key: string]: any};
+    nestedControls?: T = <T> {};
     constructor(options: IElement<T>) {
         this.Key = options.Key || '';
         this.value = options.value;

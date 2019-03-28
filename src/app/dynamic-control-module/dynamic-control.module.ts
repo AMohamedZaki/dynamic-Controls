@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DynamicElementComponent } from './dynamic-element/dynamic-element.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ElememtContainerComponent } from '../elememt-container/elememt-container.component';
 
@@ -26,10 +25,10 @@ import { DynamicRadiobuttonsComponent } from './controls/dynamic-radiobuttons/dy
 import { DynamicMultiSelectComponent } from './controls/dynamic-multi-select/dynamic-multi-select.component';
 import { DynamicTextAreaComponent } from './controls/dynamic-text-area/dynamic-text-area.component';
 import { DynamicEditableDropDownListComponent } from './controls/dynamic-editable-drop-down-list/editable-drop-down-list.component';
+import { DynamicTelephoneTextComponent } from './controls/dynamic-telephone-text/dynamic-telephone-text.component';
 
 @NgModule({
   declarations: [
-    DynamicElementComponent,
     DynamicFormComponent,
     ElememtContainerComponent,
     OrderByPipe,
@@ -46,7 +45,8 @@ import { DynamicEditableDropDownListComponent } from './controls/dynamic-editabl
     DynamicRadiobuttonsComponent,
     DynamicMultiSelectComponent,
     DynamicTextAreaComponent,
-    DynamicEditableDropDownListComponent
+    DynamicEditableDropDownListComponent,
+    DynamicTelephoneTextComponent
   ],
   imports: [
     CommonModule,
@@ -75,7 +75,8 @@ import { DynamicEditableDropDownListComponent } from './controls/dynamic-editabl
     DynamicDateDetailsComponent,
     DynamicFileUploadComponent,
     DynamicButtonComponent,
-    DynamicEditableDropDownListComponent
+    DynamicEditableDropDownListComponent,
+    DynamicTelephoneTextComponent
   ]
 })
 export class DynamicControlModule { }

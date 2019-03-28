@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Panel } from '../dynamic-control-module/model/panel';
 import {
   TextBoxElement, DropDown, CheckBox, Radiobuttons, FileUpload,
-  Button, TextArea, DateDetails
+  Button, TextArea, DateDetails, TelephoneDetails
 } from '../dynamic-control-module/model/Controls';
 import { Position } from '../dynamic-control-module/model/PositionEnum';
 import { MultiSelect, DatePicker, EditableDropdown } from '../dynamic-control-module/model/KendoControls';
 import { DateDetailsModel } from '../dynamic-control-module/model/dateDetails';
 import { ValidtionTypes } from '../dynamic-control-module/model/validation/ValidtionTypes';
+import { TelephoneDetailsModel } from '../dynamic-control-module/model/telephoneDetails';
 
 
 @Injectable()
@@ -242,6 +243,14 @@ export class GetElementsService {
           visible: true,
           index: 55,
           nestedControls: new DateDetailsModel()
+        }),
+        new TelephoneDetails({
+          Key: 'Telephone',
+          Label: 'Telephone',
+          position: Position.HalfOfThree,
+          visible: true,
+          index: 55,
+          nestedControls: { country: '', governorate: '', telephone: '' }
         })
       ]
     }

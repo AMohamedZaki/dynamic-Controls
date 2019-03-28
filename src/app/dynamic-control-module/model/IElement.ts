@@ -17,5 +17,6 @@ export interface IElement<T> {
     position?: Position;
     style?: any;
     dateDetails?: DateDetailsModel;
+    nestedControls?: T;
     [key: string]: any;
 }

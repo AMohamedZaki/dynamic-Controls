@@ -10,5 +10,6 @@ export enum ControlType {
     dateDetails,
     multiSelect,
     datePicker,
-    editableDropdown
+    editableDropdown,
+    telephoneDetails
 }
