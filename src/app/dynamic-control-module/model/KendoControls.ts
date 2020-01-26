@@ -7,9 +7,8 @@ import { ControlType } from './controlsTypeEnum';
 export class MultiSelect extends BaseElement<any> {
     controlType = ControlType[ControlType.multiSelect];
     dataSource: string;
-    constructor(Options: IElement<any> = {}) {
-        super(Options);
-        this.dataSource = Options.dataSource || '';
+    constructor() {
+        super();
     }
 }
 
@@ -17,17 +16,15 @@ export class MultiSelect extends BaseElement<any> {
 export class DatePicker extends BaseElement<any> {
     controlType = ControlType[ControlType.datePicker];
     format: string;
-    constructor(Options: IElement<any> = {}) {
-        super(Options);
-        this.format = Options.format;
+    constructor() {
+        super();
     }
 }
 
 export class EditableDropdown extends BaseElement<any> {
     controlType = ControlType[ControlType.editableDropdown];
     dataSource: string;
-    constructor(Options: IElement<any> = {}) {
-        super(Options);
-        this.dataSource = Options.dataSource || '';
+    constructor() {
+        super();
     }
 }

@@ -12,8 +12,9 @@ import { DynamicFileUploadComponent } from '../controls/dynamic-file-upload/dyna
 import { DynamicButtonComponent } from '../controls/dynamic-button/dynamic-button.component';
 import { DynamicEditableDropDownListComponent } from '../controls/dynamic-editable-drop-down-list/editable-drop-down-list.component';
 import { DynamicTelephoneTextComponent } from '../controls/dynamic-telephone-text/dynamic-telephone-text.component';
+import { ControlType } from './controlsTypeEnum';
 
-interface ControlElement {
+export interface ControlElement {
     [ket: string]: Type<BaseComponent>;
 }
 
@@ -32,5 +33,6 @@ export function Controls(): ControlElement {
         editableDropdown: DynamicEditableDropDownListComponent,
         telephoneDetails: DynamicTelephoneTextComponent
     };
+
     return controls;
 }

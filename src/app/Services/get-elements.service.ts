@@ -10,6 +10,7 @@ import { MultiSelect, DatePicker, EditableDropdown } from '../dynamic-control-mo
 import { DateDetailsModel } from '../dynamic-control-module/model/dateDetails';
 import { ValidtionTypes } from '../dynamic-control-module/model/validation/ValidtionTypes';
 import { TelephoneDetailsModel } from '../dynamic-control-module/model/telephoneDetails';
+import { ControlType } from '../dynamic-control-module/model/controlsTypeEnum';
 
 
 @Injectable()
@@ -24,7 +25,8 @@ export class GetElementsService {
       applySort: false,
       expandPanel: false,
       elementList: [
-        new TextBoxElement({
+        {
+          controlType: ControlType[ControlType.textbox],
           Key: 'firstName',
           Label: 'First name',
           value: 'National Technology',
@@ -38,10 +40,11 @@ export class GetElementsService {
               { Name: 'click', callBack: 'testClick' },
               { Name: 'change', callBack: 'testChange', PassEventObject: true }
             ]
-        }),
-        new DropDown({
+        },
+        {
           Key: 'Country',
           Label: 'Choose The Country',
+          controlType: ControlType[ControlType.dropdown],
           validation: [{ type: ValidtionTypes.required }],
           visible: true,
           position: Position.OneOfThree,
@@ -52,8 +55,9 @@ export class GetElementsService {
             [
               { Name: 'change', callBack: 'ChangeCity', PassEventObject: true },
             ]
-        }),
-        new CheckBox({
+        },
+        {
+          controlType: ControlType[ControlType.checkBox],
           Key: 'IsAgree',
           Label: 'Agree With Terms',
           validation: [{ type: ValidtionTypes.required }],
@@ -62,8 +66,9 @@ export class GetElementsService {
           position: Position.OneOfThree,
           id: 9,
           index: 5,
-        }),
-        new Radiobuttons({
+        },
+        {
+          controlType: ControlType[ControlType.radiobuttons],
           Key: 'CounRadio',
           Label: 'Choose Country',
           validation: [{ type: ValidtionTypes.required }],
@@ -73,8 +78,9 @@ export class GetElementsService {
           id: 9,
           index: 6,
           dataSource: 'CountryRaddio'
-        }),
-        new DropDown({
+        },
+        {
+          controlType: ControlType[ControlType.dropdown],
           Key: 'City',
           Label: 'Choose your City ?',
           validation: [{ type: ValidtionTypes.required }],
@@ -83,8 +89,9 @@ export class GetElementsService {
           position: Position.OneOfThree,
           dataSource: 'CityList',
           id: 4
-        }),
-        new TextBoxElement({
+        },
+        {
+          controlType: ControlType[ControlType.textbox],
           Key: 'lastName',
           Label: 'Last name',
           value: '',
@@ -98,8 +105,9 @@ export class GetElementsService {
           id: 2,
           index: 2,
           style: '{"width": "100%" }'
-        }),
-        new Button({
+        },
+        {
+          controlType: ControlType[ControlType.button],
           Label: '',
           visible: true,
           id: 18,
@@ -111,8 +119,9 @@ export class GetElementsService {
             [
               { Name: 'click', callBack: 'btnClick' },
             ]
-        }),
-        new MultiSelect({
+        },
+        {
+          controlType: ControlType[ControlType.multiSelect],
           Key: 'NamesMultiSelect',
           Label: 'Choose Names',
           visible: true,
@@ -124,8 +133,9 @@ export class GetElementsService {
             [
               { Name: 'change', callBack: 'ChangeCity', PassEventObject: true },
             ]
-        }),
-        new Button({
+        },
+        {
+          controlType: ControlType[ControlType.button],
           Label: '',
           visible: true,
           id: 18,
@@ -136,8 +146,9 @@ export class GetElementsService {
             [
               { Name: 'click', callBack: 'btnRestore' },
             ]
-        }),
-        new Button({
+        },
+        {
+          controlType: ControlType[ControlType.button],
           Label: '',
           visible: true,
           id: 18,
@@ -148,9 +159,9 @@ export class GetElementsService {
             [
               { Name: 'click', callBack: 'removeRequired' },
             ]
-        })
-        ,
-        new FileUpload({
+        },
+        {
+          controlType: ControlType[ControlType.fileUpload],
           Label: 'Upload Image',
           Key: 'imageUpload',
           validation: [{ type: ValidtionTypes.required }],
@@ -162,17 +173,18 @@ export class GetElementsService {
           events: [
             { Name: 'change', callBack: 'TestUpload', PassEventObject: true }
           ]
-        })
-        ,
-        new TextArea({
+        },
+        {
+          controlType: ControlType[ControlType.textArea],
           Label: 'Summery',
           Key: 'Summery',
           visible: true,
           id: 63,
           index: 20,
           position: Position.ThreeOfThree
-        }),
-        new EditableDropdown({
+        },
+        {
+          controlType: ControlType[ControlType.editableDropdown],
           Label: 'Search',
           Key: 'Search',
           visible: true,
@@ -184,7 +196,7 @@ export class GetElementsService {
             Name: 'keydown.enter',
             callBack: 'getItem'
           }]
-        })
+        }
       ]
     }
       , {
@@ -193,7 +205,8 @@ export class GetElementsService {
       Service: 'docService',
       expandPanel: false,
       elementList: [
-        new TextBoxElement({
+        {
+          controlType: ControlType[ControlType.textbox],
           Key: 'firstName',
           Label: 'First name',
           value: 'Abdel moneim Mohamed',
@@ -206,8 +219,9 @@ export class GetElementsService {
               { Name: 'click', callBack: 'testClick' },
               { Name: 'change', callBack: 'testChange', PassEventObject: true }
             ]
-        })
-        , new TextBoxElement({
+        }
+        , {
+          controlType: ControlType[ControlType.textbox],
           Key: 'lastName',
           Label: 'Last name',
           value: '',
@@ -215,18 +229,20 @@ export class GetElementsService {
           validation: [{ type: ValidtionTypes.required }],
           visible: true,
           id: 5,
-        }),
-        new DatePicker({
+        },
+        {
+          controlType: ControlType[ControlType.datePicker],
           Key: 'meeting',
           Label: 'Meeting',
           value: new Date(),
           validation: [{ type: ValidtionTypes.required }],
           visible: true,
-          position: Position.TwoOfThree,
+          position: Position.OneOfThree,
           id: 10,
           format: 'dd-MMM-yyyy hh:mm'
-        }),
-        new DatePicker({
+        },
+        {
+          controlType: ControlType[ControlType.datePicker],
           Key: 'meeting2',
           Label: 'Meeting2',
           validation: [{ type: ValidtionTypes.required }],
@@ -234,24 +250,25 @@ export class GetElementsService {
           position: Position.OneOfThree,
           id: 10,
           format: 'dd / MM / yyyy'
-        })
-        ,
-        new DateDetails({
+        },
+        {
+          controlType: ControlType[ControlType.dateDetails],
           Key: 'age',
           Label: 'Age',
-          position: Position.HalfOfThree,
+          position: Position.OneOfThree,
           visible: true,
           index: 55,
           nestedControls: new DateDetailsModel()
-        }),
-        new TelephoneDetails({
+        },
+        {
+          controlType: ControlType[ControlType.telephoneDetails],
           Key: 'Telephone',
           Label: 'Telephone',
           position: Position.HalfOfThree,
           visible: true,
           index: 55,
           nestedControls: { country: '', governorate: '', telephone: '' }
-        })
+        }
       ]
     }
     ];
