@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { BaseElement } from '../model/baseElement';
 import { FormGroup } from '@angular/forms';
-import { Controls } from '../model/ControlsDatasource';
+import { Controls, ControlElement } from '../model/ControlsDatasource';
 import { BaseComponent } from '../controls/BasControl/BaseControl';
 import { ValidationAlertComponent } from '../controls/validation-alert/validation-alert.component';
 
@@ -27,21 +27,34 @@ export class DynamicFeildDirective implements OnChanges, OnInit {
 
   ngOnInit() {
     const components = Controls();
-    if (!components[this.element.controlType]) {
-      throw new Error(`this type ${this.element.controlType} not supported ...`);
-    }
-    const _component = this.resolver.resolveComponentFactory(components[this.element.controlType]);
-    this.component = this.container.createComponent(_component);
+    this.validateControl(components);
 
-    const _vcomponent = this.resolver.resolveComponentFactory(ValidationAlertComponent);
-    this.validationComponent = this.container.createComponent(_vcomponent);
+    this.initializeFormControl(components);
+    this.initialzeValidationMessage();
 
     this.initializeControlsComponentInstance();
     this.initializeValidationComponentInstance();
   }
 
+  private initialzeValidationMessage() {
+    const _vcomponent = this.resolver.resolveComponentFactory(ValidationAlertComponent);
+    this.validationComponent = this.container.createComponent(_vcomponent);
+  }
+
+  private initializeFormControl(components: ControlElement) {
+    const _component = this.resolver.resolveComponentFactory(components[this.element.controlType]);
+    this.component = this.container.createComponent(_component);
+  }
+
+  private validateControl(components: ControlElement) {
+    if (!components[this.element.controlType]) {
+      throw new Error(`this type ${this.element.controlType} not supported ...`);
+    }
+  }
+
   ngOnChanges() {
     if (this.component) {
+      console.log('ngOnChanges');
       this.initializeControlsComponentInstance();
       this.initializeValidationComponentInstance();
     }
